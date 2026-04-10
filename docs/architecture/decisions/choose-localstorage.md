@@ -6,7 +6,7 @@ Proposed
 
 ## Context
 
-Storing user game data. 
+Storing user game data. Other options include creating a database on the backend to store user game data. This could be SQL, MariaDB, MongoDB, etc...
 
 ## Decision
 
