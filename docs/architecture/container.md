@@ -15,4 +15,5 @@
         Rel(user, ui, "Plays Battleship Via")
         Rel(ui, backend, "Makes API reqests to [JSON/HTTP]")
         Rel(backend, ai, "Prompts AI for game moves")
+        Rel(static, ui, "Delivers")
 ```
