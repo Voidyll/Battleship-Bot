@@ -19,7 +19,7 @@ GPU note:
 FORCE_CPU: bool = False
 """Set True to disable GPU and run on CPU only."""
 
-FAST_MODE: bool = True
+FAST_MODE: bool = False
 """If True, use a lower-cost training profile for faster iteration."""
 
 FAST_POPULATION_SIZE: int = 40
@@ -41,9 +41,10 @@ NUM_CELLS:     int = BOARD_SIZE * BOARD_SIZE  # 100
 # ---------------------------------------------------------------------------
 
 # --- Targeting network (used during the battle phase) ---
-# Input : shot_tracker (100) + enemy_sunk flags (5) + own_ships_alive flags (5) = 110
+# Input : 4 one-hot shot channels (unknown/miss/hit/sunk = 400)
+#         + enemy_sunk flags (5) + own_ships_alive flags (5) = 410
 # Output: score for each of the 100 cells (argmax of unseen cells is chosen)
-TARGETING_INPUT_SIZE:   int       = NUM_CELLS + NUM_SHIPS + NUM_SHIPS  # 110
+TARGETING_INPUT_SIZE:   int       = (NUM_CELLS * 4) + NUM_SHIPS + NUM_SHIPS  # 410
 TARGETING_HIDDEN_SIZES: list[int] = [96, 64]
 TARGETING_OUTPUT_SIZE:  int       = NUM_CELLS  # 100
 
@@ -74,16 +75,16 @@ TOURNAMENT_SIZE:      int   = 9
 CROSSOVER_RATE:       float = 0.70
 """Probability that two parents produce a crossed-over child (vs direct copy)."""
 
-MUTATION_RATE:        float = 0.15
+MUTATION_RATE:        float = 0.08
 """Initial probability that any individual weight is mutated."""
 
-MUTATION_STRENGTH:    float = 0.15
+MUTATION_STRENGTH:    float = 0.06
 """Initial standard deviation of Gaussian noise added during mutation."""
 
-MUTATION_RATE_END:     float = 0.03
+MUTATION_RATE_END:     float = 0.02
 """Final mutation rate after annealing completes."""
 
-MUTATION_STRENGTH_END: float = 0.04
+MUTATION_STRENGTH_END: float = 0.02
 """Final mutation strength after annealing completes."""
 
 MUTATION_ANNEAL_POWER: float = 1.0
@@ -133,20 +134,42 @@ HALL_OF_FAME_ADD_EVERY: int = 1
 # Fitness weights
 # ---------------------------------------------------------------------------
 # Composite fitness = w_win * win_rate
+#                   + w_sink * sink_rate
+#                   + w_convert * conversion_rate
+#                   + w_eff * win_turn_efficiency
+#                   + w_pace * game_pace
+#                   + w_follow * tactical_followup_rate
 #                   + w_hit * hit_ratio
 #                   - w_hit_taken * hit_taken_ratio
+#                   - p_ignore * tactical_ignore_rate
+#                   - p_tie * tie_ratio
+#                   - p_dangling * dangling_hit_ratio
 #
 # All components are normalised to [0, 1] before weighting.
 
-FITNESS_WEIGHT_WIN:       float = 0.50
-FITNESS_WEIGHT_HIT_RATIO: float = 0.30
+FITNESS_WEIGHT_WIN:       float = 0.40
+FITNESS_WEIGHT_SINK_RATE: float = 0.28
+FITNESS_WEIGHT_CONVERSION: float = 0.28
+FITNESS_WEIGHT_HIT_RATIO: float = 0.02
 FITNESS_WEIGHT_HIT_TAKEN: float = 0.20  # subtracted (lower times-hit = better)
 
 FITNESS_WEIGHT_EFFICIENCY: float = 0.10
 """Reward for winning quickly (lower turns when you win)."""
 
+FITNESS_WEIGHT_GAME_PACE: float = 0.05
+"""Small reward for shorter games overall (decreases as turns increase)."""
+
 FITNESS_TIE_PENALTY: float = 0.15
 """Penalty applied to games that hit MAX_TURNS_PER_GAME without a winner."""
+
+FITNESS_DANGLING_HIT_PENALTY: float = 0.15
+"""Penalty for leaving partial-hit ships unresolved by game end."""
+
+FITNESS_WEIGHT_TACTICAL_FOLLOWUP: float = 0.18
+"""Reward for choosing shots adjacent to unresolved hit cells when in target mode."""
+
+FITNESS_TACTICAL_IGNORE_PENALTY: float = 0.18
+"""Penalty for ignoring unresolved hit cells by shooting elsewhere."""
 
 # ---------------------------------------------------------------------------
 # External benchmark tracking
@@ -166,6 +189,12 @@ CHECKPOINT_COMPARE_GAMES: int = 20
 
 FAST_CHECKPOINT_COMPARE_GAMES: int = 8
 """Fast-mode cap for checkpoint comparison games."""
+
+TACTICAL_BASELINE_GAMES_PER_EVAL: int = 4
+"""Extra games per agent per generation against hunt-target baseline (included in fitness)."""
+
+FAST_TACTICAL_BASELINE_GAMES_PER_EVAL: int = 1
+"""Fast-mode cap for tactical baseline games included in fitness."""
 
 # ---------------------------------------------------------------------------
 # Training I/O

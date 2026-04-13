@@ -158,22 +158,96 @@ class Agent:
         Returns (row, col).
         Guarantees the returned cell has ShotState.UNKNOWN (never already shot).
         """
-        tracker     = ai_state['shot_tracker'].flatten().astype(np.float32)
-        self._target_input_buf[0, :config.NUM_CELLS] = tracker
-        self._target_input_buf[0, config.NUM_CELLS:config.NUM_CELLS + config.NUM_SHIPS] = np.asarray(
+        tracker_grid = ai_state['shot_tracker']
+        flat_tracker = tracker_grid.flatten()
+
+        # One-hot-like channel encoding gives clearer spatial state than a single
+        # signed-value channel: unknown, miss, hit, sunk.
+        offset = 0
+        self._target_input_buf[0, offset:offset + config.NUM_CELLS] = (
+            flat_tracker == int(ShotState.UNKNOWN)
+        ).astype(np.float32)
+        offset += config.NUM_CELLS
+        self._target_input_buf[0, offset:offset + config.NUM_CELLS] = (
+            flat_tracker == int(ShotState.MISS)
+        ).astype(np.float32)
+        offset += config.NUM_CELLS
+        self._target_input_buf[0, offset:offset + config.NUM_CELLS] = (
+            flat_tracker == int(ShotState.HIT)
+        ).astype(np.float32)
+        offset += config.NUM_CELLS
+        self._target_input_buf[0, offset:offset + config.NUM_CELLS] = (
+            flat_tracker == int(ShotState.SUNK)
+        ).astype(np.float32)
+        offset += config.NUM_CELLS
+
+        self._target_input_buf[0, offset:offset + config.NUM_SHIPS] = np.asarray(
             ai_state['enemy_sunk'], dtype=np.float32
         )
-        self._target_input_buf[0, config.NUM_CELLS + config.NUM_SHIPS:] = np.asarray(
+        offset += config.NUM_SHIPS
+        self._target_input_buf[0, offset:offset + config.NUM_SHIPS] = np.asarray(
             ai_state['own_ships_alive'], dtype=np.float32
         )
 
         scores = self.targeting_net(self._target_input_buf, training=False).numpy()[0]  # (100,)
 
-        # Mask already-shot cells so they are never selected
-        flat_tracker = ai_state['shot_tracker'].flatten()
-        scores[flat_tracker != int(ShotState.UNKNOWN)] = -np.inf
+        # Mask already-shot cells so they are never selected.
+        unknown_mask = (flat_tracker == int(ShotState.UNKNOWN))
+        scores[~unknown_mask] = -np.inf
 
-        idx = int(np.argmax(scores))
+        # Tactical target-mode gate: if we have unresolved hits, only consider
+        # cells that are adjacent to known hits and line extensions from hit pairs.
+        hits = np.argwhere(tracker_grid == int(ShotState.HIT))
+        if hits.size > 0:
+            candidate_mask = np.zeros(config.NUM_CELLS, dtype=bool)
+
+            for r, c in hits:
+                for dr, dc in ((-1, 0), (1, 0), (0, -1), (0, 1)):
+                    rr, cc = int(r + dr), int(c + dc)
+                    if 0 <= rr < BOARD_SIZE and 0 <= cc < BOARD_SIZE:
+                        idx = rr * BOARD_SIZE + cc
+                        if unknown_mask[idx]:
+                            candidate_mask[idx] = True
+
+            hit_set = {(int(r), int(c)) for r, c in hits}
+            for r, c in hit_set:
+                # Horizontal contiguous hit pair => extend both ends.
+                if (r, c + 1) in hit_set:
+                    left = c - 1
+                    right = c + 2
+                    if 0 <= left < BOARD_SIZE:
+                        idx = r * BOARD_SIZE + left
+                        if unknown_mask[idx]:
+                            candidate_mask[idx] = True
+                    if 0 <= right < BOARD_SIZE:
+                        idx = r * BOARD_SIZE + right
+                        if unknown_mask[idx]:
+                            candidate_mask[idx] = True
+
+                # Vertical contiguous hit pair => extend both ends.
+                if (r + 1, c) in hit_set:
+                    up = r - 1
+                    down = r + 2
+                    if 0 <= up < BOARD_SIZE:
+                        idx = up * BOARD_SIZE + c
+                        if unknown_mask[idx]:
+                            candidate_mask[idx] = True
+                    if 0 <= down < BOARD_SIZE:
+                        idx = down * BOARD_SIZE + c
+                        if unknown_mask[idx]:
+                            candidate_mask[idx] = True
+
+            if np.any(candidate_mask):
+                gated_scores = scores.copy()
+                gated_scores[~candidate_mask] = -np.inf
+                if np.any(np.isfinite(gated_scores)):
+                    scores = gated_scores
+
+        if not np.any(np.isfinite(scores)):
+            unknown_idx = np.flatnonzero(unknown_mask)
+            idx = int(unknown_idx[0]) if len(unknown_idx) > 0 else 0
+        else:
+            idx = int(np.argmax(scores))
         return (idx // BOARD_SIZE, idx % BOARD_SIZE)
 
     # ------------------------------------------------------------ save / load
@@ -217,15 +291,22 @@ class Agent:
         p_npz = f'{path}_placement.weights.npz'
         t_npz = f'{path}_targeting.weights.npz'
 
-        if os.path.exists(p_h5) and os.path.exists(t_h5):
-            agent.placement_net.load_weights(p_h5)
-            agent.targeting_net.load_weights(t_h5)
-        elif os.path.exists(p_npz) and os.path.exists(t_npz):
-            agent.placement_net.load_weights(p_npz)
-            agent.targeting_net.load_weights(t_npz)
-        else:
-            raise FileNotFoundError(
-                f'Could not find model weight files for base path: {path}'
-            )
+        try:
+            if os.path.exists(p_h5) and os.path.exists(t_h5):
+                agent.placement_net.load_weights(p_h5)
+                agent.targeting_net.load_weights(t_h5)
+            elif os.path.exists(p_npz) and os.path.exists(t_npz):
+                agent.placement_net.load_weights(p_npz)
+                agent.targeting_net.load_weights(t_npz)
+            else:
+                raise FileNotFoundError(
+                    f'Could not find model weight files for base path: {path}'
+                )
+        except ValueError as e:
+            raise ValueError(
+                'Checkpoint architecture mismatch. This code now uses a multi-channel '
+                f'targeting input of size {config.TARGETING_INPUT_SIZE}; retrain or load '
+                'a checkpoint produced with the current architecture.'
+            ) from e
 
         return agent

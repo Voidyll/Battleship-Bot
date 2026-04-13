@@ -33,7 +33,7 @@ _PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 if _PROJECT_ROOT not in sys.path:
     sys.path.insert(0, _PROJECT_ROOT)
 
-from game.game import Game, GamePhase, Board, BOARD_SIZE, ShotState, random_place_all_ships
+from game.game import Game, GamePhase, Board, BOARD_SIZE, SHIP_DEFINITIONS, ShotState, random_place_all_ships
 from AI import config
 from AI.agent import Agent
 from AI.fitness import compute_fitness, fitness_summary
@@ -59,6 +59,21 @@ def _simulate_game(
     Returns (stats_p1, stats_p2) dicts from Game.get_stats().
     """
     game = Game()
+    ship_sizes = {name: size for name, size in SHIP_DEFINITIONS}
+
+    discovered: dict[int, set[str]] = {1: set(), 2: set()}
+    pending_deadlines: dict[int, dict[str, int]] = {1: {}, 2: {}}
+    find_events: dict[int, int] = {1: 0, 2: 0}
+    quick_conversions: dict[int, int] = {1: 0, 2: 0}
+    tactical_decisions: dict[int, int] = {1: 0, 2: 0}
+    tactical_followups: dict[int, int] = {1: 0, 2: 0}
+    tactical_ignores: dict[int, int] = {1: 0, 2: 0}
+
+    def _ship_name_at(board: Board, row: int, col: int) -> str | None:
+        for ship in board.ships:
+            if (row, col) in ship.positions:
+                return ship.name
+        return None
 
     # --- placement phase ---
     agent_1.place_all_ships(game.boards[1], rng)
@@ -72,7 +87,42 @@ def _simulate_game(
         agent = agent_1 if p == 1 else agent_2
         state = game.get_ai_state(p)
         row, col = agent.choose_shot(state)
-        game.fire(p, row, col)
+
+        # Tactical behavior signal: when unresolved hits exist, reward adjacent
+        # follow-up shots and penalize shots elsewhere.
+        unresolved_hits = np.argwhere(state['shot_tracker'] == int(ShotState.HIT))
+        if len(unresolved_hits) > 0:
+            tactical_decisions[p] += 1
+            is_adjacent = False
+            for hr, hc in unresolved_hits:
+                if abs(int(hr) - row) + abs(int(hc) - col) == 1:
+                    is_adjacent = True
+                    break
+            if is_adjacent:
+                tactical_followups[p] += 1
+            else:
+                tactical_ignores[p] += 1
+
+        opponent = 3 - p
+        opponent_board = game.boards[opponent]
+        shot = game.fire(p, row, col)
+
+        if shot.get('success'):
+            hit_ship_name = _ship_name_at(opponent_board, row, col)
+            if shot['result'] == 'hit' and hit_ship_name is not None:
+                if hit_ship_name not in discovered[p]:
+                    discovered[p].add(hit_ship_name)
+                    find_events[p] += 1
+                    # Deadline rule requested by user:
+                    # conversion counts if sunk within (ship_size + 3) turns from first hit.
+                    deadline = game.turn_count + ship_sizes[hit_ship_name] + 3
+                    pending_deadlines[p][hit_ship_name] = deadline
+
+            sunk_name = shot.get('sunk_ship_name')
+            if sunk_name is not None and sunk_name in pending_deadlines[p]:
+                if game.turn_count <= pending_deadlines[p][sunk_name]:
+                    quick_conversions[p] += 1
+                pending_deadlines[p].pop(sunk_name, None)
         turn += 1
 
     timed_out = (not game.is_over())
@@ -80,6 +130,18 @@ def _simulate_game(
     s2 = game.get_stats(2)
     s1['timed_out'] = timed_out
     s2['timed_out'] = timed_out
+
+    for player, stats in ((1, s1), (2, s2)):
+        tracker = game.boards[player].shot_tracker
+        dangling_hits = int(np.sum(tracker == int(ShotState.HIT)))
+        stats['find_events'] = find_events[player]
+        stats['quick_conversions'] = quick_conversions[player]
+        stats['dangling_hits'] = dangling_hits
+        stats['tactical_decisions'] = tactical_decisions[player]
+        stats['tactical_followups'] = tactical_followups[player]
+        stats['tactical_ignores'] = tactical_ignores[player]
+        stats['game_pace'] = 1.0 - (min(stats['turns'], max_turns) / max(max_turns, 1))
+
     return s1, s2
 
 
@@ -127,6 +189,21 @@ def _simulate_game_generic(
 ) -> tuple[dict, dict]:
     """Play one game between any two objects implementing place_all_ships and choose_shot."""
     game = Game()
+    ship_sizes = {name: size for name, size in SHIP_DEFINITIONS}
+
+    discovered: dict[int, set[str]] = {1: set(), 2: set()}
+    pending_deadlines: dict[int, dict[str, int]] = {1: {}, 2: {}}
+    find_events: dict[int, int] = {1: 0, 2: 0}
+    quick_conversions: dict[int, int] = {1: 0, 2: 0}
+    tactical_decisions: dict[int, int] = {1: 0, 2: 0}
+    tactical_followups: dict[int, int] = {1: 0, 2: 0}
+    tactical_ignores: dict[int, int] = {1: 0, 2: 0}
+
+    def _ship_name_at(board: Board, row: int, col: int) -> str | None:
+        for ship in board.ships:
+            if (row, col) in ship.positions:
+                return ship.name
+        return None
     player_1.place_all_ships(game.boards[1], rng)
     player_2.place_all_ships(game.boards[2], rng)
     game.phase = GamePhase.BATTLE
@@ -137,7 +214,38 @@ def _simulate_game_generic(
         player = player_1 if p == 1 else player_2
         state = game.get_ai_state(p)
         row, col = player.choose_shot(state)
-        game.fire(p, row, col)
+
+        unresolved_hits = np.argwhere(state['shot_tracker'] == int(ShotState.HIT))
+        if len(unresolved_hits) > 0:
+            tactical_decisions[p] += 1
+            is_adjacent = False
+            for hr, hc in unresolved_hits:
+                if abs(int(hr) - row) + abs(int(hc) - col) == 1:
+                    is_adjacent = True
+                    break
+            if is_adjacent:
+                tactical_followups[p] += 1
+            else:
+                tactical_ignores[p] += 1
+
+        opponent = 3 - p
+        opponent_board = game.boards[opponent]
+        shot = game.fire(p, row, col)
+
+        if shot.get('success'):
+            hit_ship_name = _ship_name_at(opponent_board, row, col)
+            if shot['result'] == 'hit' and hit_ship_name is not None:
+                if hit_ship_name not in discovered[p]:
+                    discovered[p].add(hit_ship_name)
+                    find_events[p] += 1
+                    deadline = game.turn_count + ship_sizes[hit_ship_name] + 3
+                    pending_deadlines[p][hit_ship_name] = deadline
+
+            sunk_name = shot.get('sunk_ship_name')
+            if sunk_name is not None and sunk_name in pending_deadlines[p]:
+                if game.turn_count <= pending_deadlines[p][sunk_name]:
+                    quick_conversions[p] += 1
+                pending_deadlines[p].pop(sunk_name, None)
         turn += 1
 
     timed_out = (not game.is_over())
@@ -145,6 +253,18 @@ def _simulate_game_generic(
     s2 = game.get_stats(2)
     s1['timed_out'] = timed_out
     s2['timed_out'] = timed_out
+
+    for player, stats in ((1, s1), (2, s2)):
+        tracker = game.boards[player].shot_tracker
+        dangling_hits = int(np.sum(tracker == int(ShotState.HIT)))
+        stats['find_events'] = find_events[player]
+        stats['quick_conversions'] = quick_conversions[player]
+        stats['dangling_hits'] = dangling_hits
+        stats['tactical_decisions'] = tactical_decisions[player]
+        stats['tactical_followups'] = tactical_followups[player]
+        stats['tactical_ignores'] = tactical_ignores[player]
+        stats['game_pace'] = 1.0 - (min(stats['turns'], max_turns) / max(max_turns, 1))
+
     return s1, s2
 
 
@@ -216,6 +336,7 @@ def evaluate_population(
     generation: int,
     hall_of_fame: list[Agent],
     games_per_eval: int,
+    tactical_baseline_games: int,
     max_turns: int,
 ) -> list[list[dict]]:
     """
@@ -229,6 +350,7 @@ def evaluate_population(
     """
     n = len(population)
     random_baseline = _RandomBaseline()
+    hunt_baseline = _HuntTargetBaseline()
 
     # Accumulate stats per agent
     all_stats: list[list[dict]] = [[] for _ in range(n)]
@@ -270,6 +392,16 @@ def evaluate_population(
                 else:
                     _, s_agent = _simulate_game_generic(random_baseline, agent, rng, max_turns=max_turns)
                 all_stats[idx].append(s_agent)
+
+    # Directly include matches against a tactical baseline in selection fitness
+    # so target-mode behavior is optimized, not just observed in benchmarks.
+    for _round in range(tactical_baseline_games):
+        for idx, agent in enumerate(population):
+            if rng.random() < 0.5:
+                s_agent, _ = _simulate_game_generic(agent, hunt_baseline, rng, max_turns=max_turns)
+            else:
+                _, s_agent = _simulate_game_generic(hunt_baseline, agent, rng, max_turns=max_turns)
+            all_stats[idx].append(s_agent)
 
     for agent, stats in zip(population, all_stats):
         agent.fitness = compute_fitness(stats) if stats else 0.0
@@ -544,6 +676,10 @@ def train(
         min(config.HALL_OF_FAME_SIZE, config.FAST_HALL_OF_FAME_SIZE)
         if fast_mode else config.HALL_OF_FAME_SIZE
     )
+    effective_tactical_baseline_games = (
+        min(config.TACTICAL_BASELINE_GAMES_PER_EVAL, config.FAST_TACTICAL_BASELINE_GAMES_PER_EVAL)
+        if fast_mode else config.TACTICAL_BASELINE_GAMES_PER_EVAL
+    )
     effective_checkpoint_compare_games = (
         min(config.CHECKPOINT_COMPARE_GAMES, config.FAST_CHECKPOINT_COMPARE_GAMES)
         if fast_mode else config.CHECKPOINT_COMPARE_GAMES
@@ -561,6 +697,7 @@ def train(
         print(
             '[trainer] Fast mode enabled: '
             f'population={effective_population_size}, games/eval={effective_games_per_eval}, '
+            f'tactical_baseline_games={effective_tactical_baseline_games}, '
             f'benchmark_every={effective_benchmark_every}, benchmark_games={effective_benchmark_games}, '
             f'checkpoint_compare_games={effective_checkpoint_compare_games}'
         )
@@ -606,6 +743,7 @@ def train(
             generation=gen,
             hall_of_fame=hall_of_fame,
             games_per_eval=effective_games_per_eval,
+            tactical_baseline_games=effective_tactical_baseline_games,
             max_turns=effective_max_turns,
         )
 

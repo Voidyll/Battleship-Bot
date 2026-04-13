@@ -124,7 +124,7 @@ def _list_older_checkpoint_bases(checkpoint_dir: str) -> list[str]:
 
 def run_self_play(
     checkpoints_dir: str,
-    seed: int,
+    seed: int | None,
     max_turns: int,
     show_boards: bool,
     output_path: str,
@@ -213,8 +213,8 @@ def main() -> None:
     parser = argparse.ArgumentParser(description='Run self-play: P1 final_model vs P2 random older checkpoint.')
     parser.add_argument('--checkpoints-dir', type=str, default='AI/checkpoints',
                         help='Directory containing final_model and gen_XXXX checkpoints.')
-    parser.add_argument('--seed', type=int, default=0,
-                        help='Random seed for placement noise and deterministic replay.')
+    parser.add_argument('--seed', type=int, default=None,
+                        help='Random seed for placement noise and deterministic replay. Omit for a random game each run.')
     parser.add_argument('--max-turns', type=int, default=200,
                         help='Safety cap on total turns before declaring timeout.')
     parser.add_argument('--show-boards', dest='show_boards', action='store_true', default=True,
