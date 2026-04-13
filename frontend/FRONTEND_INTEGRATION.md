@@ -1,179 +1,98 @@
-# Frontend Integration Guide
+﻿# Frontend Integration Guide
 
-This document is for frontend developers integrating the Battleship UI with the backend game and AI APIs.
+This document is for frontend developers integrating the Battleship UI with a local-storage-first save flow.
 
-## 1. What Frontend Must Support
+Canonical architecture, endpoint contracts, snapshot schema, and numeric encodings:
+
+- docs/SOFTWARE_ARCHITECTURE.md
+
+## 1. Primary Save Strategy
+
+- Store returned `snapshot` in browser local storage after each successful mutation.
+- Treat backend as stateless for core single-player flow.
+
+Recommended keys:
+
+- battleship.activeSnapshot
+- battleship.lastState
+- battleship.saveVersion
+
+## 2. What Frontend Must Support
 
 1. Placement UX for 5 ships.
 2. Battle UX for shot selection and turn feedback.
-3. Rendering of your board and opponent board from backend state.
-4. Error handling for invalid moves and stale turns.
-5. Endgame display with winner information.
+3. Save/resume through local-storage snapshots.
+4. Rendering from backend `state` payloads.
+5. Error handling for invalid actions and stale snapshots.
 
-## 2. Data You Receive
+## 3. Runtime Flow (Implementation View)
 
-Primary payload comes from GET /api/games/{gameId}/state?player=1.
+1. New game
+- Call POST /api/game/new.
+- Save `snapshot` to local storage.
+- Render from `state`.
 
-Important fields:
+2. Placement
+- Send current `snapshot` + placement action.
+- Replace local-storage snapshot with returned `snapshot`.
+- Re-render from returned `state`.
 
-- phase: placement | battle | over
-- current_turn: 1 or 2
-- winner: null, 1, or 2
-- turn_count: integer
-- your_board.grid: 10x10 int matrix
-- your_board.shot_tracker: 10x10 int matrix
-- your_board.ships: ship metadata for local display
-- opponent_board.grid: opponent-safe visibility only
-- opponent_board.ships_sunk: list of sunk enemy ships
+3. Battle
+- Send current `snapshot` + fire action.
+- Use auto-resolve AI turn for fewer round trips.
+- Replace local-storage snapshot with returned `snapshot`.
+- Re-render from returned `state`.
 
-## 3. Cell Value Mapping for UI
+4. Resume
+- On page load, read local-storage snapshot.
+- Optionally call POST /api/game/state to rebuild render-safe state.
 
-Map numeric values to visual states.
+## 4. UI Interaction Rules
 
-From your_board.grid:
+Enable target clicks only when:
 
-- 0: empty water
-- 1: your ship segment (unhit)
-- 2: your ship segment hit
-- 3: enemy miss on your board
+- phase is battle
+- current_turn is player
+- target cell in shot_tracker is unknown
 
-From your_board.shot_tracker:
+On failure:
 
-- 0: unknown on enemy board
-- -1: your miss
-- 1: your hit
-- 2: enemy ship confirmed sunk segment
+- show non-blocking error feedback
+- do not overwrite current local-storage snapshot
 
-Recommendation:
+## 5. Rendering Guidance
 
-- Render opponent target board from shot_tracker.
-- Render your own fleet board from your_board.grid.
+- Render your board from `your_board.grid`.
+- Render opponent targeting board from `your_board.shot_tracker`.
+- Never infer hidden opponent ship locations.
 
-## 4. Frontend Game Flow
-
-## 4.1 Create session
-
-- Call POST /api/games once.
-- Store gameId in page state or route parameter.
-
-## 4.2 Placement phase
-
-- Allow rotate and drag/click placement per ship.
-- Submit each ship via POST /api/games/{id}/place-ship.
-- After last ship placement, fetch fresh state.
-- Backend may auto-place AI ships and switch to battle.
-
-## 4.3 Battle phase
-
-- Enable target clicks only when:
-  - phase is battle
-  - current_turn is player
-  - target cell in shot_tracker is unknown
-
-On click:
-
-1. POST /api/games/{id}/fire with player row col.
-2. Show returned playerShot result.
-3. If backend auto-resolves AI turn, show aiShot result.
-4. Refresh full state from response or follow-up GET.
-
-## 4.4 End phase
-
-- If phase is over, disable all interactions.
-- Show winner banner.
-- Offer Play Again action that calls reset/new game endpoint.
-
-## 5. Suggested Frontend Types
+## 6. Suggested Frontend Types
 
 ~~~ts
-type ShipView = {
-  name: string;
-  size: number;
-  positions: [number, number][];
-  hits: [number, number][];
-  sunk: boolean;
-};
-
-type BoardView = {
-  grid: number[][];
-  ships?: ShipView[];
-  shot_tracker?: number[][];
-  ships_sunk?: ShipView[];
-};
-
-type GameStateResponse = {
-  phase: "placement" | "battle" | "over";
-  current_turn: 1 | 2;
-  winner: 1 | 2 | null;
-  turn_count: number;
-  your_board: BoardView;
-  opponent_board: BoardView;
+type GameMutationResponse = {
+  snapshot: unknown;
+  state: {
+    phase: "placement" | "battle" | "over";
+    current_turn: 1 | 2;
+    winner: 1 | 2 | null;
+    turn_count: number;
+    your_board: {
+      grid: number[][];
+      shot_tracker?: number[][];
+      ships?: unknown[];
+    };
+    opponent_board: {
+      grid: number[][];
+      ships_sunk?: unknown[];
+    };
+  };
 };
 ~~~
 
-## 6. Rendering Guidance
+## 7. Frontend Acceptance Checklist
 
-Your board panel:
-
-- Uses your_board.grid and your_board.ships.
-- During placement, preview orientation and collision before submit.
-
-Opponent board panel:
-
-- Use your_board.shot_tracker for all target interactions.
-- Never infer hidden enemy ships from opponent_board.grid.
-
-Hit feedback:
-
-- Show result string from fire response immediately.
-- On sunk_ship_name, highlight ship sunk event in log/toast.
-
-## 7. Error Handling UX
-
-Expect these backend errors:
-
-- Not in placement phase
-- Not in battle phase
-- Not this player's turn
-- Coordinates out of bounds
-- Cell has already been targeted
-- Cannot place ShipName at (r, c)
-
-UI behavior:
-
-- Show non-blocking toast for invalid action.
-- Keep board state unchanged on failed mutation.
-- Re-fetch state on turn mismatch to resync.
-
-## 8. Networking Strategy
-
-Turn-based play can use simple request-response calls.
-
-Recommended:
-
-- Use fire endpoint that can auto-resolve AI turn for fewer round trips.
-- Re-fetch state after mutations if not already included in response.
-- Debounce repeated click input during in-flight requests.
-
-Optional:
-
-- Poll GET state every 1 to 2 seconds if multi-client spectators are needed.
-
-## 9. UX Checklist for Integration Completion
-
-- Placement works for all 5 ships with orientation toggle.
-- Illegal placements are blocked and explained.
-- Battle board accepts legal shots only.
-- Hit miss sunk and winner are correctly displayed.
-- AI move appears reliably after player turn.
-- Board is fully resettable for new game.
-
-## 10. Quick Request Sequence Example
-
-1. POST /api/games
-2. POST /api/games/{id}/place-ship x5
-3. GET /api/games/{id}/state?player=1
-4. POST /api/games/{id}/fire repeatedly until phase is over
-5. GET /api/games/{id}/state?player=1 for final render
-
-This flow is sufficient for a complete single-player human-vs-AI UI.
+- Snapshot is saved after each successful mutation.
+- Game restores correctly after page refresh.
+- Illegal actions are blocked and explained.
+- Hit/miss/sunk/winner are correctly rendered.
+- Play Again resets by clearing snapshot and starting a new game.

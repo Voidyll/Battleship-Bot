@@ -125,8 +125,21 @@ class Ship:
             'size':      self.size,
             'positions': self.positions,
             'hits':      list(self.hits),
+            'placed':    self.placed,
             'sunk':      self.is_sunk(),
         }
+
+    @classmethod
+    def from_dict(cls, data: dict) -> 'Ship':
+        ship = cls(str(data['name']), int(data['size']))
+        ship.positions = [
+            (int(row), int(col)) for row, col in data.get('positions', [])
+        ]
+        ship.hits = {
+            (int(row), int(col)) for row, col in data.get('hits', [])
+        }
+        ship.placed = bool(data.get('placed', bool(ship.positions)))
+        return ship
 
 
 # ---------------------------------------------------------------------------
@@ -273,6 +286,39 @@ class Board:
             'ships_sunk':  [s.to_dict() for s in self.ships if s.is_sunk()],
         }
 
+    def to_snapshot(self) -> dict:
+        """Full board snapshot suitable for persistence in local storage."""
+        return {
+            'grid': self.grid.tolist(),
+            'shot_tracker': self.shot_tracker.tolist(),
+            'ships': [s.to_dict() for s in self.ships],
+            'placed': sorted(self._placed),
+            'stats': {
+                'shots_fired': self.shots_fired,
+                'hits_made': self.hits_made,
+                'times_hit': self.times_hit,
+                'ships_sunk_by_me': self.ships_sunk_by_me,
+            },
+        }
+
+    @classmethod
+    def from_snapshot(cls, data: dict) -> 'Board':
+        board = cls()
+        board.grid = np.asarray(data['grid'], dtype=np.int8)
+        board.shot_tracker = np.asarray(data['shot_tracker'], dtype=np.int8)
+        board.ships = [Ship.from_dict(ship_data) for ship_data in data.get('ships', [])]
+        board._placed = set(str(name) for name in data.get('placed', []))
+
+        if not board._placed:
+            board._placed = {ship.name for ship in board.ships if ship.placed}
+
+        stats = data.get('stats', {})
+        board.shots_fired = int(stats.get('shots_fired', 0))
+        board.hits_made = int(stats.get('hits_made', 0))
+        board.times_hit = int(stats.get('times_hit', 0))
+        board.ships_sunk_by_me = int(stats.get('ships_sunk_by_me', 0))
+        return board
+
 
 # ---------------------------------------------------------------------------
 # Game
@@ -292,12 +338,13 @@ class Game:
         game.get_ai_state(player)            → neural-net input dict
         game.get_stats(player)               → fitness / outcome dict
 
-    Backend TODO:
-        - Maintain a session store: { game_id: Game }
-        - Route POST /game/{id}/place  → game.place_ship(...)
-        - Route POST /game/{id}/fire   → game.fire(...)
-        - Route GET  /game/{id}/state  → game.get_state(player)
-        - Attach the pre-trained AI model and call ai.choose_shot(state) / ai.place_ships(board)
+        Integration options:
+                - Local-storage-first: persist game.to_snapshot() in the browser and
+                    restore with Game.from_snapshot(...)
+                - Backend session store: keep { game_id: Game } server-side if you need
+                    authoritative state or multi-device sessions
+                - Attach the pre-trained AI model and call ai.choose_shot(state)
+                    / ai.place_all_ships(board)
     """
 
     def __init__(self) -> None:
@@ -410,6 +457,38 @@ class Game:
             'turn_count':     self.turn_count,
             'your_board':     self.boards[player].to_dict(reveal=True),
             'opponent_board': self.boards[opponent].to_dict(reveal=False),
+        }
+
+    def to_snapshot(self) -> dict:
+        """Serialize the full authoritative game state for local storage."""
+        return {
+            'phase': self.phase,
+            'current_turn': self.current_turn,
+            'winner': self.winner,
+            'turn_count': self.turn_count,
+            'boards': {
+                '1': self.boards[1].to_snapshot(),
+                '2': self.boards[2].to_snapshot(),
+            },
+        }
+
+    @classmethod
+    def from_snapshot(cls, data: dict) -> 'Game':
+        game = cls()
+        game.load_snapshot(data)
+        return game
+
+    def load_snapshot(self, data: dict) -> None:
+        """Restore this Game instance from a snapshot dict."""
+        self.phase = str(data['phase'])
+        self.current_turn = int(data['current_turn'])
+        self.winner = None if data.get('winner') is None else int(data['winner'])
+        self.turn_count = int(data.get('turn_count', 0))
+
+        boards = data['boards']
+        self.boards = {
+            1: Board.from_snapshot(boards['1']),
+            2: Board.from_snapshot(boards['2']),
         }
 
     def get_ai_state(self, player: int) -> dict:
