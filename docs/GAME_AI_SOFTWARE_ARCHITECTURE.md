@@ -83,6 +83,7 @@ Engine methods:
 - `game.to_snapshot()`
 - `Game.from_snapshot(snapshot)`
 - `game.load_snapshot(snapshot)`
+- `game.fire_with_auto_ai_turn(...)`
 
 ## 7. Domain Encodings (Canonical)
 
@@ -104,9 +105,10 @@ Engine methods:
 
 Default behavior:
 
-- Player fires.
-- Backend optionally auto-resolves AI response in the same request.
-- Response returns both shot outcomes and updated snapshot/state.
+- Backend calls `game.fire_with_auto_ai_turn(...)`.
+- Player shot is applied first.
+- If AI turn begins and auto-resolve is enabled, AI shot is applied in the same request.
+- Response returns both shot outcomes and updated state (and snapshot via endpoint contract).
 
 This minimizes extra round trips and keeps turn sequencing consistent.
 

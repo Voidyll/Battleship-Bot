@@ -29,7 +29,7 @@ Backend integration (TODO for backend team):
 
 import numpy as np
 from enum import IntEnum
-from typing import Optional
+from typing import Callable, Optional
 
 
 # ---------------------------------------------------------------------------
@@ -438,6 +438,50 @@ class Game:
             'game_over':      game_over,
             'winner':         self.winner,
             'error':          None,
+        }
+
+    def fire_with_auto_ai_turn(
+        self,
+        player: int,
+        row: int,
+        col: int,
+        ai_player: int,
+        choose_ai_shot: Callable[[dict], tuple[int, int]],
+        auto_resolve_ai_turn: bool = True,
+    ) -> dict:
+        """
+        Resolve a player's shot and (optionally) the AI shot in one call.
+
+        This helper is intended for backend endpoints that want a single request
+        to advance both turns.
+
+        Returns:
+            player_shot: result from game.fire(player, row, col)
+            ai_shot:     None or AI shot result dict with row/col included
+            state:       player-safe state for the requesting player
+        """
+        player_shot = self.fire(player, row, col)
+        ai_shot = None
+
+        if (
+            player_shot.get('success')
+            and auto_resolve_ai_turn
+            and not self.is_over()
+            and self.current_turn == ai_player
+        ):
+            ai_state = self.get_ai_state(ai_player)
+            ai_row, ai_col = choose_ai_shot(ai_state)
+            ai_result = self.fire(ai_player, int(ai_row), int(ai_col))
+            ai_shot = {
+                'row': int(ai_row),
+                'col': int(ai_col),
+                **ai_result,
+            }
+
+        return {
+            'player_shot': player_shot,
+            'ai_shot': ai_shot,
+            'state': self.get_state(player),
         }
 
     # --------------------------------------------------------------- state / AI

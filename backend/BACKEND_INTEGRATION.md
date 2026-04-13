@@ -4,7 +4,7 @@ This document is for backend developers integrating the Battleship engine and tr
 
 Canonical architecture, endpoint contracts, snapshot schema, and numeric encodings:
 
-- docs/SOFTWARE_ARCHITECTURE.md
+- docs/GAME_AI_SOFTWARE_ARCHITECTURE.md
 
 ## 1. Crucial Source Files
 
@@ -23,6 +23,7 @@ From game/game.py:
 - game.to_snapshot()
 - game.place_ship(player, ship_name, row, col, orientation)
 - game.fire(player, row, col)
+- game.fire_with_auto_ai_turn(player, row, col, ai_player, choose_ai_shot, auto_resolve_ai_turn=True)
 - game.get_state(player)
 - game.get_ai_state(player)
 
@@ -46,9 +47,8 @@ From AI/agent.py:
 
 3. Fire action
 - Restore Game.from_snapshot(snapshot).
-- Apply player fire.
-- If AI turn begins, resolve AI turn in same request.
-- Return shot results + updated snapshot + state.
+- Call game.fire_with_auto_ai_turn(...).
+- Return player_shot + ai_shot + updated snapshot + state.
 
 4. Save/resume
 - Frontend persists snapshot in local storage.
@@ -77,9 +77,49 @@ ai_agent = Agent.load("AI/checkpoints/final_model")
 During requests:
 
 ~~~python
-ai_state = game.get_ai_state(ai_player)
-row, col = ai_agent.choose_shot(ai_state)
-result = game.fire(ai_player, row, col)
+turn_result = game.fire_with_auto_ai_turn(
+	player=1,
+	row=row,
+	col=col,
+	ai_player=2,
+	choose_ai_shot=ai_agent.choose_shot,
+	auto_resolve_ai_turn=True,
+)
+~~~
+
+Example backend endpoint (pseudo-code):
+
+~~~python
+def post_fire(payload: dict) -> tuple[dict, int]:
+	snapshot = payload.get('snapshot')
+	player = int(payload.get('player', 1))
+	row = int(payload['row'])
+	col = int(payload['col'])
+	auto_resolve_ai_turn = bool(payload.get('autoResolveAiTurn', True))
+
+	if snapshot is None:
+		return {'error': 'Missing snapshot'}, 400
+
+	game = Game.from_snapshot(snapshot)
+
+	turn_result = game.fire_with_auto_ai_turn(
+		player=player,
+		row=row,
+		col=col,
+		ai_player=2,
+		choose_ai_shot=ai_agent.choose_shot,
+		auto_resolve_ai_turn=auto_resolve_ai_turn,
+	)
+
+	response = {
+		'playerShot': turn_result['player_shot'],
+		'aiShot': turn_result['ai_shot'],
+		'snapshot': game.to_snapshot(),
+		'state': turn_result['state'],
+	}
+
+	status = 200 if response['playerShot'].get('success') else 409
+	return response, status
 ~~~
 
 For AI placement:

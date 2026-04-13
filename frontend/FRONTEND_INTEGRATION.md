@@ -4,7 +4,7 @@ This document is for frontend developers integrating the Battleship UI with a lo
 
 Canonical architecture, endpoint contracts, snapshot schema, and numeric encodings:
 
-- docs/SOFTWARE_ARCHITECTURE.md
+- docs/GAME_AI_SOFTWARE_ARCHITECTURE.md
 
 ## 1. Primary Save Strategy
 
@@ -39,9 +39,55 @@ Recommended keys:
 
 3. Battle
 - Send current `snapshot` + fire action.
-- Use auto-resolve AI turn for fewer round trips.
+- Backend resolves player shot and AI turn in the same request.
 - Replace local-storage snapshot with returned `snapshot`.
 - Re-render from returned `state`.
+
+Battle request example:
+
+~~~ts
+const res = await fetch('/api/game/fire', {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify({
+    snapshot: activeSnapshot,
+    player: 1,
+    row,
+    col,
+    autoResolveAiTurn: true,
+  }),
+});
+
+const data = await res.json();
+// data.playerShot, data.aiShot, data.snapshot, data.state
+~~~
+
+Expected response shape (simplified):
+
+~~~json
+{
+  "playerShot": {
+    "success": true,
+    "result": "hit",
+    "sunk_ship_name": null,
+    "game_over": false,
+    "winner": null,
+    "error": null
+  },
+  "aiShot": {
+    "success": true,
+    "row": 2,
+    "col": 3,
+    "result": "miss",
+    "sunk_ship_name": null,
+    "game_over": false,
+    "winner": null,
+    "error": null
+  },
+  "snapshot": {},
+  "state": {}
+}
+~~~
 
 4. Resume
 - On page load, read local-storage snapshot.
@@ -70,6 +116,24 @@ On failure:
 
 ~~~ts
 type GameMutationResponse = {
+  playerShot?: {
+    success: boolean;
+    result: "hit" | "miss" | null;
+    sunk_ship_name: string | null;
+    game_over: boolean;
+    winner: 1 | 2 | null;
+    error: string | null;
+  };
+  aiShot?: {
+    success: boolean;
+    row: number;
+    col: number;
+    result: "hit" | "miss" | null;
+    sunk_ship_name: string | null;
+    game_over: boolean;
+    winner: 1 | 2 | null;
+    error: string | null;
+  } | null;
   snapshot: unknown;
   state: {
     phase: "placement" | "battle" | "over";
