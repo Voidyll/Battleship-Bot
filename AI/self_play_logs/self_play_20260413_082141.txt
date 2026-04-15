@@ -1,0 +1,3367 @@
+[self-play] Player 1 model: AI/checkpoints\final_model
+[self-play] Player 2 model (random older checkpoint): AI/checkpoints\gen_0190
+[self-play] Starting game: P1(final_model) vs P2(random older checkpoint)
+Turn   1 | P1 ->  F9 | result=miss sunk=-
+
+Board snapshot after turn 1 (active player: P1)
+
+P1 own board
+   A B C D E F G H I J
+ 1 . . . . . . . . . .
+ 2 . . . . . . . . . .
+ 3 S S S S . . . . . .
+ 4 . . . . . . . . . .
+ 5 . S S S S S . . . .
+ 6 . . . . . . . . . .
+ 7 S S S . . . S S S .
+ 8 . . . . . . . . . .
+ 9 S S . . . . . . . .
+10 . . . . . . . . . .
+
+P1 shot tracker (* = this turn's shot)
+   A B C D E F G H I J
+ 1 . . . . . . . . . .
+ 2 . . . . . . . . . .
+ 3 . . . . . . . . . .
+ 4 . . . . . . . . . .
+ 5 . . . . . . . . . .
+ 6 . . . . . . . . . .
+ 7 . . . . . . . . . .
+ 8 . . . . . . . . . .
+ 9 . . . . . * . . . .
+10 . . . . . . . . . .
+----------------------------------------------------------------------
+Turn   2 | P2 ->  F9 | result=miss sunk=-
+
+Board snapshot after turn 2 (active player: P2)
+
+P2 own board
+   A B C D E F G H I J
+ 1 S S S S S . . . . .
+ 2 . . . . . . . . . .
+ 3 . . . . . . . . . .
+ 4 . . . . . . . . . .
+ 5 . S S S S . . . . .
+ 6 . . . . . . . . . .
+ 7 S S S . . . . . . .
+ 8 . S S . . . . . . .
+ 9 . . . . . o . . . .
+10 . . . . . S S S . .
+
+P2 shot tracker (* = this turn's shot)
+   A B C D E F G H I J
+ 1 . . . . . . . . . .
+ 2 . . . . . . . . . .
+ 3 . . . . . . . . . .
+ 4 . . . . . . . . . .
+ 5 . . . . . . . . . .
+ 6 . . . . . . . . . .
+ 7 . . . . . . . . . .
+ 8 . . . . . . . . . .
+ 9 . . . . . * . . . .
+10 . . . . . . . . . .
+----------------------------------------------------------------------
+Turn   3 | P1 ->  H3 | result=miss sunk=-
+
+Board snapshot after turn 3 (active player: P1)
+
+P1 own board
+   A B C D E F G H I J
+ 1 . . . . . . . . . .
+ 2 . . . . . . . . . .
+ 3 S S S S . . . . . .
+ 4 . . . . . . . . . .
+ 5 . S S S S S . . . .
+ 6 . . . . . . . . . .
+ 7 S S S . . . S S S .
+ 8 . . . . . . . . . .
+ 9 S S . . . o . . . .
+10 . . . . . . . . . .
+
+P1 shot tracker (* = this turn's shot)
+   A B C D E F G H I J
+ 1 . . . . . . . . . .
+ 2 . . . . . . . . . .
+ 3 . . . . . . . * . .
+ 4 . . . . . . . . . .
+ 5 . . . . . . . . . .
+ 6 . . . . . . . . . .
+ 7 . . . . . . . . . .
+ 8 . . . . . . . . . .
+ 9 . . . . . o . . . .
+10 . . . . . . . . . .
+----------------------------------------------------------------------
+Turn   4 | P2 ->  H3 | result=miss sunk=-
+
+Board snapshot after turn 4 (active player: P2)
+
+P2 own board
+   A B C D E F G H I J
+ 1 S S S S S . . . . .
+ 2 . . . . . . . . . .
+ 3 . . . . . . . o . .
+ 4 . . . . . . . . . .
+ 5 . S S S S . . . . .
+ 6 . . . . . . . . . .
+ 7 S S S . . . . . . .
+ 8 . S S . . . . . . .
+ 9 . . . . . o . . . .
+10 . . . . . S S S . .
+
+P2 shot tracker (* = this turn's shot)
+   A B C D E F G H I J
+ 1 . . . . . . . . . .
+ 2 . . . . . . . . . .
+ 3 . . . . . . . * . .
+ 4 . . . . . . . . . .
+ 5 . . . . . . . . . .
+ 6 . . . . . . . . . .
+ 7 . . . . . . . . . .
+ 8 . . . . . . . . . .
+ 9 . . . . . o . . . .
+10 . . . . . . . . . .
+----------------------------------------------------------------------
+Turn   5 | P1 ->  B6 | result=miss sunk=-
+
+Board snapshot after turn 5 (active player: P1)
+
+P1 own board
+   A B C D E F G H I J
+ 1 . . . . . . . . . .
+ 2 . . . . . . . . . .
+ 3 S S S S . . . o . .
+ 4 . . . . . . . . . .
+ 5 . S S S S S . . . .
+ 6 . . . . . . . . . .
+ 7 S S S . . . S S S .
+ 8 . . . . . . . . . .
+ 9 S S . . . o . . . .
+10 . . . . . . . . . .
+
+P1 shot tracker (* = this turn's shot)
+   A B C D E F G H I J
+ 1 . . . . . . . . . .
+ 2 . . . . . . . . . .
+ 3 . . . . . . . o . .
+ 4 . . . . . . . . . .
+ 5 . . . . . . . . . .
+ 6 . * . . . . . . . .
+ 7 . . . . . . . . . .
+ 8 . . . . . . . . . .
+ 9 . . . . . o . . . .
+10 . . . . . . . . . .
+----------------------------------------------------------------------
+Turn   6 | P2 ->  A6 | result=miss sunk=-
+
+Board snapshot after turn 6 (active player: P2)
+
+P2 own board
+   A B C D E F G H I J
+ 1 S S S S S . . . . .
+ 2 . . . . . . . . . .
+ 3 . . . . . . . o . .
+ 4 . . . . . . . . . .
+ 5 . S S S S . . . . .
+ 6 . o . . . . . . . .
+ 7 S S S . . . . . . .
+ 8 . S S . . . . . . .
+ 9 . . . . . o . . . .
+10 . . . . . S S S . .
+
+P2 shot tracker (* = this turn's shot)
+   A B C D E F G H I J
+ 1 . . . . . . . . . .
+ 2 . . . . . . . . . .
+ 3 . . . . . . . o . .
+ 4 . . . . . . . . . .
+ 5 . . . . . . . . . .
+ 6 * . . . . . . . . .
+ 7 . . . . . . . . . .
+ 8 . . . . . . . . . .
+ 9 . . . . . o . . . .
+10 . . . . . . . . . .
+----------------------------------------------------------------------
+Turn   7 | P1 ->  G7 | result=miss sunk=-
+
+Board snapshot after turn 7 (active player: P1)
+
+P1 own board
+   A B C D E F G H I J
+ 1 . . . . . . . . . .
+ 2 . . . . . . . . . .
+ 3 S S S S . . . o . .
+ 4 . . . . . . . . . .
+ 5 . S S S S S . . . .
+ 6 o . . . . . . . . .
+ 7 S S S . . . S S S .
+ 8 . . . . . . . . . .
+ 9 S S . . . o . . . .
+10 . . . . . . . . . .
+
+P1 shot tracker (* = this turn's shot)
+   A B C D E F G H I J
+ 1 . . . . . . . . . .
+ 2 . . . . . . . . . .
+ 3 . . . . . . . o . .
+ 4 . . . . . . . . . .
+ 5 . . . . . . . . . .
+ 6 . o . . . . . . . .
+ 7 . . . . . . * . . .
+ 8 . . . . . . . . . .
+ 9 . . . . . o . . . .
+10 . . . . . . . . . .
+----------------------------------------------------------------------
+Turn   8 | P2 ->  E1 | result=miss sunk=-
+
+Board snapshot after turn 8 (active player: P2)
+
+P2 own board
+   A B C D E F G H I J
+ 1 S S S S S . . . . .
+ 2 . . . . . . . . . .
+ 3 . . . . . . . o . .
+ 4 . . . . . . . . . .
+ 5 . S S S S . . . . .
+ 6 . o . . . . . . . .
+ 7 S S S . . . o . . .
+ 8 . S S . . . . . . .
+ 9 . . . . . o . . . .
+10 . . . . . S S S . .
+
+P2 shot tracker (* = this turn's shot)
+   A B C D E F G H I J
+ 1 . . . . * . . . . .
+ 2 . . . . . . . . . .
+ 3 . . . . . . . o . .
+ 4 . . . . . . . . . .
+ 5 . . . . . . . . . .
+ 6 o . . . . . . . . .
+ 7 . . . . . . . . . .
+ 8 . . . . . . . . . .
+ 9 . . . . . o . . . .
+10 . . . . . . . . . .
+----------------------------------------------------------------------
+Turn   9 | P1 ->  C8 | result=hit  sunk=-
+
+Board snapshot after turn 9 (active player: P1)
+
+P1 own board
+   A B C D E F G H I J
+ 1 . . . . o . . . . .
+ 2 . . . . . . . . . .
+ 3 S S S S . . . o . .
+ 4 . . . . . . . . . .
+ 5 . S S S S S . . . .
+ 6 o . . . . . . . . .
+ 7 S S S . . . S S S .
+ 8 . . . . . . . . . .
+ 9 S S . . . o . . . .
+10 . . . . . . . . . .
+
+P1 shot tracker (* = this turn's shot)
+   A B C D E F G H I J
+ 1 . . . . . . . . . .
+ 2 . . . . . . . . . .
+ 3 . . . . . . . o . .
+ 4 . . . . . . . . . .
+ 5 . . . . . . . . . .
+ 6 . o . . . . . . . .
+ 7 . . . . . . o . . .
+ 8 . . * . . . . . . .
+ 9 . . . . . o . . . .
+10 . . . . . . . . . .
+----------------------------------------------------------------------
+Turn  10 | P2 ->  E9 | result=miss sunk=-
+
+Board snapshot after turn 10 (active player: P2)
+
+P2 own board
+   A B C D E F G H I J
+ 1 S S S S S . . . . .
+ 2 . . . . . . . . . .
+ 3 . . . . . . . o . .
+ 4 . . . . . . . . . .
+ 5 . S S S S . . . . .
+ 6 . o . . . . . . . .
+ 7 S S S . . . o . . .
+ 8 . S X . . . . . . .
+ 9 . . . . . o . . . .
+10 . . . . . S S S . .
+
+P2 shot tracker (* = this turn's shot)
+   A B C D E F G H I J
+ 1 . . . . o . . . . .
+ 2 . . . . . . . . . .
+ 3 . . . . . . . o . .
+ 4 . . . . . . . . . .
+ 5 . . . . . . . . . .
+ 6 o . . . . . . . . .
+ 7 . . . . . . . . . .
+ 8 . . . . . . . . . .
+ 9 . . . . * o . . . .
+10 . . . . . . . . . .
+----------------------------------------------------------------------
+Turn  11 | P1 ->  B8 | result=hit  sunk=Destroyer
+
+Board snapshot after turn 11 (active player: P1)
+
+P1 own board
+   A B C D E F G H I J
+ 1 . . . . o . . . . .
+ 2 . . . . . . . . . .
+ 3 S S S S . . . o . .
+ 4 . . . . . . . . . .
+ 5 . S S S S S . . . .
+ 6 o . . . . . . . . .
+ 7 S S S . . . S S S .
+ 8 . . . . . . . . . .
+ 9 S S . . o o . . . .
+10 . . . . . . . . . .
+
+P1 shot tracker (* = this turn's shot)
+   A B C D E F G H I J
+ 1 . . . . . . . . . .
+ 2 . . . . . . . . . .
+ 3 . . . . . . . o . .
+ 4 . . . . . . . . . .
+ 5 . . . . . . . . . .
+ 6 . o . . . . . . . .
+ 7 . . . . . . o . . .
+ 8 . * # . . . . . . .
+ 9 . . . . . o . . . .
+10 . . . . . . . . . .
+----------------------------------------------------------------------
+Turn  12 | P2 ->  D7 | result=miss sunk=-
+
+Board snapshot after turn 12 (active player: P2)
+
+P2 own board
+   A B C D E F G H I J
+ 1 S S S S S . . . . .
+ 2 . . . . . . . . . .
+ 3 . . . . . . . o . .
+ 4 . . . . . . . . . .
+ 5 . S S S S . . . . .
+ 6 . o . . . . . . . .
+ 7 S S S . . . o . . .
+ 8 . X X . . . . . . .
+ 9 . . . . . o . . . .
+10 . . . . . S S S . .
+
+P2 shot tracker (* = this turn's shot)
+   A B C D E F G H I J
+ 1 . . . . o . . . . .
+ 2 . . . . . . . . . .
+ 3 . . . . . . . o . .
+ 4 . . . . . . . . . .
+ 5 . . . . . . . . . .
+ 6 o . . . . . . . . .
+ 7 . . . * . . . . . .
+ 8 . . . . . . . . . .
+ 9 . . . . o o . . . .
+10 . . . . . . . . . .
+----------------------------------------------------------------------
+Turn  13 | P1 ->  A6 | result=miss sunk=-
+
+Board snapshot after turn 13 (active player: P1)
+
+P1 own board
+   A B C D E F G H I J
+ 1 . . . . o . . . . .
+ 2 . . . . . . . . . .
+ 3 S S S S . . . o . .
+ 4 . . . . . . . . . .
+ 5 . S S S S S . . . .
+ 6 o . . . . . . . . .
+ 7 S S S o . . S S S .
+ 8 . . . . . . . . . .
+ 9 S S . . o o . . . .
+10 . . . . . . . . . .
+
+P1 shot tracker (* = this turn's shot)
+   A B C D E F G H I J
+ 1 . . . . . . . . . .
+ 2 . . . . . . . . . .
+ 3 . . . . . . . o . .
+ 4 . . . . . . . . . .
+ 5 . . . . . . . . . .
+ 6 * o . . . . . . . .
+ 7 . . . . . . o . . .
+ 8 . # # . . . . . . .
+ 9 . . . . . o . . . .
+10 . . . . . . . . . .
+----------------------------------------------------------------------
+Turn  14 | P2 ->  I3 | result=miss sunk=-
+
+Board snapshot after turn 14 (active player: P2)
+
+P2 own board
+   A B C D E F G H I J
+ 1 S S S S S . . . . .
+ 2 . . . . . . . . . .
+ 3 . . . . . . . o . .
+ 4 . . . . . . . . . .
+ 5 . S S S S . . . . .
+ 6 o o . . . . . . . .
+ 7 S S S . . . o . . .
+ 8 . X X . . . . . . .
+ 9 . . . . . o . . . .
+10 . . . . . S S S . .
+
+P2 shot tracker (* = this turn's shot)
+   A B C D E F G H I J
+ 1 . . . . o . . . . .
+ 2 . . . . . . . . . .
+ 3 . . . . . . . o * .
+ 4 . . . . . . . . . .
+ 5 . . . . . . . . . .
+ 6 o . . . . . . . . .
+ 7 . . . o . . . . . .
+ 8 . . . . . . . . . .
+ 9 . . . . o o . . . .
+10 . . . . . . . . . .
+----------------------------------------------------------------------
+Turn  15 | P1 ->  B3 | result=miss sunk=-
+
+Board snapshot after turn 15 (active player: P1)
+
+P1 own board
+   A B C D E F G H I J
+ 1 . . . . o . . . . .
+ 2 . . . . . . . . . .
+ 3 S S S S . . . o o .
+ 4 . . . . . . . . . .
+ 5 . S S S S S . . . .
+ 6 o . . . . . . . . .
+ 7 S S S o . . S S S .
+ 8 . . . . . . . . . .
+ 9 S S . . o o . . . .
+10 . . . . . . . . . .
+
+P1 shot tracker (* = this turn's shot)
+   A B C D E F G H I J
+ 1 . . . . . . . . . .
+ 2 . . . . . . . . . .
+ 3 . * . . . . . o . .
+ 4 . . . . . . . . . .
+ 5 . . . . . . . . . .
+ 6 o o . . . . . . . .
+ 7 . . . . . . o . . .
+ 8 . # # . . . . . . .
+ 9 . . . . . o . . . .
+10 . . . . . . . . . .
+----------------------------------------------------------------------
+Turn  16 | P2 ->  C4 | result=miss sunk=-
+
+Board snapshot after turn 16 (active player: P2)
+
+P2 own board
+   A B C D E F G H I J
+ 1 S S S S S . . . . .
+ 2 . . . . . . . . . .
+ 3 . o . . . . . o . .
+ 4 . . . . . . . . . .
+ 5 . S S S S . . . . .
+ 6 o o . . . . . . . .
+ 7 S S S . . . o . . .
+ 8 . X X . . . . . . .
+ 9 . . . . . o . . . .
+10 . . . . . S S S . .
+
+P2 shot tracker (* = this turn's shot)
+   A B C D E F G H I J
+ 1 . . . . o . . . . .
+ 2 . . . . . . . . . .
+ 3 . . . . . . . o o .
+ 4 . . * . . . . . . .
+ 5 . . . . . . . . . .
+ 6 o . . . . . . . . .
+ 7 . . . o . . . . . .
+ 8 . . . . . . . . . .
+ 9 . . . . o o . . . .
+10 . . . . . . . . . .
+----------------------------------------------------------------------
+Turn  17 | P1 ->  G2 | result=miss sunk=-
+
+Board snapshot after turn 17 (active player: P1)
+
+P1 own board
+   A B C D E F G H I J
+ 1 . . . . o . . . . .
+ 2 . . . . . . . . . .
+ 3 S S S S . . . o o .
+ 4 . . o . . . . . . .
+ 5 . S S S S S . . . .
+ 6 o . . . . . . . . .
+ 7 S S S o . . S S S .
+ 8 . . . . . . . . . .
+ 9 S S . . o o . . . .
+10 . . . . . . . . . .
+
+P1 shot tracker (* = this turn's shot)
+   A B C D E F G H I J
+ 1 . . . . . . . . . .
+ 2 . . . . . . * . . .
+ 3 . o . . . . . o . .
+ 4 . . . . . . . . . .
+ 5 . . . . . . . . . .
+ 6 o o . . . . . . . .
+ 7 . . . . . . o . . .
+ 8 . # # . . . . . . .
+ 9 . . . . . o . . . .
+10 . . . . . . . . . .
+----------------------------------------------------------------------
+Turn  18 | P2 ->  B3 | result=hit  sunk=-
+
+Board snapshot after turn 18 (active player: P2)
+
+P2 own board
+   A B C D E F G H I J
+ 1 S S S S S . . . . .
+ 2 . . . . . . o . . .
+ 3 . o . . . . . o . .
+ 4 . . . . . . . . . .
+ 5 . S S S S . . . . .
+ 6 o o . . . . . . . .
+ 7 S S S . . . o . . .
+ 8 . X X . . . . . . .
+ 9 . . . . . o . . . .
+10 . . . . . S S S . .
+
+P2 shot tracker (* = this turn's shot)
+   A B C D E F G H I J
+ 1 . . . . o . . . . .
+ 2 . . . . . . . . . .
+ 3 . * . . . . . o o .
+ 4 . . o . . . . . . .
+ 5 . . . . . . . . . .
+ 6 o . . . . . . . . .
+ 7 . . . o . . . . . .
+ 8 . . . . . . . . . .
+ 9 . . . . o o . . . .
+10 . . . . . . . . . .
+----------------------------------------------------------------------
+Turn  19 | P1 ->  J2 | result=miss sunk=-
+
+Board snapshot after turn 19 (active player: P1)
+
+P1 own board
+   A B C D E F G H I J
+ 1 . . . . o . . . . .
+ 2 . . . . . . . . . .
+ 3 S X S S . . . o o .
+ 4 . . o . . . . . . .
+ 5 . S S S S S . . . .
+ 6 o . . . . . . . . .
+ 7 S S S o . . S S S .
+ 8 . . . . . . . . . .
+ 9 S S . . o o . . . .
+10 . . . . . . . . . .
+
+P1 shot tracker (* = this turn's shot)
+   A B C D E F G H I J
+ 1 . . . . . . . . . .
+ 2 . . . . . . o . . *
+ 3 . o . . . . . o . .
+ 4 . . . . . . . . . .
+ 5 . . . . . . . . . .
+ 6 o o . . . . . . . .
+ 7 . . . . . . o . . .
+ 8 . # # . . . . . . .
+ 9 . . . . . o . . . .
+10 . . . . . . . . . .
+----------------------------------------------------------------------
+Turn  20 | P2 ->  A3 | result=hit  sunk=-
+
+Board snapshot after turn 20 (active player: P2)
+
+P2 own board
+   A B C D E F G H I J
+ 1 S S S S S . . . . .
+ 2 . . . . . . o . . o
+ 3 . o . . . . . o . .
+ 4 . . . . . . . . . .
+ 5 . S S S S . . . . .
+ 6 o o . . . . . . . .
+ 7 S S S . . . o . . .
+ 8 . X X . . . . . . .
+ 9 . . . . . o . . . .
+10 . . . . . S S S . .
+
+P2 shot tracker (* = this turn's shot)
+   A B C D E F G H I J
+ 1 . . . . o . . . . .
+ 2 . . . . . . . . . .
+ 3 * x . . . . . o o .
+ 4 . . o . . . . . . .
+ 5 . . . . . . . . . .
+ 6 o . . . . . . . . .
+ 7 . . . o . . . . . .
+ 8 . . . . . . . . . .
+ 9 . . . . o o . . . .
+10 . . . . . . . . . .
+----------------------------------------------------------------------
+Turn  21 | P1 ->  E1 | result=hit  sunk=-
+
+Board snapshot after turn 21 (active player: P1)
+
+P1 own board
+   A B C D E F G H I J
+ 1 . . . . o . . . . .
+ 2 . . . . . . . . . .
+ 3 X X S S . . . o o .
+ 4 . . o . . . . . . .
+ 5 . S S S S S . . . .
+ 6 o . . . . . . . . .
+ 7 S S S o . . S S S .
+ 8 . . . . . . . . . .
+ 9 S S . . o o . . . .
+10 . . . . . . . . . .
+
+P1 shot tracker (* = this turn's shot)
+   A B C D E F G H I J
+ 1 . . . . * . . . . .
+ 2 . . . . . . o . . o
+ 3 . o . . . . . o . .
+ 4 . . . . . . . . . .
+ 5 . . . . . . . . . .
+ 6 o o . . . . . . . .
+ 7 . . . . . . o . . .
+ 8 . # # . . . . . . .
+ 9 . . . . . o . . . .
+10 . . . . . . . . . .
+----------------------------------------------------------------------
+Turn  22 | P2 ->  A4 | result=miss sunk=-
+
+Board snapshot after turn 22 (active player: P2)
+
+P2 own board
+   A B C D E F G H I J
+ 1 S S S S X . . . . .
+ 2 . . . . . . o . . o
+ 3 . o . . . . . o . .
+ 4 . . . . . . . . . .
+ 5 . S S S S . . . . .
+ 6 o o . . . . . . . .
+ 7 S S S . . . o . . .
+ 8 . X X . . . . . . .
+ 9 . . . . . o . . . .
+10 . . . . . S S S . .
+
+P2 shot tracker (* = this turn's shot)
+   A B C D E F G H I J
+ 1 . . . . o . . . . .
+ 2 . . . . . . . . . .
+ 3 x x . . . . . o o .
+ 4 * . o . . . . . . .
+ 5 . . . . . . . . . .
+ 6 o . . . . . . . . .
+ 7 . . . o . . . . . .
+ 8 . . . . . . . . . .
+ 9 . . . . o o . . . .
+10 . . . . . . . . . .
+----------------------------------------------------------------------
+Turn  23 | P1 ->  F1 | result=miss sunk=-
+
+Board snapshot after turn 23 (active player: P1)
+
+P1 own board
+   A B C D E F G H I J
+ 1 . . . . o . . . . .
+ 2 . . . . . . . . . .
+ 3 X X S S . . . o o .
+ 4 o . o . . . . . . .
+ 5 . S S S S S . . . .
+ 6 o . . . . . . . . .
+ 7 S S S o . . S S S .
+ 8 . . . . . . . . . .
+ 9 S S . . o o . . . .
+10 . . . . . . . . . .
+
+P1 shot tracker (* = this turn's shot)
+   A B C D E F G H I J
+ 1 . . . . x * . . . .
+ 2 . . . . . . o . . o
+ 3 . o . . . . . o . .
+ 4 . . . . . . . . . .
+ 5 . . . . . . . . . .
+ 6 o o . . . . . . . .
+ 7 . . . . . . o . . .
+ 8 . # # . . . . . . .
+ 9 . . . . . o . . . .
+10 . . . . . . . . . .
+----------------------------------------------------------------------
+Turn  24 | P2 ->  A2 | result=miss sunk=-
+
+Board snapshot after turn 24 (active player: P2)
+
+P2 own board
+   A B C D E F G H I J
+ 1 S S S S X o . . . .
+ 2 . . . . . . o . . o
+ 3 . o . . . . . o . .
+ 4 . . . . . . . . . .
+ 5 . S S S S . . . . .
+ 6 o o . . . . . . . .
+ 7 S S S . . . o . . .
+ 8 . X X . . . . . . .
+ 9 . . . . . o . . . .
+10 . . . . . S S S . .
+
+P2 shot tracker (* = this turn's shot)
+   A B C D E F G H I J
+ 1 . . . . o . . . . .
+ 2 * . . . . . . . . .
+ 3 x x . . . . . o o .
+ 4 o . o . . . . . . .
+ 5 . . . . . . . . . .
+ 6 o . . . . . . . . .
+ 7 . . . o . . . . . .
+ 8 . . . . . . . . . .
+ 9 . . . . o o . . . .
+10 . . . . . . . . . .
+----------------------------------------------------------------------
+Turn  25 | P1 ->  D1 | result=hit  sunk=-
+
+Board snapshot after turn 25 (active player: P1)
+
+P1 own board
+   A B C D E F G H I J
+ 1 . . . . o . . . . .
+ 2 o . . . . . . . . .
+ 3 X X S S . . . o o .
+ 4 o . o . . . . . . .
+ 5 . S S S S S . . . .
+ 6 o . . . . . . . . .
+ 7 S S S o . . S S S .
+ 8 . . . . . . . . . .
+ 9 S S . . o o . . . .
+10 . . . . . . . . . .
+
+P1 shot tracker (* = this turn's shot)
+   A B C D E F G H I J
+ 1 . . . * x o . . . .
+ 2 . . . . . . o . . o
+ 3 . o . . . . . o . .
+ 4 . . . . . . . . . .
+ 5 . . . . . . . . . .
+ 6 o o . . . . . . . .
+ 7 . . . . . . o . . .
+ 8 . # # . . . . . . .
+ 9 . . . . . o . . . .
+10 . . . . . . . . . .
+----------------------------------------------------------------------
+Turn  26 | P2 ->  B2 | result=miss sunk=-
+
+Board snapshot after turn 26 (active player: P2)
+
+P2 own board
+   A B C D E F G H I J
+ 1 S S S X X o . . . .
+ 2 . . . . . . o . . o
+ 3 . o . . . . . o . .
+ 4 . . . . . . . . . .
+ 5 . S S S S . . . . .
+ 6 o o . . . . . . . .
+ 7 S S S . . . o . . .
+ 8 . X X . . . . . . .
+ 9 . . . . . o . . . .
+10 . . . . . S S S . .
+
+P2 shot tracker (* = this turn's shot)
+   A B C D E F G H I J
+ 1 . . . . o . . . . .
+ 2 o * . . . . . . . .
+ 3 x x . . . . . o o .
+ 4 o . o . . . . . . .
+ 5 . . . . . . . . . .
+ 6 o . . . . . . . . .
+ 7 . . . o . . . . . .
+ 8 . . . . . . . . . .
+ 9 . . . . o o . . . .
+10 . . . . . . . . . .
+----------------------------------------------------------------------
+Turn  27 | P1 ->  C1 | result=hit  sunk=-
+
+Board snapshot after turn 27 (active player: P1)
+
+P1 own board
+   A B C D E F G H I J
+ 1 . . . . o . . . . .
+ 2 o o . . . . . . . .
+ 3 X X S S . . . o o .
+ 4 o . o . . . . . . .
+ 5 . S S S S S . . . .
+ 6 o . . . . . . . . .
+ 7 S S S o . . S S S .
+ 8 . . . . . . . . . .
+ 9 S S . . o o . . . .
+10 . . . . . . . . . .
+
+P1 shot tracker (* = this turn's shot)
+   A B C D E F G H I J
+ 1 . . * x x o . . . .
+ 2 . . . . . . o . . o
+ 3 . o . . . . . o . .
+ 4 . . . . . . . . . .
+ 5 . . . . . . . . . .
+ 6 o o . . . . . . . .
+ 7 . . . . . . o . . .
+ 8 . # # . . . . . . .
+ 9 . . . . . o . . . .
+10 . . . . . . . . . .
+----------------------------------------------------------------------
+Turn  28 | P2 ->  C3 | result=hit  sunk=-
+
+Board snapshot after turn 28 (active player: P2)
+
+P2 own board
+   A B C D E F G H I J
+ 1 S S X X X o . . . .
+ 2 . . . . . . o . . o
+ 3 . o . . . . . o . .
+ 4 . . . . . . . . . .
+ 5 . S S S S . . . . .
+ 6 o o . . . . . . . .
+ 7 S S S . . . o . . .
+ 8 . X X . . . . . . .
+ 9 . . . . . o . . . .
+10 . . . . . S S S . .
+
+P2 shot tracker (* = this turn's shot)
+   A B C D E F G H I J
+ 1 . . . . o . . . . .
+ 2 o o . . . . . . . .
+ 3 x x * . . . . o o .
+ 4 o . o . . . . . . .
+ 5 . . . . . . . . . .
+ 6 o . . . . . . . . .
+ 7 . . . o . . . . . .
+ 8 . . . . . . . . . .
+ 9 . . . . o o . . . .
+10 . . . . . . . . . .
+----------------------------------------------------------------------
+Turn  29 | P1 ->  B1 | result=hit  sunk=-
+
+Board snapshot after turn 29 (active player: P1)
+
+P1 own board
+   A B C D E F G H I J
+ 1 . . . . o . . . . .
+ 2 o o . . . . . . . .
+ 3 X X X S . . . o o .
+ 4 o . o . . . . . . .
+ 5 . S S S S S . . . .
+ 6 o . . . . . . . . .
+ 7 S S S o . . S S S .
+ 8 . . . . . . . . . .
+ 9 S S . . o o . . . .
+10 . . . . . . . . . .
+
+P1 shot tracker (* = this turn's shot)
+   A B C D E F G H I J
+ 1 . * x x x o . . . .
+ 2 . . . . . . o . . o
+ 3 . o . . . . . o . .
+ 4 . . . . . . . . . .
+ 5 . . . . . . . . . .
+ 6 o o . . . . . . . .
+ 7 . . . . . . o . . .
+ 8 . # # . . . . . . .
+ 9 . . . . . o . . . .
+10 . . . . . . . . . .
+----------------------------------------------------------------------
+Turn  30 | P2 ->  D3 | result=hit  sunk=Battleship
+
+Board snapshot after turn 30 (active player: P2)
+
+P2 own board
+   A B C D E F G H I J
+ 1 S X X X X o . . . .
+ 2 . . . . . . o . . o
+ 3 . o . . . . . o . .
+ 4 . . . . . . . . . .
+ 5 . S S S S . . . . .
+ 6 o o . . . . . . . .
+ 7 S S S . . . o . . .
+ 8 . X X . . . . . . .
+ 9 . . . . . o . . . .
+10 . . . . . S S S . .
+
+P2 shot tracker (* = this turn's shot)
+   A B C D E F G H I J
+ 1 . . . . o . . . . .
+ 2 o o . . . . . . . .
+ 3 # # # * . . . o o .
+ 4 o . o . . . . . . .
+ 5 . . . . . . . . . .
+ 6 o . . . . . . . . .
+ 7 . . . o . . . . . .
+ 8 . . . . . . . . . .
+ 9 . . . . o o . . . .
+10 . . . . . . . . . .
+----------------------------------------------------------------------
+Turn  31 | P1 ->  A1 | result=hit  sunk=Carrier
+
+Board snapshot after turn 31 (active player: P1)
+
+P1 own board
+   A B C D E F G H I J
+ 1 . . . . o . . . . .
+ 2 o o . . . . . . . .
+ 3 X X X X . . . o o .
+ 4 o . o . . . . . . .
+ 5 . S S S S S . . . .
+ 6 o . . . . . . . . .
+ 7 S S S o . . S S S .
+ 8 . . . . . . . . . .
+ 9 S S . . o o . . . .
+10 . . . . . . . . . .
+
+P1 shot tracker (* = this turn's shot)
+   A B C D E F G H I J
+ 1 * # # # # o . . . .
+ 2 . . . . . . o . . o
+ 3 . o . . . . . o . .
+ 4 . . . . . . . . . .
+ 5 . . . . . . . . . .
+ 6 o o . . . . . . . .
+ 7 . . . . . . o . . .
+ 8 . # # . . . . . . .
+ 9 . . . . . o . . . .
+10 . . . . . . . . . .
+----------------------------------------------------------------------
+Turn  32 | P2 ->  C8 | result=miss sunk=-
+
+Board snapshot after turn 32 (active player: P2)
+
+P2 own board
+   A B C D E F G H I J
+ 1 X X X X X o . . . .
+ 2 . . . . . . o . . o
+ 3 . o . . . . . o . .
+ 4 . . . . . . . . . .
+ 5 . S S S S . . . . .
+ 6 o o . . . . . . . .
+ 7 S S S . . . o . . .
+ 8 . X X . . . . . . .
+ 9 . . . . . o . . . .
+10 . . . . . S S S . .
+
+P2 shot tracker (* = this turn's shot)
+   A B C D E F G H I J
+ 1 . . . . o . . . . .
+ 2 o o . . . . . . . .
+ 3 # # # # . . . o o .
+ 4 o . o . . . . . . .
+ 5 . . . . . . . . . .
+ 6 o . . . . . . . . .
+ 7 . . . o . . . . . .
+ 8 . . * . . . . . . .
+ 9 . . . . o o . . . .
+10 . . . . . . . . . .
+----------------------------------------------------------------------
+Turn  33 | P1 -> C10 | result=miss sunk=-
+
+Board snapshot after turn 33 (active player: P1)
+
+P1 own board
+   A B C D E F G H I J
+ 1 . . . . o . . . . .
+ 2 o o . . . . . . . .
+ 3 X X X X . . . o o .
+ 4 o . o . . . . . . .
+ 5 . S S S S S . . . .
+ 6 o . . . . . . . . .
+ 7 S S S o . . S S S .
+ 8 . . o . . . . . . .
+ 9 S S . . o o . . . .
+10 . . . . . . . . . .
+
+P1 shot tracker (* = this turn's shot)
+   A B C D E F G H I J
+ 1 # # # # # o . . . .
+ 2 . . . . . . o . . o
+ 3 . o . . . . . o . .
+ 4 . . . . . . . . . .
+ 5 . . . . . . . . . .
+ 6 o o . . . . . . . .
+ 7 . . . . . . o . . .
+ 8 . # # . . . . . . .
+ 9 . . . . . o . . . .
+10 . . * . . . . . . .
+----------------------------------------------------------------------
+Turn  34 | P2 ->  B6 | result=miss sunk=-
+
+Board snapshot after turn 34 (active player: P2)
+
+P2 own board
+   A B C D E F G H I J
+ 1 X X X X X o . . . .
+ 2 . . . . . . o . . o
+ 3 . o . . . . . o . .
+ 4 . . . . . . . . . .
+ 5 . S S S S . . . . .
+ 6 o o . . . . . . . .
+ 7 S S S . . . o . . .
+ 8 . X X . . . . . . .
+ 9 . . . . . o . . . .
+10 . . o . . S S S . .
+
+P2 shot tracker (* = this turn's shot)
+   A B C D E F G H I J
+ 1 . . . . o . . . . .
+ 2 o o . . . . . . . .
+ 3 # # # # . . . o o .
+ 4 o . o . . . . . . .
+ 5 . . . . . . . . . .
+ 6 o * . . . . . . . .
+ 7 . . . o . . . . . .
+ 8 . . o . . . . . . .
+ 9 . . . . o o . . . .
+10 . . . . . . . . . .
+----------------------------------------------------------------------
+Turn  35 | P1 -> F10 | result=hit  sunk=-
+
+Board snapshot after turn 35 (active player: P1)
+
+P1 own board
+   A B C D E F G H I J
+ 1 . . . . o . . . . .
+ 2 o o . . . . . . . .
+ 3 X X X X . . . o o .
+ 4 o . o . . . . . . .
+ 5 . S S S S S . . . .
+ 6 o o . . . . . . . .
+ 7 S S S o . . S S S .
+ 8 . . o . . . . . . .
+ 9 S S . . o o . . . .
+10 . . . . . . . . . .
+
+P1 shot tracker (* = this turn's shot)
+   A B C D E F G H I J
+ 1 # # # # # o . . . .
+ 2 . . . . . . o . . o
+ 3 . o . . . . . o . .
+ 4 . . . . . . . . . .
+ 5 . . . . . . . . . .
+ 6 o o . . . . . . . .
+ 7 . . . . . . o . . .
+ 8 . # # . . . . . . .
+ 9 . . . . . o . . . .
+10 . . o . . * . . . .
+----------------------------------------------------------------------
+Turn  36 | P2 ->  J2 | result=miss sunk=-
+
+Board snapshot after turn 36 (active player: P2)
+
+P2 own board
+   A B C D E F G H I J
+ 1 X X X X X o . . . .
+ 2 . . . . . . o . . o
+ 3 . o . . . . . o . .
+ 4 . . . . . . . . . .
+ 5 . S S S S . . . . .
+ 6 o o . . . . . . . .
+ 7 S S S . . . o . . .
+ 8 . X X . . . . . . .
+ 9 . . . . . o . . . .
+10 . . o . . X S S . .
+
+P2 shot tracker (* = this turn's shot)
+   A B C D E F G H I J
+ 1 . . . . o . . . . .
+ 2 o o . . . . . . . *
+ 3 # # # # . . . o o .
+ 4 o . o . . . . . . .
+ 5 . . . . . . . . . .
+ 6 o o . . . . . . . .
+ 7 . . . o . . . . . .
+ 8 . . o . . . . . . .
+ 9 . . . . o o . . . .
+10 . . . . . . . . . .
+----------------------------------------------------------------------
+Turn  37 | P1 -> E10 | result=miss sunk=-
+
+Board snapshot after turn 37 (active player: P1)
+
+P1 own board
+   A B C D E F G H I J
+ 1 . . . . o . . . . .
+ 2 o o . . . . . . . o
+ 3 X X X X . . . o o .
+ 4 o . o . . . . . . .
+ 5 . S S S S S . . . .
+ 6 o o . . . . . . . .
+ 7 S S S o . . S S S .
+ 8 . . o . . . . . . .
+ 9 S S . . o o . . . .
+10 . . . . . . . . . .
+
+P1 shot tracker (* = this turn's shot)
+   A B C D E F G H I J
+ 1 # # # # # o . . . .
+ 2 . . . . . . o . . o
+ 3 . o . . . . . o . .
+ 4 . . . . . . . . . .
+ 5 . . . . . . . . . .
+ 6 o o . . . . . . . .
+ 7 . . . . . . o . . .
+ 8 . # # . . . . . . .
+ 9 . . . . . o . . . .
+10 . . o . * x . . . .
+----------------------------------------------------------------------
+Turn  38 | P2 -> F10 | result=miss sunk=-
+
+Board snapshot after turn 38 (active player: P2)
+
+P2 own board
+   A B C D E F G H I J
+ 1 X X X X X o . . . .
+ 2 . . . . . . o . . o
+ 3 . o . . . . . o . .
+ 4 . . . . . . . . . .
+ 5 . S S S S . . . . .
+ 6 o o . . . . . . . .
+ 7 S S S . . . o . . .
+ 8 . X X . . . . . . .
+ 9 . . . . . o . . . .
+10 . . o . o X S S . .
+
+P2 shot tracker (* = this turn's shot)
+   A B C D E F G H I J
+ 1 . . . . o . . . . .
+ 2 o o . . . . . . . o
+ 3 # # # # . . . o o .
+ 4 o . o . . . . . . .
+ 5 . . . . . . . . . .
+ 6 o o . . . . . . . .
+ 7 . . . o . . . . . .
+ 8 . . o . . . . . . .
+ 9 . . . . o o . . . .
+10 . . . . . * . . . .
+----------------------------------------------------------------------
+Turn  39 | P1 -> G10 | result=hit  sunk=-
+
+Board snapshot after turn 39 (active player: P1)
+
+P1 own board
+   A B C D E F G H I J
+ 1 . . . . o . . . . .
+ 2 o o . . . . . . . o
+ 3 X X X X . . . o o .
+ 4 o . o . . . . . . .
+ 5 . S S S S S . . . .
+ 6 o o . . . . . . . .
+ 7 S S S o . . S S S .
+ 8 . . o . . . . . . .
+ 9 S S . . o o . . . .
+10 . . . . . o . . . .
+
+P1 shot tracker (* = this turn's shot)
+   A B C D E F G H I J
+ 1 # # # # # o . . . .
+ 2 . . . . . . o . . o
+ 3 . o . . . . . o . .
+ 4 . . . . . . . . . .
+ 5 . . . . . . . . . .
+ 6 o o . . . . . . . .
+ 7 . . . . . . o . . .
+ 8 . # # . . . . . . .
+ 9 . . . . . o . . . .
+10 . . o . o x * . . .
+----------------------------------------------------------------------
+Turn  40 | P2 ->  G2 | result=miss sunk=-
+
+Board snapshot after turn 40 (active player: P2)
+
+P2 own board
+   A B C D E F G H I J
+ 1 X X X X X o . . . .
+ 2 . . . . . . o . . o
+ 3 . o . . . . . o . .
+ 4 . . . . . . . . . .
+ 5 . S S S S . . . . .
+ 6 o o . . . . . . . .
+ 7 S S S . . . o . . .
+ 8 . X X . . . . . . .
+ 9 . . . . . o . . . .
+10 . . o . o X X S . .
+
+P2 shot tracker (* = this turn's shot)
+   A B C D E F G H I J
+ 1 . . . . o . . . . .
+ 2 o o . . . . * . . o
+ 3 # # # # . . . o o .
+ 4 o . o . . . . . . .
+ 5 . . . . . . . . . .
+ 6 o o . . . . . . . .
+ 7 . . . o . . . . . .
+ 8 . . o . . . . . . .
+ 9 . . . . o o . . . .
+10 . . . . . o . . . .
+----------------------------------------------------------------------
+Turn  41 | P1 ->  G9 | result=miss sunk=-
+
+Board snapshot after turn 41 (active player: P1)
+
+P1 own board
+   A B C D E F G H I J
+ 1 . . . . o . . . . .
+ 2 o o . . . . o . . o
+ 3 X X X X . . . o o .
+ 4 o . o . . . . . . .
+ 5 . S S S S S . . . .
+ 6 o o . . . . . . . .
+ 7 S S S o . . S S S .
+ 8 . . o . . . . . . .
+ 9 S S . . o o . . . .
+10 . . . . . o . . . .
+
+P1 shot tracker (* = this turn's shot)
+   A B C D E F G H I J
+ 1 # # # # # o . . . .
+ 2 . . . . . . o . . o
+ 3 . o . . . . . o . .
+ 4 . . . . . . . . . .
+ 5 . . . . . . . . . .
+ 6 o o . . . . . . . .
+ 7 . . . . . . o . . .
+ 8 . # # . . . . . . .
+ 9 . . . . . o * . . .
+10 . . o . o x x . . .
+----------------------------------------------------------------------
+Turn  42 | P2 ->  G7 | result=hit  sunk=-
+
+Board snapshot after turn 42 (active player: P2)
+
+P2 own board
+   A B C D E F G H I J
+ 1 X X X X X o . . . .
+ 2 . . . . . . o . . o
+ 3 . o . . . . . o . .
+ 4 . . . . . . . . . .
+ 5 . S S S S . . . . .
+ 6 o o . . . . . . . .
+ 7 S S S . . . o . . .
+ 8 . X X . . . . . . .
+ 9 . . . . . o o . . .
+10 . . o . o X X S . .
+
+P2 shot tracker (* = this turn's shot)
+   A B C D E F G H I J
+ 1 . . . . o . . . . .
+ 2 o o . . . . o . . o
+ 3 # # # # . . . o o .
+ 4 o . o . . . . . . .
+ 5 . . . . . . . . . .
+ 6 o o . . . . . . . .
+ 7 . . . o . . * . . .
+ 8 . . o . . . . . . .
+ 9 . . . . o o . . . .
+10 . . . . . o . . . .
+----------------------------------------------------------------------
+Turn  43 | P1 -> H10 | result=hit  sunk=Cruiser
+
+Board snapshot after turn 43 (active player: P1)
+
+P1 own board
+   A B C D E F G H I J
+ 1 . . . . o . . . . .
+ 2 o o . . . . o . . o
+ 3 X X X X . . . o o .
+ 4 o . o . . . . . . .
+ 5 . S S S S S . . . .
+ 6 o o . . . . . . . .
+ 7 S S S o . . X S S .
+ 8 . . o . . . . . . .
+ 9 S S . . o o . . . .
+10 . . . . . o . . . .
+
+P1 shot tracker (* = this turn's shot)
+   A B C D E F G H I J
+ 1 # # # # # o . . . .
+ 2 . . . . . . o . . o
+ 3 . o . . . . . o . .
+ 4 . . . . . . . . . .
+ 5 . . . . . . . . . .
+ 6 o o . . . . . . . .
+ 7 . . . . . . o . . .
+ 8 . # # . . . . . . .
+ 9 . . . . . o o . . .
+10 . . o . o # # * . .
+----------------------------------------------------------------------
+Turn  44 | P2 ->  G8 | result=miss sunk=-
+
+Board snapshot after turn 44 (active player: P2)
+
+P2 own board
+   A B C D E F G H I J
+ 1 X X X X X o . . . .
+ 2 . . . . . . o . . o
+ 3 . o . . . . . o . .
+ 4 . . . . . . . . . .
+ 5 . S S S S . . . . .
+ 6 o o . . . . . . . .
+ 7 S S S . . . o . . .
+ 8 . X X . . . . . . .
+ 9 . . . . . o o . . .
+10 . . o . o X X X . .
+
+P2 shot tracker (* = this turn's shot)
+   A B C D E F G H I J
+ 1 . . . . o . . . . .
+ 2 o o . . . . o . . o
+ 3 # # # # . . . o o .
+ 4 o . o . . . . . . .
+ 5 . . . . . . . . . .
+ 6 o o . . . . . . . .
+ 7 . . . o . . x . . .
+ 8 . . o . . . * . . .
+ 9 . . . . o o . . . .
+10 . . . . . o . . . .
+----------------------------------------------------------------------
+Turn  45 | P1 ->  C4 | result=miss sunk=-
+
+Board snapshot after turn 45 (active player: P1)
+
+P1 own board
+   A B C D E F G H I J
+ 1 . . . . o . . . . .
+ 2 o o . . . . o . . o
+ 3 X X X X . . . o o .
+ 4 o . o . . . . . . .
+ 5 . S S S S S . . . .
+ 6 o o . . . . . . . .
+ 7 S S S o . . X S S .
+ 8 . . o . . . o . . .
+ 9 S S . . o o . . . .
+10 . . . . . o . . . .
+
+P1 shot tracker (* = this turn's shot)
+   A B C D E F G H I J
+ 1 # # # # # o . . . .
+ 2 . . . . . . o . . o
+ 3 . o . . . . . o . .
+ 4 . . * . . . . . . .
+ 5 . . . . . . . . . .
+ 6 o o . . . . . . . .
+ 7 . . . . . . o . . .
+ 8 . # # . . . . . . .
+ 9 . . . . . o o . . .
+10 . . o . o # # # . .
+----------------------------------------------------------------------
+Turn  46 | P2 ->  G6 | result=miss sunk=-
+
+Board snapshot after turn 46 (active player: P2)
+
+P2 own board
+   A B C D E F G H I J
+ 1 X X X X X o . . . .
+ 2 . . . . . . o . . o
+ 3 . o . . . . . o . .
+ 4 . . o . . . . . . .
+ 5 . S S S S . . . . .
+ 6 o o . . . . . . . .
+ 7 S S S . . . o . . .
+ 8 . X X . . . . . . .
+ 9 . . . . . o o . . .
+10 . . o . o X X X . .
+
+P2 shot tracker (* = this turn's shot)
+   A B C D E F G H I J
+ 1 . . . . o . . . . .
+ 2 o o . . . . o . . o
+ 3 # # # # . . . o o .
+ 4 o . o . . . . . . .
+ 5 . . . . . . . . . .
+ 6 o o . . . . * . . .
+ 7 . . . o . . x . . .
+ 8 . . o . . . o . . .
+ 9 . . . . o o . . . .
+10 . . . . . o . . . .
+----------------------------------------------------------------------
+Turn  47 | P1 ->  A9 | result=miss sunk=-
+
+Board snapshot after turn 47 (active player: P1)
+
+P1 own board
+   A B C D E F G H I J
+ 1 . . . . o . . . . .
+ 2 o o . . . . o . . o
+ 3 X X X X . . . o o .
+ 4 o . o . . . . . . .
+ 5 . S S S S S . . . .
+ 6 o o . . . . o . . .
+ 7 S S S o . . X S S .
+ 8 . . o . . . o . . .
+ 9 S S . . o o . . . .
+10 . . . . . o . . . .
+
+P1 shot tracker (* = this turn's shot)
+   A B C D E F G H I J
+ 1 # # # # # o . . . .
+ 2 . . . . . . o . . o
+ 3 . o . . . . . o . .
+ 4 . . o . . . . . . .
+ 5 . . . . . . . . . .
+ 6 o o . . . . . . . .
+ 7 . . . . . . o . . .
+ 8 . # # . . . . . . .
+ 9 * . . . . o o . . .
+10 . . o . o # # # . .
+----------------------------------------------------------------------
+Turn  48 | P2 ->  F7 | result=miss sunk=-
+
+Board snapshot after turn 48 (active player: P2)
+
+P2 own board
+   A B C D E F G H I J
+ 1 X X X X X o . . . .
+ 2 . . . . . . o . . o
+ 3 . o . . . . . o . .
+ 4 . . o . . . . . . .
+ 5 . S S S S . . . . .
+ 6 o o . . . . . . . .
+ 7 S S S . . . o . . .
+ 8 . X X . . . . . . .
+ 9 o . . . . o o . . .
+10 . . o . o X X X . .
+
+P2 shot tracker (* = this turn's shot)
+   A B C D E F G H I J
+ 1 . . . . o . . . . .
+ 2 o o . . . . o . . o
+ 3 # # # # . . . o o .
+ 4 o . o . . . . . . .
+ 5 . . . . . . . . . .
+ 6 o o . . . . o . . .
+ 7 . . . o . * x . . .
+ 8 . . o . . . o . . .
+ 9 . . . . o o . . . .
+10 . . . . . o . . . .
+----------------------------------------------------------------------
+Turn  49 | P1 ->  I3 | result=miss sunk=-
+
+Board snapshot after turn 49 (active player: P1)
+
+P1 own board
+   A B C D E F G H I J
+ 1 . . . . o . . . . .
+ 2 o o . . . . o . . o
+ 3 X X X X . . . o o .
+ 4 o . o . . . . . . .
+ 5 . S S S S S . . . .
+ 6 o o . . . . o . . .
+ 7 S S S o . o X S S .
+ 8 . . o . . . o . . .
+ 9 S S . . o o . . . .
+10 . . . . . o . . . .
+
+P1 shot tracker (* = this turn's shot)
+   A B C D E F G H I J
+ 1 # # # # # o . . . .
+ 2 . . . . . . o . . o
+ 3 . o . . . . . o * .
+ 4 . . o . . . . . . .
+ 5 . . . . . . . . . .
+ 6 o o . . . . . . . .
+ 7 . . . . . . o . . .
+ 8 . # # . . . . . . .
+ 9 o . . . . o o . . .
+10 . . o . o # # # . .
+----------------------------------------------------------------------
+Turn  50 | P2 ->  H7 | result=hit  sunk=-
+
+Board snapshot after turn 50 (active player: P2)
+
+P2 own board
+   A B C D E F G H I J
+ 1 X X X X X o . . . .
+ 2 . . . . . . o . . o
+ 3 . o . . . . . o o .
+ 4 . . o . . . . . . .
+ 5 . S S S S . . . . .
+ 6 o o . . . . . . . .
+ 7 S S S . . . o . . .
+ 8 . X X . . . . . . .
+ 9 o . . . . o o . . .
+10 . . o . o X X X . .
+
+P2 shot tracker (* = this turn's shot)
+   A B C D E F G H I J
+ 1 . . . . o . . . . .
+ 2 o o . . . . o . . o
+ 3 # # # # . . . o o .
+ 4 o . o . . . . . . .
+ 5 . . . . . . . . . .
+ 6 o o . . . . o . . .
+ 7 . . . o . o x * . .
+ 8 . . o . . . o . . .
+ 9 . . . . o o . . . .
+10 . . . . . o . . . .
+----------------------------------------------------------------------
+Turn  51 | P1 ->  E6 | result=miss sunk=-
+
+Board snapshot after turn 51 (active player: P1)
+
+P1 own board
+   A B C D E F G H I J
+ 1 . . . . o . . . . .
+ 2 o o . . . . o . . o
+ 3 X X X X . . . o o .
+ 4 o . o . . . . . . .
+ 5 . S S S S S . . . .
+ 6 o o . . . . o . . .
+ 7 S S S o . o X X S .
+ 8 . . o . . . o . . .
+ 9 S S . . o o . . . .
+10 . . . . . o . . . .
+
+P1 shot tracker (* = this turn's shot)
+   A B C D E F G H I J
+ 1 # # # # # o . . . .
+ 2 . . . . . . o . . o
+ 3 . o . . . . . o o .
+ 4 . . o . . . . . . .
+ 5 . . . . . . . . . .
+ 6 o o . . * . . . . .
+ 7 . . . . . . o . . .
+ 8 . # # . . . . . . .
+ 9 o . . . . o o . . .
+10 . . o . o # # # . .
+----------------------------------------------------------------------
+Turn  52 | P2 ->  I7 | result=hit  sunk=Cruiser
+
+Board snapshot after turn 52 (active player: P2)
+
+P2 own board
+   A B C D E F G H I J
+ 1 X X X X X o . . . .
+ 2 . . . . . . o . . o
+ 3 . o . . . . . o o .
+ 4 . . o . . . . . . .
+ 5 . S S S S . . . . .
+ 6 o o . . o . . . . .
+ 7 S S S . . . o . . .
+ 8 . X X . . . . . . .
+ 9 o . . . . o o . . .
+10 . . o . o X X X . .
+
+P2 shot tracker (* = this turn's shot)
+   A B C D E F G H I J
+ 1 . . . . o . . . . .
+ 2 o o . . . . o . . o
+ 3 # # # # . . . o o .
+ 4 o . o . . . . . . .
+ 5 . . . . . . . . . .
+ 6 o o . . . . o . . .
+ 7 . . . o . o # # * .
+ 8 . . o . . . o . . .
+ 9 . . . . o o . . . .
+10 . . . . . o . . . .
+----------------------------------------------------------------------
+Turn  53 | P1 ->  A4 | result=miss sunk=-
+
+Board snapshot after turn 53 (active player: P1)
+
+P1 own board
+   A B C D E F G H I J
+ 1 . . . . o . . . . .
+ 2 o o . . . . o . . o
+ 3 X X X X . . . o o .
+ 4 o . o . . . . . . .
+ 5 . S S S S S . . . .
+ 6 o o . . . . o . . .
+ 7 S S S o . o X X X .
+ 8 . . o . . . o . . .
+ 9 S S . . o o . . . .
+10 . . . . . o . . . .
+
+P1 shot tracker (* = this turn's shot)
+   A B C D E F G H I J
+ 1 # # # # # o . . . .
+ 2 . . . . . . o . . o
+ 3 . o . . . . . o o .
+ 4 * . o . . . . . . .
+ 5 . . . . . . . . . .
+ 6 o o . . o . . . . .
+ 7 . . . . . . o . . .
+ 8 . # # . . . . . . .
+ 9 o . . . . o o . . .
+10 . . o . o # # # . .
+----------------------------------------------------------------------
+Turn  54 | P2 ->  H5 | result=miss sunk=-
+
+Board snapshot after turn 54 (active player: P2)
+
+P2 own board
+   A B C D E F G H I J
+ 1 X X X X X o . . . .
+ 2 . . . . . . o . . o
+ 3 . o . . . . . o o .
+ 4 o . o . . . . . . .
+ 5 . S S S S . . . . .
+ 6 o o . . o . . . . .
+ 7 S S S . . . o . . .
+ 8 . X X . . . . . . .
+ 9 o . . . . o o . . .
+10 . . o . o X X X . .
+
+P2 shot tracker (* = this turn's shot)
+   A B C D E F G H I J
+ 1 . . . . o . . . . .
+ 2 o o . . . . o . . o
+ 3 # # # # . . . o o .
+ 4 o . o . . . . . . .
+ 5 . . . . . . . * . .
+ 6 o o . . . . o . . .
+ 7 . . . o . o # # # .
+ 8 . . o . . . o . . .
+ 9 . . . . o o . . . .
+10 . . . . . o . . . .
+----------------------------------------------------------------------
+Turn  55 | P1 ->  D7 | result=miss sunk=-
+
+Board snapshot after turn 55 (active player: P1)
+
+P1 own board
+   A B C D E F G H I J
+ 1 . . . . o . . . . .
+ 2 o o . . . . o . . o
+ 3 X X X X . . . o o .
+ 4 o . o . . . . . . .
+ 5 . S S S S S . o . .
+ 6 o o . . . . o . . .
+ 7 S S S o . o X X X .
+ 8 . . o . . . o . . .
+ 9 S S . . o o . . . .
+10 . . . . . o . . . .
+
+P1 shot tracker (* = this turn's shot)
+   A B C D E F G H I J
+ 1 # # # # # o . . . .
+ 2 . . . . . . o . . o
+ 3 . o . . . . . o o .
+ 4 o . o . . . . . . .
+ 5 . . . . . . . . . .
+ 6 o o . . o . . . . .
+ 7 . . . * . . o . . .
+ 8 . # # . . . . . . .
+ 9 o . . . . o o . . .
+10 . . o . o # # # . .
+----------------------------------------------------------------------
+Turn  56 | P2 ->  G9 | result=miss sunk=-
+
+Board snapshot after turn 56 (active player: P2)
+
+P2 own board
+   A B C D E F G H I J
+ 1 X X X X X o . . . .
+ 2 . . . . . . o . . o
+ 3 . o . . . . . o o .
+ 4 o . o . . . . . . .
+ 5 . S S S S . . . . .
+ 6 o o . . o . . . . .
+ 7 S S S o . . o . . .
+ 8 . X X . . . . . . .
+ 9 o . . . . o o . . .
+10 . . o . o X X X . .
+
+P2 shot tracker (* = this turn's shot)
+   A B C D E F G H I J
+ 1 . . . . o . . . . .
+ 2 o o . . . . o . . o
+ 3 # # # # . . . o o .
+ 4 o . o . . . . . . .
+ 5 . . . . . . . o . .
+ 6 o o . . . . o . . .
+ 7 . . . o . o # # # .
+ 8 . . o . . . o . . .
+ 9 . . . . o o * . . .
+10 . . . . . o . . . .
+----------------------------------------------------------------------
+Turn  57 | P1 ->  C5 | result=hit  sunk=-
+
+Board snapshot after turn 57 (active player: P1)
+
+P1 own board
+   A B C D E F G H I J
+ 1 . . . . o . . . . .
+ 2 o o . . . . o . . o
+ 3 X X X X . . . o o .
+ 4 o . o . . . . . . .
+ 5 . S S S S S . o . .
+ 6 o o . . . . o . . .
+ 7 S S S o . o X X X .
+ 8 . . o . . . o . . .
+ 9 S S . . o o o . . .
+10 . . . . . o . . . .
+
+P1 shot tracker (* = this turn's shot)
+   A B C D E F G H I J
+ 1 # # # # # o . . . .
+ 2 . . . . . . o . . o
+ 3 . o . . . . . o o .
+ 4 o . o . . . . . . .
+ 5 . . * . . . . . . .
+ 6 o o . . o . . . . .
+ 7 . . . o . . o . . .
+ 8 . # # . . . . . . .
+ 9 o . . . . o o . . .
+10 . . o . o # # # . .
+----------------------------------------------------------------------
+Turn  58 | P2 -> C10 | result=miss sunk=-
+
+Board snapshot after turn 58 (active player: P2)
+
+P2 own board
+   A B C D E F G H I J
+ 1 X X X X X o . . . .
+ 2 . . . . . . o . . o
+ 3 . o . . . . . o o .
+ 4 o . o . . . . . . .
+ 5 . S X S S . . . . .
+ 6 o o . . o . . . . .
+ 7 S S S o . . o . . .
+ 8 . X X . . . . . . .
+ 9 o . . . . o o . . .
+10 . . o . o X X X . .
+
+P2 shot tracker (* = this turn's shot)
+   A B C D E F G H I J
+ 1 . . . . o . . . . .
+ 2 o o . . . . o . . o
+ 3 # # # # . . . o o .
+ 4 o . o . . . . . . .
+ 5 . . . . . . . o . .
+ 6 o o . . . . o . . .
+ 7 . . . o . o # # # .
+ 8 . . o . . . o . . .
+ 9 . . . . o o o . . .
+10 . . * . . o . . . .
+----------------------------------------------------------------------
+Turn  59 | P1 ->  C6 | result=miss sunk=-
+
+Board snapshot after turn 59 (active player: P1)
+
+P1 own board
+   A B C D E F G H I J
+ 1 . . . . o . . . . .
+ 2 o o . . . . o . . o
+ 3 X X X X . . . o o .
+ 4 o . o . . . . . . .
+ 5 . S S S S S . o . .
+ 6 o o . . . . o . . .
+ 7 S S S o . o X X X .
+ 8 . . o . . . o . . .
+ 9 S S . . o o o . . .
+10 . . o . . o . . . .
+
+P1 shot tracker (* = this turn's shot)
+   A B C D E F G H I J
+ 1 # # # # # o . . . .
+ 2 . . . . . . o . . o
+ 3 . o . . . . . o o .
+ 4 o . o . . . . . . .
+ 5 . . x . . . . . . .
+ 6 o o * . o . . . . .
+ 7 . . . o . . o . . .
+ 8 . # # . . . . . . .
+ 9 o . . . . o o . . .
+10 . . o . o # # # . .
+----------------------------------------------------------------------
+Turn  60 | P2 ->  C6 | result=miss sunk=-
+
+Board snapshot after turn 60 (active player: P2)
+
+P2 own board
+   A B C D E F G H I J
+ 1 X X X X X o . . . .
+ 2 . . . . . . o . . o
+ 3 . o . . . . . o o .
+ 4 o . o . . . . . . .
+ 5 . S X S S . . . . .
+ 6 o o o . o . . . . .
+ 7 S S S o . . o . . .
+ 8 . X X . . . . . . .
+ 9 o . . . . o o . . .
+10 . . o . o X X X . .
+
+P2 shot tracker (* = this turn's shot)
+   A B C D E F G H I J
+ 1 . . . . o . . . . .
+ 2 o o . . . . o . . o
+ 3 # # # # . . . o o .
+ 4 o . o . . . . . . .
+ 5 . . . . . . . o . .
+ 6 o o * . . . o . . .
+ 7 . . . o . o # # # .
+ 8 . . o . . . o . . .
+ 9 . . . . o o o . . .
+10 . . o . . o . . . .
+----------------------------------------------------------------------
+Turn  61 | P1 ->  B5 | result=hit  sunk=-
+
+Board snapshot after turn 61 (active player: P1)
+
+P1 own board
+   A B C D E F G H I J
+ 1 . . . . o . . . . .
+ 2 o o . . . . o . . o
+ 3 X X X X . . . o o .
+ 4 o . o . . . . . . .
+ 5 . S S S S S . o . .
+ 6 o o o . . . o . . .
+ 7 S S S o . o X X X .
+ 8 . . o . . . o . . .
+ 9 S S . . o o o . . .
+10 . . o . . o . . . .
+
+P1 shot tracker (* = this turn's shot)
+   A B C D E F G H I J
+ 1 # # # # # o . . . .
+ 2 . . . . . . o . . o
+ 3 . o . . . . . o o .
+ 4 o . o . . . . . . .
+ 5 . * x . . . . . . .
+ 6 o o o . o . . . . .
+ 7 . . . o . . o . . .
+ 8 . # # . . . . . . .
+ 9 o . . . . o o . . .
+10 . . o . o # # # . .
+----------------------------------------------------------------------
+Turn  62 | P2 ->  C5 | result=hit  sunk=-
+
+Board snapshot after turn 62 (active player: P2)
+
+P2 own board
+   A B C D E F G H I J
+ 1 X X X X X o . . . .
+ 2 . . . . . . o . . o
+ 3 . o . . . . . o o .
+ 4 o . o . . . . . . .
+ 5 . X X S S . . . . .
+ 6 o o o . o . . . . .
+ 7 S S S o . . o . . .
+ 8 . X X . . . . . . .
+ 9 o . . . . o o . . .
+10 . . o . o X X X . .
+
+P2 shot tracker (* = this turn's shot)
+   A B C D E F G H I J
+ 1 . . . . o . . . . .
+ 2 o o . . . . o . . o
+ 3 # # # # . . . o o .
+ 4 o . o . . . . . . .
+ 5 . . * . . . . o . .
+ 6 o o o . . . o . . .
+ 7 . . . o . o # # # .
+ 8 . . o . . . o . . .
+ 9 . . . . o o o . . .
+10 . . o . . o . . . .
+----------------------------------------------------------------------
+Turn  63 | P1 ->  A5 | result=miss sunk=-
+
+Board snapshot after turn 63 (active player: P1)
+
+P1 own board
+   A B C D E F G H I J
+ 1 . . . . o . . . . .
+ 2 o o . . . . o . . o
+ 3 X X X X . . . o o .
+ 4 o . o . . . . . . .
+ 5 . S X S S S . o . .
+ 6 o o o . . . o . . .
+ 7 S S S o . o X X X .
+ 8 . . o . . . o . . .
+ 9 S S . . o o o . . .
+10 . . o . . o . . . .
+
+P1 shot tracker (* = this turn's shot)
+   A B C D E F G H I J
+ 1 # # # # # o . . . .
+ 2 . . . . . . o . . o
+ 3 . o . . . . . o o .
+ 4 o . o . . . . . . .
+ 5 * x x . . . . . . .
+ 6 o o o . o . . . . .
+ 7 . . . o . . o . . .
+ 8 . # # . . . . . . .
+ 9 o . . . . o o . . .
+10 . . o . o # # # . .
+----------------------------------------------------------------------
+Turn  64 | P2 ->  B5 | result=hit  sunk=-
+
+Board snapshot after turn 64 (active player: P2)
+
+P2 own board
+   A B C D E F G H I J
+ 1 X X X X X o . . . .
+ 2 . . . . . . o . . o
+ 3 . o . . . . . o o .
+ 4 o . o . . . . . . .
+ 5 o X X S S . . . . .
+ 6 o o o . o . . . . .
+ 7 S S S o . . o . . .
+ 8 . X X . . . . . . .
+ 9 o . . . . o o . . .
+10 . . o . o X X X . .
+
+P2 shot tracker (* = this turn's shot)
+   A B C D E F G H I J
+ 1 . . . . o . . . . .
+ 2 o o . . . . o . . o
+ 3 # # # # . . . o o .
+ 4 o . o . . . . . . .
+ 5 . * x . . . . o . .
+ 6 o o o . . . o . . .
+ 7 . . . o . o # # # .
+ 8 . . o . . . o . . .
+ 9 . . . . o o o . . .
+10 . . o . . o . . . .
+----------------------------------------------------------------------
+Turn  65 | P1 ->  D5 | result=hit  sunk=-
+
+Board snapshot after turn 65 (active player: P1)
+
+P1 own board
+   A B C D E F G H I J
+ 1 . . . . o . . . . .
+ 2 o o . . . . o . . o
+ 3 X X X X . . . o o .
+ 4 o . o . . . . . . .
+ 5 . X X S S S . o . .
+ 6 o o o . . . o . . .
+ 7 S S S o . o X X X .
+ 8 . . o . . . o . . .
+ 9 S S . . o o o . . .
+10 . . o . . o . . . .
+
+P1 shot tracker (* = this turn's shot)
+   A B C D E F G H I J
+ 1 # # # # # o . . . .
+ 2 . . . . . . o . . o
+ 3 . o . . . . . o o .
+ 4 o . o . . . . . . .
+ 5 o x x * . . . . . .
+ 6 o o o . o . . . . .
+ 7 . . . o . . o . . .
+ 8 . # # . . . . . . .
+ 9 o . . . . o o . . .
+10 . . o . o # # # . .
+----------------------------------------------------------------------
+Turn  66 | P2 ->  A5 | result=miss sunk=-
+
+Board snapshot after turn 66 (active player: P2)
+
+P2 own board
+   A B C D E F G H I J
+ 1 X X X X X o . . . .
+ 2 . . . . . . o . . o
+ 3 . o . . . . . o o .
+ 4 o . o . . . . . . .
+ 5 o X X X S . . . . .
+ 6 o o o . o . . . . .
+ 7 S S S o . . o . . .
+ 8 . X X . . . . . . .
+ 9 o . . . . o o . . .
+10 . . o . o X X X . .
+
+P2 shot tracker (* = this turn's shot)
+   A B C D E F G H I J
+ 1 . . . . o . . . . .
+ 2 o o . . . . o . . o
+ 3 # # # # . . . o o .
+ 4 o . o . . . . . . .
+ 5 * x x . . . . o . .
+ 6 o o o . . . o . . .
+ 7 . . . o . o # # # .
+ 8 . . o . . . o . . .
+ 9 . . . . o o o . . .
+10 . . o . . o . . . .
+----------------------------------------------------------------------
+Turn  67 | P1 ->  D4 | result=miss sunk=-
+
+Board snapshot after turn 67 (active player: P1)
+
+P1 own board
+   A B C D E F G H I J
+ 1 . . . . o . . . . .
+ 2 o o . . . . o . . o
+ 3 X X X X . . . o o .
+ 4 o . o . . . . . . .
+ 5 o X X S S S . o . .
+ 6 o o o . . . o . . .
+ 7 S S S o . o X X X .
+ 8 . . o . . . o . . .
+ 9 S S . . o o o . . .
+10 . . o . . o . . . .
+
+P1 shot tracker (* = this turn's shot)
+   A B C D E F G H I J
+ 1 # # # # # o . . . .
+ 2 . . . . . . o . . o
+ 3 . o . . . . . o o .
+ 4 o . o * . . . . . .
+ 5 o x x x . . . . . .
+ 6 o o o . o . . . . .
+ 7 . . . o . . o . . .
+ 8 . # # . . . . . . .
+ 9 o . . . . o o . . .
+10 . . o . o # # # . .
+----------------------------------------------------------------------
+Turn  68 | P2 ->  B4 | result=miss sunk=-
+
+Board snapshot after turn 68 (active player: P2)
+
+P2 own board
+   A B C D E F G H I J
+ 1 X X X X X o . . . .
+ 2 . . . . . . o . . o
+ 3 . o . . . . . o o .
+ 4 o . o o . . . . . .
+ 5 o X X X S . . . . .
+ 6 o o o . o . . . . .
+ 7 S S S o . . o . . .
+ 8 . X X . . . . . . .
+ 9 o . . . . o o . . .
+10 . . o . o X X X . .
+
+P2 shot tracker (* = this turn's shot)
+   A B C D E F G H I J
+ 1 . . . . o . . . . .
+ 2 o o . . . . o . . o
+ 3 # # # # . . . o o .
+ 4 o * o . . . . . . .
+ 5 o x x . . . . o . .
+ 6 o o o . . . o . . .
+ 7 . . . o . o # # # .
+ 8 . . o . . . o . . .
+ 9 . . . . o o o . . .
+10 . . o . . o . . . .
+----------------------------------------------------------------------
+Turn  69 | P1 ->  E5 | result=hit  sunk=Battleship
+
+Board snapshot after turn 69 (active player: P1)
+
+P1 own board
+   A B C D E F G H I J
+ 1 . . . . o . . . . .
+ 2 o o . . . . o . . o
+ 3 X X X X . . . o o .
+ 4 o o o . . . . . . .
+ 5 o X X S S S . o . .
+ 6 o o o . . . o . . .
+ 7 S S S o . o X X X .
+ 8 . . o . . . o . . .
+ 9 S S . . o o o . . .
+10 . . o . . o . . . .
+
+P1 shot tracker (* = this turn's shot)
+   A B C D E F G H I J
+ 1 # # # # # o . . . .
+ 2 . . . . . . o . . o
+ 3 . o . . . . . o o .
+ 4 o . o o . . . . . .
+ 5 o # # # * . . . . .
+ 6 o o o . o . . . . .
+ 7 . . . o . . o . . .
+ 8 . # # . . . . . . .
+ 9 o . . . . o o . . .
+10 . . o . o # # # . .
+----------------------------------------------------------------------
+Turn  70 | P2 ->  D5 | result=hit  sunk=-
+
+Board snapshot after turn 70 (active player: P2)
+
+P2 own board
+   A B C D E F G H I J
+ 1 X X X X X o . . . .
+ 2 . . . . . . o . . o
+ 3 . o . . . . . o o .
+ 4 o . o o . . . . . .
+ 5 o X X X X . . . . .
+ 6 o o o . o . . . . .
+ 7 S S S o . . o . . .
+ 8 . X X . . . . . . .
+ 9 o . . . . o o . . .
+10 . . o . o X X X . .
+
+P2 shot tracker (* = this turn's shot)
+   A B C D E F G H I J
+ 1 . . . . o . . . . .
+ 2 o o . . . . o . . o
+ 3 # # # # . . . o o .
+ 4 o o o . . . . . . .
+ 5 o x x * . . . o . .
+ 6 o o o . . . o . . .
+ 7 . . . o . o # # # .
+ 8 . . o . . . o . . .
+ 9 . . . . o o o . . .
+10 . . o . . o . . . .
+----------------------------------------------------------------------
+Turn  71 | P1 ->  H5 | result=miss sunk=-
+
+Board snapshot after turn 71 (active player: P1)
+
+P1 own board
+   A B C D E F G H I J
+ 1 . . . . o . . . . .
+ 2 o o . . . . o . . o
+ 3 X X X X . . . o o .
+ 4 o o o . . . . . . .
+ 5 o X X X S S . o . .
+ 6 o o o . . . o . . .
+ 7 S S S o . o X X X .
+ 8 . . o . . . o . . .
+ 9 S S . . o o o . . .
+10 . . o . . o . . . .
+
+P1 shot tracker (* = this turn's shot)
+   A B C D E F G H I J
+ 1 # # # # # o . . . .
+ 2 . . . . . . o . . o
+ 3 . o . . . . . o o .
+ 4 o . o o . . . . . .
+ 5 o # # # # . . * . .
+ 6 o o o . o . . . . .
+ 7 . . . o . . o . . .
+ 8 . # # . . . . . . .
+ 9 o . . . . o o . . .
+10 . . o . o # # # . .
+----------------------------------------------------------------------
+Turn  72 | P2 ->  E5 | result=hit  sunk=-
+
+Board snapshot after turn 72 (active player: P2)
+
+P2 own board
+   A B C D E F G H I J
+ 1 X X X X X o . . . .
+ 2 . . . . . . o . . o
+ 3 . o . . . . . o o .
+ 4 o . o o . . . . . .
+ 5 o X X X X . . o . .
+ 6 o o o . o . . . . .
+ 7 S S S o . . o . . .
+ 8 . X X . . . . . . .
+ 9 o . . . . o o . . .
+10 . . o . o X X X . .
+
+P2 shot tracker (* = this turn's shot)
+   A B C D E F G H I J
+ 1 . . . . o . . . . .
+ 2 o o . . . . o . . o
+ 3 # # # # . . . o o .
+ 4 o o o . . . . . . .
+ 5 o x x x * . . o . .
+ 6 o o o . . . o . . .
+ 7 . . . o . o # # # .
+ 8 . . o . . . o . . .
+ 9 . . . . o o o . . .
+10 . . o . . o . . . .
+----------------------------------------------------------------------
+Turn  73 | P1 ->  G5 | result=miss sunk=-
+
+Board snapshot after turn 73 (active player: P1)
+
+P1 own board
+   A B C D E F G H I J
+ 1 . . . . o . . . . .
+ 2 o o . . . . o . . o
+ 3 X X X X . . . o o .
+ 4 o o o . . . . . . .
+ 5 o X X X X S . o . .
+ 6 o o o . . . o . . .
+ 7 S S S o . o X X X .
+ 8 . . o . . . o . . .
+ 9 S S . . o o o . . .
+10 . . o . . o . . . .
+
+P1 shot tracker (* = this turn's shot)
+   A B C D E F G H I J
+ 1 # # # # # o . . . .
+ 2 . . . . . . o . . o
+ 3 . o . . . . . o o .
+ 4 o . o o . . . . . .
+ 5 o # # # # . * o . .
+ 6 o o o . o . . . . .
+ 7 . . . o . . o . . .
+ 8 . # # . . . . . . .
+ 9 o . . . . o o . . .
+10 . . o . o # # # . .
+----------------------------------------------------------------------
+Turn  74 | P2 ->  E6 | result=miss sunk=-
+
+Board snapshot after turn 74 (active player: P2)
+
+P2 own board
+   A B C D E F G H I J
+ 1 X X X X X o . . . .
+ 2 . . . . . . o . . o
+ 3 . o . . . . . o o .
+ 4 o . o o . . . . . .
+ 5 o X X X X . o o . .
+ 6 o o o . o . . . . .
+ 7 S S S o . . o . . .
+ 8 . X X . . . . . . .
+ 9 o . . . . o o . . .
+10 . . o . o X X X . .
+
+P2 shot tracker (* = this turn's shot)
+   A B C D E F G H I J
+ 1 . . . . o . . . . .
+ 2 o o . . . . o . . o
+ 3 # # # # . . . o o .
+ 4 o o o . . . . . . .
+ 5 o x x x x . . o . .
+ 6 o o o . * . o . . .
+ 7 . . . o . o # # # .
+ 8 . . o . . . o . . .
+ 9 . . . . o o o . . .
+10 . . o . . o . . . .
+----------------------------------------------------------------------
+Turn  75 | P1 ->  H2 | result=miss sunk=-
+
+Board snapshot after turn 75 (active player: P1)
+
+P1 own board
+   A B C D E F G H I J
+ 1 . . . . o . . . . .
+ 2 o o . . . . o . . o
+ 3 X X X X . . . o o .
+ 4 o o o . . . . . . .
+ 5 o X X X X S . o . .
+ 6 o o o . o . o . . .
+ 7 S S S o . o X X X .
+ 8 . . o . . . o . . .
+ 9 S S . . o o o . . .
+10 . . o . . o . . . .
+
+P1 shot tracker (* = this turn's shot)
+   A B C D E F G H I J
+ 1 # # # # # o . . . .
+ 2 . . . . . . o * . o
+ 3 . o . . . . . o o .
+ 4 o . o o . . . . . .
+ 5 o # # # # . o o . .
+ 6 o o o . o . . . . .
+ 7 . . . o . . o . . .
+ 8 . # # . . . . . . .
+ 9 o . . . . o o . . .
+10 . . o . o # # # . .
+----------------------------------------------------------------------
+Turn  76 | P2 ->  E4 | result=miss sunk=-
+
+Board snapshot after turn 76 (active player: P2)
+
+P2 own board
+   A B C D E F G H I J
+ 1 X X X X X o . . . .
+ 2 . . . . . . o o . o
+ 3 . o . . . . . o o .
+ 4 o . o o . . . . . .
+ 5 o X X X X . o o . .
+ 6 o o o . o . . . . .
+ 7 S S S o . . o . . .
+ 8 . X X . . . . . . .
+ 9 o . . . . o o . . .
+10 . . o . o X X X . .
+
+P2 shot tracker (* = this turn's shot)
+   A B C D E F G H I J
+ 1 . . . . o . . . . .
+ 2 o o . . . . o . . o
+ 3 # # # # . . . o o .
+ 4 o o o . * . . . . .
+ 5 o x x x x . . o . .
+ 6 o o o . o . o . . .
+ 7 . . . o . o # # # .
+ 8 . . o . . . o . . .
+ 9 . . . . o o o . . .
+10 . . o . . o . . . .
+----------------------------------------------------------------------
+Turn  77 | P1 ->  E9 | result=miss sunk=-
+
+Board snapshot after turn 77 (active player: P1)
+
+P1 own board
+   A B C D E F G H I J
+ 1 . . . . o . . . . .
+ 2 o o . . . . o . . o
+ 3 X X X X . . . o o .
+ 4 o o o . o . . . . .
+ 5 o X X X X S . o . .
+ 6 o o o . o . o . . .
+ 7 S S S o . o X X X .
+ 8 . . o . . . o . . .
+ 9 S S . . o o o . . .
+10 . . o . . o . . . .
+
+P1 shot tracker (* = this turn's shot)
+   A B C D E F G H I J
+ 1 # # # # # o . . . .
+ 2 . . . . . . o o . o
+ 3 . o . . . . . o o .
+ 4 o . o o . . . . . .
+ 5 o # # # # . o o . .
+ 6 o o o . o . . . . .
+ 7 . . . o . . o . . .
+ 8 . # # . . . . . . .
+ 9 o . . . * o o . . .
+10 . . o . o # # # . .
+----------------------------------------------------------------------
+Turn  78 | P2 ->  D6 | result=miss sunk=-
+
+Board snapshot after turn 78 (active player: P2)
+
+P2 own board
+   A B C D E F G H I J
+ 1 X X X X X o . . . .
+ 2 . . . . . . o o . o
+ 3 . o . . . . . o o .
+ 4 o . o o . . . . . .
+ 5 o X X X X . o o . .
+ 6 o o o . o . . . . .
+ 7 S S S o . . o . . .
+ 8 . X X . . . . . . .
+ 9 o . . . o o o . . .
+10 . . o . o X X X . .
+
+P2 shot tracker (* = this turn's shot)
+   A B C D E F G H I J
+ 1 . . . . o . . . . .
+ 2 o o . . . . o . . o
+ 3 # # # # . . . o o .
+ 4 o o o . o . . . . .
+ 5 o x x x x . . o . .
+ 6 o o o * o . o . . .
+ 7 . . . o . o # # # .
+ 8 . . o . . . o . . .
+ 9 . . . . o o o . . .
+10 . . o . . o . . . .
+----------------------------------------------------------------------
+Turn  79 | P1 ->  I9 | result=miss sunk=-
+
+Board snapshot after turn 79 (active player: P1)
+
+P1 own board
+   A B C D E F G H I J
+ 1 . . . . o . . . . .
+ 2 o o . . . . o . . o
+ 3 X X X X . . . o o .
+ 4 o o o . o . . . . .
+ 5 o X X X X S . o . .
+ 6 o o o o o . o . . .
+ 7 S S S o . o X X X .
+ 8 . . o . . . o . . .
+ 9 S S . . o o o . . .
+10 . . o . . o . . . .
+
+P1 shot tracker (* = this turn's shot)
+   A B C D E F G H I J
+ 1 # # # # # o . . . .
+ 2 . . . . . . o o . o
+ 3 . o . . . . . o o .
+ 4 o . o o . . . . . .
+ 5 o # # # # . o o . .
+ 6 o o o . o . . . . .
+ 7 . . . o . . o . . .
+ 8 . # # . . . . . . .
+ 9 o . . . o o o . * .
+10 . . o . o # # # . .
+----------------------------------------------------------------------
+Turn  80 | P2 ->  D4 | result=miss sunk=-
+
+Board snapshot after turn 80 (active player: P2)
+
+P2 own board
+   A B C D E F G H I J
+ 1 X X X X X o . . . .
+ 2 . . . . . . o o . o
+ 3 . o . . . . . o o .
+ 4 o . o o . . . . . .
+ 5 o X X X X . o o . .
+ 6 o o o . o . . . . .
+ 7 S S S o . . o . . .
+ 8 . X X . . . . . . .
+ 9 o . . . o o o . o .
+10 . . o . o X X X . .
+
+P2 shot tracker (* = this turn's shot)
+   A B C D E F G H I J
+ 1 . . . . o . . . . .
+ 2 o o . . . . o . . o
+ 3 # # # # . . . o o .
+ 4 o o o * o . . . . .
+ 5 o x x x x . . o . .
+ 6 o o o o o . o . . .
+ 7 . . . o . o # # # .
+ 8 . . o . . . o . . .
+ 9 . . . . o o o . . .
+10 . . o . . o . . . .
+----------------------------------------------------------------------
+Turn  81 | P1 ->  E7 | result=miss sunk=-
+
+Board snapshot after turn 81 (active player: P1)
+
+P1 own board
+   A B C D E F G H I J
+ 1 . . . . o . . . . .
+ 2 o o . . . . o . . o
+ 3 X X X X . . . o o .
+ 4 o o o o o . . . . .
+ 5 o X X X X S . o . .
+ 6 o o o o o . o . . .
+ 7 S S S o . o X X X .
+ 8 . . o . . . o . . .
+ 9 S S . . o o o . . .
+10 . . o . . o . . . .
+
+P1 shot tracker (* = this turn's shot)
+   A B C D E F G H I J
+ 1 # # # # # o . . . .
+ 2 . . . . . . o o . o
+ 3 . o . . . . . o o .
+ 4 o . o o . . . . . .
+ 5 o # # # # . o o . .
+ 6 o o o . o . . . . .
+ 7 . . . o * . o . . .
+ 8 . # # . . . . . . .
+ 9 o . . . o o o . o .
+10 . . o . o # # # . .
+----------------------------------------------------------------------
+Turn  82 | P2 ->  F5 | result=hit  sunk=Carrier
+
+Board snapshot after turn 82 (active player: P2)
+
+P2 own board
+   A B C D E F G H I J
+ 1 X X X X X o . . . .
+ 2 . . . . . . o o . o
+ 3 . o . . . . . o o .
+ 4 o . o o . . . . . .
+ 5 o X X X X . o o . .
+ 6 o o o . o . . . . .
+ 7 S S S o o . o . . .
+ 8 . X X . . . . . . .
+ 9 o . . . o o o . o .
+10 . . o . o X X X . .
+
+P2 shot tracker (* = this turn's shot)
+   A B C D E F G H I J
+ 1 . . . . o . . . . .
+ 2 o o . . . . o . . o
+ 3 # # # # . . . o o .
+ 4 o o o o o . . . . .
+ 5 o # # # # * . o . .
+ 6 o o o o o . o . . .
+ 7 . . . o . o # # # .
+ 8 . . o . . . o . . .
+ 9 . . . . o o o . . .
+10 . . o . . o . . . .
+----------------------------------------------------------------------
+Turn  83 | P1 ->  I7 | result=miss sunk=-
+
+Board snapshot after turn 83 (active player: P1)
+
+P1 own board
+   A B C D E F G H I J
+ 1 . . . . o . . . . .
+ 2 o o . . . . o . . o
+ 3 X X X X . . . o o .
+ 4 o o o o o . . . . .
+ 5 o X X X X X . o . .
+ 6 o o o o o . o . . .
+ 7 S S S o . o X X X .
+ 8 . . o . . . o . . .
+ 9 S S . . o o o . . .
+10 . . o . . o . . . .
+
+P1 shot tracker (* = this turn's shot)
+   A B C D E F G H I J
+ 1 # # # # # o . . . .
+ 2 . . . . . . o o . o
+ 3 . o . . . . . o o .
+ 4 o . o o . . . . . .
+ 5 o # # # # . o o . .
+ 6 o o o . o . . . . .
+ 7 . . . o o . o . * .
+ 8 . # # . . . . . . .
+ 9 o . . . o o o . o .
+10 . . o . o # # # . .
+----------------------------------------------------------------------
+Turn  84 | P2 ->  I4 | result=miss sunk=-
+
+Board snapshot after turn 84 (active player: P2)
+
+P2 own board
+   A B C D E F G H I J
+ 1 X X X X X o . . . .
+ 2 . . . . . . o o . o
+ 3 . o . . . . . o o .
+ 4 o . o o . . . . . .
+ 5 o X X X X . o o . .
+ 6 o o o . o . . . . .
+ 7 S S S o o . o . o .
+ 8 . X X . . . . . . .
+ 9 o . . . o o o . o .
+10 . . o . o X X X . .
+
+P2 shot tracker (* = this turn's shot)
+   A B C D E F G H I J
+ 1 . . . . o . . . . .
+ 2 o o . . . . o . . o
+ 3 # # # # . . . o o .
+ 4 o o o o o . . . * .
+ 5 o # # # # # . o . .
+ 6 o o o o o . o . . .
+ 7 . . . o . o # # # .
+ 8 . . o . . . o . . .
+ 9 . . . . o o o . . .
+10 . . o . . o . . . .
+----------------------------------------------------------------------
+Turn  85 | P1 ->  F3 | result=miss sunk=-
+
+Board snapshot after turn 85 (active player: P1)
+
+P1 own board
+   A B C D E F G H I J
+ 1 . . . . o . . . . .
+ 2 o o . . . . o . . o
+ 3 X X X X . . . o o .
+ 4 o o o o o . . . o .
+ 5 o X X X X X . o . .
+ 6 o o o o o . o . . .
+ 7 S S S o . o X X X .
+ 8 . . o . . . o . . .
+ 9 S S . . o o o . . .
+10 . . o . . o . . . .
+
+P1 shot tracker (* = this turn's shot)
+   A B C D E F G H I J
+ 1 # # # # # o . . . .
+ 2 . . . . . . o o . o
+ 3 . o . . . * . o o .
+ 4 o . o o . . . . . .
+ 5 o # # # # . o o . .
+ 6 o o o . o . . . . .
+ 7 . . . o o . o . o .
+ 8 . # # . . . . . . .
+ 9 o . . . o o o . o .
+10 . . o . o # # # . .
+----------------------------------------------------------------------
+Turn  86 | P2 ->  F3 | result=miss sunk=-
+
+Board snapshot after turn 86 (active player: P2)
+
+P2 own board
+   A B C D E F G H I J
+ 1 X X X X X o . . . .
+ 2 . . . . . . o o . o
+ 3 . o . . . o . o o .
+ 4 o . o o . . . . . .
+ 5 o X X X X . o o . .
+ 6 o o o . o . . . . .
+ 7 S S S o o . o . o .
+ 8 . X X . . . . . . .
+ 9 o . . . o o o . o .
+10 . . o . o X X X . .
+
+P2 shot tracker (* = this turn's shot)
+   A B C D E F G H I J
+ 1 . . . . o . . . . .
+ 2 o o . . . . o . . o
+ 3 # # # # . * . o o .
+ 4 o o o o o . . . o .
+ 5 o # # # # # . o . .
+ 6 o o o o o . o . . .
+ 7 . . . o . o # # # .
+ 8 . . o . . . o . . .
+ 9 . . . . o o o . . .
+10 . . o . . o . . . .
+----------------------------------------------------------------------
+Turn  87 | P1 ->  J5 | result=miss sunk=-
+
+Board snapshot after turn 87 (active player: P1)
+
+P1 own board
+   A B C D E F G H I J
+ 1 . . . . o . . . . .
+ 2 o o . . . . o . . o
+ 3 X X X X . o . o o .
+ 4 o o o o o . . . o .
+ 5 o X X X X X . o . .
+ 6 o o o o o . o . . .
+ 7 S S S o . o X X X .
+ 8 . . o . . . o . . .
+ 9 S S . . o o o . . .
+10 . . o . . o . . . .
+
+P1 shot tracker (* = this turn's shot)
+   A B C D E F G H I J
+ 1 # # # # # o . . . .
+ 2 . . . . . . o o . o
+ 3 . o . . . o . o o .
+ 4 o . o o . . . . . .
+ 5 o # # # # . o o . *
+ 6 o o o . o . . . . .
+ 7 . . . o o . o . o .
+ 8 . # # . . . . . . .
+ 9 o . . . o o o . o .
+10 . . o . o # # # . .
+----------------------------------------------------------------------
+Turn  88 | P2 ->  D9 | result=miss sunk=-
+
+Board snapshot after turn 88 (active player: P2)
+
+P2 own board
+   A B C D E F G H I J
+ 1 X X X X X o . . . .
+ 2 . . . . . . o o . o
+ 3 . o . . . o . o o .
+ 4 o . o o . . . . . .
+ 5 o X X X X . o o . o
+ 6 o o o . o . . . . .
+ 7 S S S o o . o . o .
+ 8 . X X . . . . . . .
+ 9 o . . . o o o . o .
+10 . . o . o X X X . .
+
+P2 shot tracker (* = this turn's shot)
+   A B C D E F G H I J
+ 1 . . . . o . . . . .
+ 2 o o . . . . o . . o
+ 3 # # # # . o . o o .
+ 4 o o o o o . . . o .
+ 5 o # # # # # . o . .
+ 6 o o o o o . o . . .
+ 7 . . . o . o # # # .
+ 8 . . o . . . o . . .
+ 9 . . . * o o o . . .
+10 . . o . . o . . . .
+----------------------------------------------------------------------
+Turn  89 | P1 -> A10 | result=miss sunk=-
+
+Board snapshot after turn 89 (active player: P1)
+
+P1 own board
+   A B C D E F G H I J
+ 1 . . . . o . . . . .
+ 2 o o . . . . o . . o
+ 3 X X X X . o . o o .
+ 4 o o o o o . . . o .
+ 5 o X X X X X . o . .
+ 6 o o o o o . o . . .
+ 7 S S S o . o X X X .
+ 8 . . o . . . o . . .
+ 9 S S . o o o o . . .
+10 . . o . . o . . . .
+
+P1 shot tracker (* = this turn's shot)
+   A B C D E F G H I J
+ 1 # # # # # o . . . .
+ 2 . . . . . . o o . o
+ 3 . o . . . o . o o .
+ 4 o . o o . . . . . .
+ 5 o # # # # . o o . o
+ 6 o o o . o . . . . .
+ 7 . . . o o . o . o .
+ 8 . # # . . . . . . .
+ 9 o . . . o o o . o .
+10 * . o . o # # # . .
+----------------------------------------------------------------------
+Turn  90 | P2 ->  E3 | result=miss sunk=-
+
+Board snapshot after turn 90 (active player: P2)
+
+P2 own board
+   A B C D E F G H I J
+ 1 X X X X X o . . . .
+ 2 . . . . . . o o . o
+ 3 . o . . . o . o o .
+ 4 o . o o . . . . . .
+ 5 o X X X X . o o . o
+ 6 o o o . o . . . . .
+ 7 S S S o o . o . o .
+ 8 . X X . . . . . . .
+ 9 o . . . o o o . o .
+10 o . o . o X X X . .
+
+P2 shot tracker (* = this turn's shot)
+   A B C D E F G H I J
+ 1 . . . . o . . . . .
+ 2 o o . . . . o . . o
+ 3 # # # # * o . o o .
+ 4 o o o o o . . . o .
+ 5 o # # # # # . o . .
+ 6 o o o o o . o . . .
+ 7 . . . o . o # # # .
+ 8 . . o . . . o . . .
+ 9 . . . o o o o . . .
+10 . . o . . o . . . .
+----------------------------------------------------------------------
+Turn  91 | P1 ->  D9 | result=miss sunk=-
+
+Board snapshot after turn 91 (active player: P1)
+
+P1 own board
+   A B C D E F G H I J
+ 1 . . . . o . . . . .
+ 2 o o . . . . o . . o
+ 3 X X X X o o . o o .
+ 4 o o o o o . . . o .
+ 5 o X X X X X . o . .
+ 6 o o o o o . o . . .
+ 7 S S S o . o X X X .
+ 8 . . o . . . o . . .
+ 9 S S . o o o o . . .
+10 . . o . . o . . . .
+
+P1 shot tracker (* = this turn's shot)
+   A B C D E F G H I J
+ 1 # # # # # o . . . .
+ 2 . . . . . . o o . o
+ 3 . o . . . o . o o .
+ 4 o . o o . . . . . .
+ 5 o # # # # . o o . o
+ 6 o o o . o . . . . .
+ 7 . . . o o . o . o .
+ 8 . # # . . . . . . .
+ 9 o . . * o o o . o .
+10 o . o . o # # # . .
+----------------------------------------------------------------------
+Turn  92 | P2 ->  D1 | result=miss sunk=-
+
+Board snapshot after turn 92 (active player: P2)
+
+P2 own board
+   A B C D E F G H I J
+ 1 X X X X X o . . . .
+ 2 . . . . . . o o . o
+ 3 . o . . . o . o o .
+ 4 o . o o . . . . . .
+ 5 o X X X X . o o . o
+ 6 o o o . o . . . . .
+ 7 S S S o o . o . o .
+ 8 . X X . . . . . . .
+ 9 o . . o o o o . o .
+10 o . o . o X X X . .
+
+P2 shot tracker (* = this turn's shot)
+   A B C D E F G H I J
+ 1 . . . * o . . . . .
+ 2 o o . . . . o . . o
+ 3 # # # # o o . o o .
+ 4 o o o o o . . . o .
+ 5 o # # # # # . o . .
+ 6 o o o o o . o . . .
+ 7 . . . o . o # # # .
+ 8 . . o . . . o . . .
+ 9 . . . o o o o . . .
+10 . . o . . o . . . .
+----------------------------------------------------------------------
+Turn  93 | P1 ->  I6 | result=miss sunk=-
+
+Board snapshot after turn 93 (active player: P1)
+
+P1 own board
+   A B C D E F G H I J
+ 1 . . . o o . . . . .
+ 2 o o . . . . o . . o
+ 3 X X X X o o . o o .
+ 4 o o o o o . . . o .
+ 5 o X X X X X . o . .
+ 6 o o o o o . o . . .
+ 7 S S S o . o X X X .
+ 8 . . o . . . o . . .
+ 9 S S . o o o o . . .
+10 . . o . . o . . . .
+
+P1 shot tracker (* = this turn's shot)
+   A B C D E F G H I J
+ 1 # # # # # o . . . .
+ 2 . . . . . . o o . o
+ 3 . o . . . o . o o .
+ 4 o . o o . . . . . .
+ 5 o # # # # . o o . o
+ 6 o o o . o . . . * .
+ 7 . . . o o . o . o .
+ 8 . # # . . . . . . .
+ 9 o . . o o o o . o .
+10 o . o . o # # # . .
+----------------------------------------------------------------------
+Turn  94 | P2 ->  F2 | result=miss sunk=-
+
+Board snapshot after turn 94 (active player: P2)
+
+P2 own board
+   A B C D E F G H I J
+ 1 X X X X X o . . . .
+ 2 . . . . . . o o . o
+ 3 . o . . . o . o o .
+ 4 o . o o . . . . . .
+ 5 o X X X X . o o . o
+ 6 o o o . o . . . o .
+ 7 S S S o o . o . o .
+ 8 . X X . . . . . . .
+ 9 o . . o o o o . o .
+10 o . o . o X X X . .
+
+P2 shot tracker (* = this turn's shot)
+   A B C D E F G H I J
+ 1 . . . o o . . . . .
+ 2 o o . . . * o . . o
+ 3 # # # # o o . o o .
+ 4 o o o o o . . . o .
+ 5 o # # # # # . o . .
+ 6 o o o o o . o . . .
+ 7 . . . o . o # # # .
+ 8 . . o . . . o . . .
+ 9 . . . o o o o . . .
+10 . . o . . o . . . .
+----------------------------------------------------------------------
+Turn  95 | P1 ->  I1 | result=miss sunk=-
+
+Board snapshot after turn 95 (active player: P1)
+
+P1 own board
+   A B C D E F G H I J
+ 1 . . . o o . . . . .
+ 2 o o . . . o o . . o
+ 3 X X X X o o . o o .
+ 4 o o o o o . . . o .
+ 5 o X X X X X . o . .
+ 6 o o o o o . o . . .
+ 7 S S S o . o X X X .
+ 8 . . o . . . o . . .
+ 9 S S . o o o o . . .
+10 . . o . . o . . . .
+
+P1 shot tracker (* = this turn's shot)
+   A B C D E F G H I J
+ 1 # # # # # o . . * .
+ 2 . . . . . . o o . o
+ 3 . o . . . o . o o .
+ 4 o . o o . . . . . .
+ 5 o # # # # . o o . o
+ 6 o o o . o . . . o .
+ 7 . . . o o . o . o .
+ 8 . # # . . . . . . .
+ 9 o . . o o o o . o .
+10 o . o . o # # # . .
+----------------------------------------------------------------------
+Turn  96 | P2 ->  B7 | result=hit  sunk=-
+
+Board snapshot after turn 96 (active player: P2)
+
+P2 own board
+   A B C D E F G H I J
+ 1 X X X X X o . . o .
+ 2 . . . . . . o o . o
+ 3 . o . . . o . o o .
+ 4 o . o o . . . . . .
+ 5 o X X X X . o o . o
+ 6 o o o . o . . . o .
+ 7 S S S o o . o . o .
+ 8 . X X . . . . . . .
+ 9 o . . o o o o . o .
+10 o . o . o X X X . .
+
+P2 shot tracker (* = this turn's shot)
+   A B C D E F G H I J
+ 1 . . . o o . . . . .
+ 2 o o . . . o o . . o
+ 3 # # # # o o . o o .
+ 4 o o o o o . . . o .
+ 5 o # # # # # . o . .
+ 6 o o o o o . o . . .
+ 7 . * . o . o # # # .
+ 8 . . o . . . o . . .
+ 9 . . . o o o o . . .
+10 . . o . . o . . . .
+----------------------------------------------------------------------
+Turn  97 | P1 ->  E3 | result=miss sunk=-
+
+Board snapshot after turn 97 (active player: P1)
+
+P1 own board
+   A B C D E F G H I J
+ 1 . . . o o . . . . .
+ 2 o o . . . o o . . o
+ 3 X X X X o o . o o .
+ 4 o o o o o . . . o .
+ 5 o X X X X X . o . .
+ 6 o o o o o . o . . .
+ 7 S X S o . o X X X .
+ 8 . . o . . . o . . .
+ 9 S S . o o o o . . .
+10 . . o . . o . . . .
+
+P1 shot tracker (* = this turn's shot)
+   A B C D E F G H I J
+ 1 # # # # # o . . o .
+ 2 . . . . . . o o . o
+ 3 . o . . * o . o o .
+ 4 o . o o . . . . . .
+ 5 o # # # # . o o . o
+ 6 o o o . o . . . o .
+ 7 . . . o o . o . o .
+ 8 . # # . . . . . . .
+ 9 o . . o o o o . o .
+10 o . o . o # # # . .
+----------------------------------------------------------------------
+Turn  98 | P2 ->  B8 | result=miss sunk=-
+
+Board snapshot after turn 98 (active player: P2)
+
+P2 own board
+   A B C D E F G H I J
+ 1 X X X X X o . . o .
+ 2 . . . . . . o o . o
+ 3 . o . . o o . o o .
+ 4 o . o o . . . . . .
+ 5 o X X X X . o o . o
+ 6 o o o . o . . . o .
+ 7 S S S o o . o . o .
+ 8 . X X . . . . . . .
+ 9 o . . o o o o . o .
+10 o . o . o X X X . .
+
+P2 shot tracker (* = this turn's shot)
+   A B C D E F G H I J
+ 1 . . . o o . . . . .
+ 2 o o . . . o o . . o
+ 3 # # # # o o . o o .
+ 4 o o o o o . . . o .
+ 5 o # # # # # . o . .
+ 6 o o o o o . o . . .
+ 7 . x . o . o # # # .
+ 8 . * o . . . o . . .
+ 9 . . . o o o o . . .
+10 . . o . . o . . . .
+----------------------------------------------------------------------
+Turn  99 | P1 ->  I4 | result=miss sunk=-
+
+Board snapshot after turn 99 (active player: P1)
+
+P1 own board
+   A B C D E F G H I J
+ 1 . . . o o . . . . .
+ 2 o o . . . o o . . o
+ 3 X X X X o o . o o .
+ 4 o o o o o . . . o .
+ 5 o X X X X X . o . .
+ 6 o o o o o . o . . .
+ 7 S X S o . o X X X .
+ 8 . o o . . . o . . .
+ 9 S S . o o o o . . .
+10 . . o . . o . . . .
+
+P1 shot tracker (* = this turn's shot)
+   A B C D E F G H I J
+ 1 # # # # # o . . o .
+ 2 . . . . . . o o . o
+ 3 . o . . o o . o o .
+ 4 o . o o . . . . * .
+ 5 o # # # # . o o . o
+ 6 o o o . o . . . o .
+ 7 . . . o o . o . o .
+ 8 . # # . . . . . . .
+ 9 o . . o o o o . o .
+10 o . o . o # # # . .
+----------------------------------------------------------------------
+Turn 100 | P2 ->  C7 | result=hit  sunk=-
+
+Board snapshot after turn 100 (active player: P2)
+
+P2 own board
+   A B C D E F G H I J
+ 1 X X X X X o . . o .
+ 2 . . . . . . o o . o
+ 3 . o . . o o . o o .
+ 4 o . o o . . . . o .
+ 5 o X X X X . o o . o
+ 6 o o o . o . . . o .
+ 7 S S S o o . o . o .
+ 8 . X X . . . . . . .
+ 9 o . . o o o o . o .
+10 o . o . o X X X . .
+
+P2 shot tracker (* = this turn's shot)
+   A B C D E F G H I J
+ 1 . . . o o . . . . .
+ 2 o o . . . o o . . o
+ 3 # # # # o o . o o .
+ 4 o o o o o . . . o .
+ 5 o # # # # # . o . .
+ 6 o o o o o . o . . .
+ 7 . x * o . o # # # .
+ 8 . o o . . . o . . .
+ 9 . . . o o o o . . .
+10 . . o . . o . . . .
+----------------------------------------------------------------------
+Turn 101 | P1 ->  J7 | result=miss sunk=-
+
+Board snapshot after turn 101 (active player: P1)
+
+P1 own board
+   A B C D E F G H I J
+ 1 . . . o o . . . . .
+ 2 o o . . . o o . . o
+ 3 X X X X o o . o o .
+ 4 o o o o o . . . o .
+ 5 o X X X X X . o . .
+ 6 o o o o o . o . . .
+ 7 S X X o . o X X X .
+ 8 . o o . . . o . . .
+ 9 S S . o o o o . . .
+10 . . o . . o . . . .
+
+P1 shot tracker (* = this turn's shot)
+   A B C D E F G H I J
+ 1 # # # # # o . . o .
+ 2 . . . . . . o o . o
+ 3 . o . . o o . o o .
+ 4 o . o o . . . . o .
+ 5 o # # # # . o o . o
+ 6 o o o . o . . . o .
+ 7 . . . o o . o . o *
+ 8 . # # . . . . . . .
+ 9 o . . o o o o . o .
+10 o . o . o # # # . .
+----------------------------------------------------------------------
+Turn 102 | P2 ->  A7 | result=hit  sunk=Submarine
+
+Board snapshot after turn 102 (active player: P2)
+
+P2 own board
+   A B C D E F G H I J
+ 1 X X X X X o . . o .
+ 2 . . . . . . o o . o
+ 3 . o . . o o . o o .
+ 4 o . o o . . . . o .
+ 5 o X X X X . o o . o
+ 6 o o o . o . . . o .
+ 7 S S S o o . o . o o
+ 8 . X X . . . . . . .
+ 9 o . . o o o o . o .
+10 o . o . o X X X . .
+
+P2 shot tracker (* = this turn's shot)
+   A B C D E F G H I J
+ 1 . . . o o . . . . .
+ 2 o o . . . o o . . o
+ 3 # # # # o o . o o .
+ 4 o o o o o . . . o .
+ 5 o # # # # # . o . .
+ 6 o o o o o . o . . .
+ 7 * # # o . o # # # .
+ 8 . o o . . . o . . .
+ 9 . . . o o o o . . .
+10 . . o . . o . . . .
+----------------------------------------------------------------------
+Turn 103 | P1 ->  E4 | result=miss sunk=-
+
+Board snapshot after turn 103 (active player: P1)
+
+P1 own board
+   A B C D E F G H I J
+ 1 . . . o o . . . . .
+ 2 o o . . . o o . . o
+ 3 X X X X o o . o o .
+ 4 o o o o o . . . o .
+ 5 o X X X X X . o . .
+ 6 o o o o o . o . . .
+ 7 X X X o . o X X X .
+ 8 . o o . . . o . . .
+ 9 S S . o o o o . . .
+10 . . o . . o . . . .
+
+P1 shot tracker (* = this turn's shot)
+   A B C D E F G H I J
+ 1 # # # # # o . . o .
+ 2 . . . . . . o o . o
+ 3 . o . . o o . o o .
+ 4 o . o o * . . . o .
+ 5 o # # # # . o o . o
+ 6 o o o . o . . . o .
+ 7 . . . o o . o . o o
+ 8 . # # . . . . . . .
+ 9 o . . o o o o . o .
+10 o . o . o # # # . .
+----------------------------------------------------------------------
+Turn 104 | P2 ->  J7 | result=miss sunk=-
+
+Board snapshot after turn 104 (active player: P2)
+
+P2 own board
+   A B C D E F G H I J
+ 1 X X X X X o . . o .
+ 2 . . . . . . o o . o
+ 3 . o . . o o . o o .
+ 4 o . o o o . . . o .
+ 5 o X X X X . o o . o
+ 6 o o o . o . . . o .
+ 7 S S S o o . o . o o
+ 8 . X X . . . . . . .
+ 9 o . . o o o o . o .
+10 o . o . o X X X . .
+
+P2 shot tracker (* = this turn's shot)
+   A B C D E F G H I J
+ 1 . . . o o . . . . .
+ 2 o o . . . o o . . o
+ 3 # # # # o o . o o .
+ 4 o o o o o . . . o .
+ 5 o # # # # # . o . .
+ 6 o o o o o . o . . .
+ 7 # # # o . o # # # *
+ 8 . o o . . . o . . .
+ 9 . . . o o o o . . .
+10 . . o . . o . . . .
+----------------------------------------------------------------------
+Turn 105 | P1 ->  C3 | result=miss sunk=-
+
+Board snapshot after turn 105 (active player: P1)
+
+P1 own board
+   A B C D E F G H I J
+ 1 . . . o o . . . . .
+ 2 o o . . . o o . . o
+ 3 X X X X o o . o o .
+ 4 o o o o o . . . o .
+ 5 o X X X X X . o . .
+ 6 o o o o o . o . . .
+ 7 X X X o . o X X X o
+ 8 . o o . . . o . . .
+ 9 S S . o o o o . . .
+10 . . o . . o . . . .
+
+P1 shot tracker (* = this turn's shot)
+   A B C D E F G H I J
+ 1 # # # # # o . . o .
+ 2 . . . . . . o o . o
+ 3 . o * . o o . o o .
+ 4 o . o o o . . . o .
+ 5 o # # # # . o o . o
+ 6 o o o . o . . . o .
+ 7 . . . o o . o . o o
+ 8 . # # . . . . . . .
+ 9 o . . o o o o . o .
+10 o . o . o # # # . .
+----------------------------------------------------------------------
+Turn 106 | P2 ->  A9 | result=hit  sunk=-
+
+Board snapshot after turn 106 (active player: P2)
+
+P2 own board
+   A B C D E F G H I J
+ 1 X X X X X o . . o .
+ 2 . . . . . . o o . o
+ 3 . o o . o o . o o .
+ 4 o . o o o . . . o .
+ 5 o X X X X . o o . o
+ 6 o o o . o . . . o .
+ 7 S S S o o . o . o o
+ 8 . X X . . . . . . .
+ 9 o . . o o o o . o .
+10 o . o . o X X X . .
+
+P2 shot tracker (* = this turn's shot)
+   A B C D E F G H I J
+ 1 . . . o o . . . . .
+ 2 o o . . . o o . . o
+ 3 # # # # o o . o o .
+ 4 o o o o o . . . o .
+ 5 o # # # # # . o . .
+ 6 o o o o o . o . . .
+ 7 # # # o . o # # # o
+ 8 . o o . . . o . . .
+ 9 * . . o o o o . . .
+10 . . o . . o . . . .
+----------------------------------------------------------------------
+Turn 107 | P1 ->  F7 | result=miss sunk=-
+
+Board snapshot after turn 107 (active player: P1)
+
+P1 own board
+   A B C D E F G H I J
+ 1 . . . o o . . . . .
+ 2 o o . . . o o . . o
+ 3 X X X X o o . o o .
+ 4 o o o o o . . . o .
+ 5 o X X X X X . o . .
+ 6 o o o o o . o . . .
+ 7 X X X o . o X X X o
+ 8 . o o . . . o . . .
+ 9 X S . o o o o . . .
+10 . . o . . o . . . .
+
+P1 shot tracker (* = this turn's shot)
+   A B C D E F G H I J
+ 1 # # # # # o . . o .
+ 2 . . . . . . o o . o
+ 3 . o o . o o . o o .
+ 4 o . o o o . . . o .
+ 5 o # # # # . o o . o
+ 6 o o o . o . . . o .
+ 7 . . . o o * o . o o
+ 8 . # # . . . . . . .
+ 9 o . . o o o o . o .
+10 o . o . o # # # . .
+----------------------------------------------------------------------
+Turn 108 | P2 -> A10 | result=miss sunk=-
+
+Board snapshot after turn 108 (active player: P2)
+
+P2 own board
+   A B C D E F G H I J
+ 1 X X X X X o . . o .
+ 2 . . . . . . o o . o
+ 3 . o o . o o . o o .
+ 4 o . o o o . . . o .
+ 5 o X X X X . o o . o
+ 6 o o o . o . . . o .
+ 7 S S S o o o o . o o
+ 8 . X X . . . . . . .
+ 9 o . . o o o o . o .
+10 o . o . o X X X . .
+
+P2 shot tracker (* = this turn's shot)
+   A B C D E F G H I J
+ 1 . . . o o . . . . .
+ 2 o o . . . o o . . o
+ 3 # # # # o o . o o .
+ 4 o o o o o . . . o .
+ 5 o # # # # # . o . .
+ 6 o o o o o . o . . .
+ 7 # # # o . o # # # o
+ 8 . o o . . . o . . .
+ 9 x . . o o o o . . .
+10 * . o . . o . . . .
+----------------------------------------------------------------------
+Turn 109 | P1 ->  B7 | result=hit  sunk=-
+
+Board snapshot after turn 109 (active player: P1)
+
+P1 own board
+   A B C D E F G H I J
+ 1 . . . o o . . . . .
+ 2 o o . . . o o . . o
+ 3 X X X X o o . o o .
+ 4 o o o o o . . . o .
+ 5 o X X X X X . o . .
+ 6 o o o o o . o . . .
+ 7 X X X o . o X X X o
+ 8 . o o . . . o . . .
+ 9 X S . o o o o . . .
+10 o . o . . o . . . .
+
+P1 shot tracker (* = this turn's shot)
+   A B C D E F G H I J
+ 1 # # # # # o . . o .
+ 2 . . . . . . o o . o
+ 3 . o o . o o . o o .
+ 4 o . o o o . . . o .
+ 5 o # # # # . o o . o
+ 6 o o o . o . . . o .
+ 7 . * . o o o o . o o
+ 8 . # # . . . . . . .
+ 9 o . . o o o o . o .
+10 o . o . o # # # . .
+----------------------------------------------------------------------
+Turn 110 | P2 ->  A8 | result=miss sunk=-
+
+Board snapshot after turn 110 (active player: P2)
+
+P2 own board
+   A B C D E F G H I J
+ 1 X X X X X o . . o .
+ 2 . . . . . . o o . o
+ 3 . o o . o o . o o .
+ 4 o . o o o . . . o .
+ 5 o X X X X . o o . o
+ 6 o o o . o . . . o .
+ 7 S X S o o o o . o o
+ 8 . X X . . . . . . .
+ 9 o . . o o o o . o .
+10 o . o . o X X X . .
+
+P2 shot tracker (* = this turn's shot)
+   A B C D E F G H I J
+ 1 . . . o o . . . . .
+ 2 o o . . . o o . . o
+ 3 # # # # o o . o o .
+ 4 o o o o o . . . o .
+ 5 o # # # # # . o . .
+ 6 o o o o o . o . . .
+ 7 # # # o . o # # # o
+ 8 * o o . . . o . . .
+ 9 x . . o o o o . . .
+10 o . o . . o . . . .
+----------------------------------------------------------------------
+Turn 111 | P1 ->  C7 | result=hit  sunk=-
+
+Board snapshot after turn 111 (active player: P1)
+
+P1 own board
+   A B C D E F G H I J
+ 1 . . . o o . . . . .
+ 2 o o . . . o o . . o
+ 3 X X X X o o . o o .
+ 4 o o o o o . . . o .
+ 5 o X X X X X . o . .
+ 6 o o o o o . o . . .
+ 7 X X X o . o X X X o
+ 8 o o o . . . o . . .
+ 9 X S . o o o o . . .
+10 o . o . . o . . . .
+
+P1 shot tracker (* = this turn's shot)
+   A B C D E F G H I J
+ 1 # # # # # o . . o .
+ 2 . . . . . . o o . o
+ 3 . o o . o o . o o .
+ 4 o . o o o . . . o .
+ 5 o # # # # . o o . o
+ 6 o o o . o . . . o .
+ 7 . x * o o o o . o o
+ 8 . # # . . . . . . .
+ 9 o . . o o o o . o .
+10 o . o . o # # # . .
+----------------------------------------------------------------------
+Turn 112 | P2 ->  B9 | result=hit  sunk=Destroyer
+
+Board snapshot after turn 112 (active player: P2)
+
+P2 own board
+   A B C D E F G H I J
+ 1 X X X X X o . . o .
+ 2 . . . . . . o o . o
+ 3 . o o . o o . o o .
+ 4 o . o o o . . . o .
+ 5 o X X X X . o o . o
+ 6 o o o . o . . . o .
+ 7 S X X o o o o . o o
+ 8 . X X . . . . . . .
+ 9 o . . o o o o . o .
+10 o . o . o X X X . .
+
+P2 shot tracker (* = this turn's shot)
+   A B C D E F G H I J
+ 1 . . . o o . . . . .
+ 2 o o . . . o o . . o
+ 3 # # # # o o . o o .
+ 4 o o o o o . . . o .
+ 5 o # # # # # . o . .
+ 6 o o o o o . o . . .
+ 7 # # # o . o # # # o
+ 8 o o o . . . o . . .
+ 9 # * . o o o o . . .
+10 o . o . . o . . . .
+----------------------------------------------------------------------
+
+[self-play] Game complete
+[self-play] Winner: P2
+[self-play] Summary | turns=112 P1 shots=56 hits=16 sunk=4 P2 shots=56 hits=17 sunk=5

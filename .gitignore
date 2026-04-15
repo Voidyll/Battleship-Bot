@@ -1,0 +1,19 @@
+# Python virtual environments
+.venv/
+.venv*/
+venv/
+env/
+
+# Python cache/bytecode
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Tooling caches
+.pytest_cache/
+.mypy_cache/
+
+# OS/editor noise
+.DS_Store
+Thumbs.db
+.vscode/
