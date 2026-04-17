@@ -30,6 +30,8 @@ from AI.model import (
     set_flat_weights,
     count_weights,
     backend_name,
+    save_weights_npz,
+    load_weights_npz,
 )
 from AI import config
 
@@ -262,12 +264,20 @@ class Agent:
         if backend_name() == 'tensorflow':
             p_file = f'{path}_placement.weights.h5'
             t_file = f'{path}_targeting.weights.h5'
+            p_npz = f'{path}_placement.weights.npz'
+            t_npz = f'{path}_targeting.weights.npz'
+
+            self.placement_net.save_weights(p_file)
+            self.targeting_net.save_weights(t_file)
+
+            # Always export NPZ alongside H5 so inference users can run without TensorFlow.
+            save_weights_npz(self.placement_net, p_npz)
+            save_weights_npz(self.targeting_net, t_npz)
         else:
             p_file = f'{path}_placement.weights.npz'
             t_file = f'{path}_targeting.weights.npz'
-
-        self.placement_net.save_weights(p_file)
-        self.targeting_net.save_weights(t_file)
+            self.placement_net.save_weights(p_file)
+            self.targeting_net.save_weights(t_file)
 
     @classmethod
     def load(cls, path: str) -> 'Agent':
@@ -291,22 +301,45 @@ class Agent:
         p_npz = f'{path}_placement.weights.npz'
         t_npz = f'{path}_targeting.weights.npz'
 
+        active_backend = backend_name()
+
         try:
-            if os.path.exists(p_h5) and os.path.exists(t_h5):
-                agent.placement_net.load_weights(p_h5)
-                agent.targeting_net.load_weights(t_h5)
-            elif os.path.exists(p_npz) and os.path.exists(t_npz):
-                agent.placement_net.load_weights(p_npz)
-                agent.targeting_net.load_weights(t_npz)
+            if active_backend == 'tensorflow':
+                # Prefer TensorFlow-native weights when available.
+                if os.path.exists(p_h5) and os.path.exists(t_h5):
+                    agent.placement_net.load_weights(p_h5)
+                    agent.targeting_net.load_weights(t_h5)
+                elif os.path.exists(p_npz) and os.path.exists(t_npz):
+                    # Fallback for compatibility with NumPy-produced checkpoints.
+                    load_weights_npz(agent.placement_net, p_npz)
+                    load_weights_npz(agent.targeting_net, t_npz)
+                else:
+                    raise FileNotFoundError(
+                        f'Could not find model weight files for base path: {path}'
+                    )
             else:
-                raise FileNotFoundError(
-                    f'Could not find model weight files for base path: {path}'
-                )
+                # NumPy backend cannot consume TensorFlow .h5 files directly.
+                if os.path.exists(p_npz) and os.path.exists(t_npz):
+                    load_weights_npz(agent.placement_net, p_npz)
+                    load_weights_npz(agent.targeting_net, t_npz)
+                elif os.path.exists(p_h5) and os.path.exists(t_h5):
+                    raise ValueError(
+                        'NumPy backend is active, but only TensorFlow .h5 checkpoint files '
+                        f'were found for base path: {path}. Use Python 3.10+TensorFlow '
+                        'to load these weights, or provide .npz checkpoint files '
+                        '(you can generate them by re-saving checkpoints in a TensorFlow environment).'
+                    )
+                else:
+                    raise FileNotFoundError(
+                        f'Could not find model weight files for base path: {path}'
+                    )
         except ValueError as e:
             raise ValueError(
-                'Checkpoint architecture mismatch. This code now uses a multi-channel '
-                f'targeting input of size {config.TARGETING_INPUT_SIZE}; retrain or load '
-                'a checkpoint produced with the current architecture.'
+                'Checkpoint load failed. This can happen if the checkpoint format does not '
+                f'match the active backend ({active_backend}) or if the checkpoint architecture '
+                'is incompatible. Current targeting input size is '
+                f'{config.TARGETING_INPUT_SIZE}; retrain or load a checkpoint produced '
+                'with the current architecture and compatible file format.'
             ) from e
 
         return agent
