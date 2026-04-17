@@ -253,3 +253,63 @@ def batch_placement_inference(placement_net: Any, noise_batch: np.ndarray) -> np
 def batch_targeting_inference(targeting_net: Any, state_batch: np.ndarray) -> np.ndarray:
     out = targeting_net(state_batch, training=False)
     return out.numpy() if hasattr(out, 'numpy') else np.asarray(out, dtype=np.float32)
+
+
+def save_weights_npz(model: Any, path: str) -> None:
+    """
+    Save model trainable weights in backend-agnostic .npz format.
+
+    Format:
+      arr_0, arr_1, ... in trainable-weight order.
+    """
+    os.makedirs(os.path.dirname(path) or '.', exist_ok=True)
+
+    if hasattr(model, 'trainable_weights'):
+        arrays = []
+        for w in model.trainable_weights:
+            if hasattr(w, 'numpy'):
+                arrays.append(np.asarray(w.numpy(), dtype=np.float32))
+            else:
+                arrays.append(np.asarray(w, dtype=np.float32))
+        payload = {f'arr_{i}': arr for i, arr in enumerate(arrays)}
+        with open(path, 'wb') as f:
+            np.savez(f, **payload)
+        return
+
+    if hasattr(model, 'save_weights'):
+        model.save_weights(path)
+        return
+
+    raise TypeError(f'Unsupported model type for NPZ save: {type(model)}')
+
+
+def load_weights_npz(model: Any, path: str) -> None:
+    """
+    Load backend-agnostic .npz trainable weights into either backend model.
+    """
+    with np.load(path) as data:
+        arrays = [
+            np.asarray(data[k], dtype=np.float32)
+            for k in sorted(data.files, key=lambda name: int(name.split('_')[1]))
+        ]
+
+    if hasattr(model, 'trainable_weights'):
+        vars_ = list(model.trainable_weights)
+        if len(arrays) != len(vars_):
+            raise ValueError(
+                f'NPZ weight count mismatch: checkpoint has {len(arrays)} arrays, '
+                f'model expects {len(vars_)} trainable weights.'
+            )
+
+        for var, arr in zip(vars_, arrays):
+            if hasattr(var, 'assign'):
+                var.assign(arr)
+            else:
+                np.copyto(var, arr)
+        return
+
+    if hasattr(model, 'load_weights'):
+        model.load_weights(path)
+        return
+
+    raise TypeError(f'Unsupported model type for NPZ load: {type(model)}')
