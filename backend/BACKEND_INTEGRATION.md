@@ -13,6 +13,11 @@ Canonical architecture, endpoint contracts, snapshot schema, and numeric encodin
 - AI/checkpoints/final_model_placement.weights.h5
 - AI/checkpoints/final_model_targeting.weights.h5
 
+Recommended for inference-only environments (no TensorFlow):
+
+- AI/checkpoints/final_model_placement.weights.npz
+- AI/checkpoints/final_model_targeting.weights.npz
+
 ## 2. Objects and Methods You Should Call
 
 From game/game.py:
@@ -32,6 +37,12 @@ From AI/agent.py:
 - Agent.load("AI/checkpoints/final_model")
 - ai_agent.place_all_ships(board, rng)
 - ai_agent.choose_shot(ai_state)
+
+Backend/runtime note:
+
+- TensorFlow is required for training and reading `.h5` checkpoints.
+- Inference can run without TensorFlow when `.npz` checkpoints exist.
+- Training now exports `.npz` alongside `.h5` automatically.
 
 ## 3. Request Flow (Implementation View)
 
@@ -136,7 +147,18 @@ ai_agent.place_all_ships(game.boards[ai_player], rng)
 - If a server-side session mode is added later, lock per game/session.
 - Do not share one mutable Game across independent games.
 
-## 7. Minimal Backend Acceptance Checklist
+## 7. Checkpoint Compatibility for Non-TensorFlow Users
+
+If your environment cannot install TensorFlow (for example newer Python versions),
+use `.npz` checkpoints for `Agent.load(...)`.
+
+To generate `.npz` files for existing `.h5` checkpoints, run once in the training environment:
+
+~~~bash
+python AI/export_npz_checkpoints.py --checkpoints-dir AI/checkpoints
+~~~
+
+## 8. Minimal Backend Acceptance Checklist
 
 - Can create a game and return snapshot + player-safe state.
 - Can place all human ships from snapshot-based requests.

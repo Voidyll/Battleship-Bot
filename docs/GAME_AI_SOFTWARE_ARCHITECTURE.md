@@ -19,6 +19,11 @@ This architecture supports a single-player Battleship experience (human vs AI) w
 - AI Agent Runtime (`AI/agent.py` + checkpoint weights)
 - Local Storage Persistence (browser)
 
+Model artifact strategy:
+
+- Training environment (TensorFlow): saves `.h5` and `.npz` checkpoint copies.
+- Inference-only environment (no TensorFlow): loads `.npz` checkpoints through NumPy backend.
+
 ## 3. High-Level Data Flow
 
 1. Frontend starts new game via backend.
