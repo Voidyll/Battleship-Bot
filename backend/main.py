@@ -1,5 +1,6 @@
 from flask import Flask
 import sys
+import createGame as createGame
 
 sys.path.append("../")
 
@@ -14,11 +15,7 @@ agent.load("../AI/checkpoints/final_model")
 
 @app.route("/api/game/new", methods=["POST"])
 def createGame():
-    game = g.Game()
-
-    agent.place_all_ships(self=agent, board=game.boards[2])
-
-    returnVal = game.to_snapshot()
+    returnVal = createGame.createGame(agent)
 
     return f"<p>{returnVal}</p>"
 
