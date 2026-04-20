@@ -1,4 +1,5 @@
 from flask import Flask
+from flask import request
 import sys
 
 sys.path.append("../")
@@ -22,7 +23,25 @@ def createGame():
 
 @app.route("/api/game/place-ship", methods=["POST"])
 def placeShip():
-    return "<p>Ship Placed</p>"
+    data = request.get_json()
+
+    snapshot = data['snapshot']
+
+    player = int(data['player'])
+    shipName = data['ship']
+    row = int(data['row'])
+    col = int(data['col'])
+    orientation = int(data['orientation'])
+
+    game = g.Game().from_snapshot(snapshot)
+
+
+    error = game.place_ship(player, shipName, row, col, orientation)
+
+    if error.get('Success') == False:
+        return error
+
+    return game.to_snapshot()
 
 @app.route("/api/game/fire", methods=["POST"])
 def fire():
