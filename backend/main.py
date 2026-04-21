@@ -58,7 +58,7 @@ def fire():
 
     aiState = game.get_ai_state(player)
 
-    status = game.fire_with_auto_ai_turn(player, int, col, ai_player, ai.Agent.choose_shot(ai_state=aiState), autoResolveAiTurn)
+    status = game.fire_with_auto_ai_turn(player, row, col, ai_player, ai.Agent.choose_shot(ai_state=aiState), autoResolveAiTurn)
 
     return status
 
