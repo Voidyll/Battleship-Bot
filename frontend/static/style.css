@@ -1,0 +1,17 @@
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  gap: 2px;
+}
+
+.cell {
+  aspect-ratio: 1/1;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.2s ease;
+}
+
+.cell-hit {
+  background: radial-gradient(circle, #ff4d4d 30%, transparent 70%);
+  box-shadow: 0 0 10px #ff4d4d;
+}
