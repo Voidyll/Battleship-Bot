@@ -51,10 +51,14 @@ def fire():
     player = int(data['player'])
     row = int(data['row'])
     col = int(data['col'])
+    ai_player = int(data['ai_player'])
+    autoResolveAiTurn = bool(data['autoResolveAiTurn'])
 
     game = g.Game().from_snapshot(snapshot)
-    
-    status = game.fire(player, row, col)
+
+    aiState = game.get_ai_state(player)
+
+    status = game.fire_with_auto_ai_turn(player, int, col, ai_player, ai.Agent.choose_shot(ai_state=aiState), autoResolveAiTurn)
 
     return status
 
