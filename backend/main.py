@@ -45,7 +45,18 @@ def placeShip():
 
 @app.route("/api/game/fire", methods=["POST"])
 def fire():
-    return "<p>Fired</p>"
+    data = request.get_json()
+
+    snapshot = data['snapshot']
+    player = int(data['player'])
+    row = int(data['row'])
+    col = int(data['col'])
+
+    game = g.Game().from_snapshot(snapshot)
+    
+    status = game.fire(player, row, col)
+
+    return status
 
 @app.route("/api/game/state", methods=["GET"])
 def getState():
