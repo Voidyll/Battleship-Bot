@@ -39,7 +39,7 @@ def placeShip():
     error = game.place_ship(player, shipName, row, col, orientation)
 
     if error.get('Success') == False:
-        return error
+        return error, 400, {'Content-Type': 'application/json'}
 
     return game.to_snapshot(), 200, {'Content-Type': 'application/json'}
 
@@ -58,7 +58,7 @@ def fire():
 
     aiState = game.get_ai_state(player)
 
-    status = game.fire_with_auto_ai_turn(player, row, col, ai_player, ai.Agent.choose_shot(ai_state=aiState), autoResolveAiTurn)
+    status = game.fire_with_auto_ai_turn(player, row, col, ai_player, agent.choose_shot(ai_state=aiState), autoResolveAiTurn)
 
     return status, 200, {'Content-Type': 'application/json'}
 
