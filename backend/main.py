@@ -41,7 +41,7 @@ def placeShip():
     if error.get('Success') == False:
         return error
 
-    return game.to_snapshot(), 200, {'Content-Type', 'application/json'}
+    return game.to_snapshot(), 200, {'Content-Type': 'application/json'}
 
 @app.route("/api/game/fire", methods=["POST"])
 def fire():
