@@ -19,7 +19,7 @@ def createGame():
 
     agent.place_all_ships(board=game.boards[2])
 
-    return game.to_snapshot()
+    return game.to_snapshot(), 200, {'Content-Type': 'application/json'}
 
 @app.route("/api/game/place-ship", methods=["POST"])
 def placeShip():
@@ -41,7 +41,7 @@ def placeShip():
     if error.get('Success') == False:
         return error
 
-    return game.to_snapshot()
+    return game.to_snapshot(), 200, {'Content-Type', 'application/json'}
 
 @app.route("/api/game/fire", methods=["POST"])
 def fire():
@@ -60,7 +60,7 @@ def fire():
 
     status = game.fire_with_auto_ai_turn(player, row, col, ai_player, ai.Agent.choose_shot(ai_state=aiState), autoResolveAiTurn)
 
-    return status
+    return status, 200, {'Content-Type': 'application/json'}
 
 @app.route("/api/game/state", methods=["GET"])
 def getState():
