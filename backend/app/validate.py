@@ -1,3 +1,5 @@
+from flask import abort
+
 class Validation:
     def __init__(self, missingHeaders: list[str] = None):
         self._missingHeaders = missingHeaders
@@ -24,3 +26,14 @@ def validateInput(data:dict, headers:list) -> Validation:
         
     return Validation(missingHeaders)
 
+def validateInt(name, data) -> int:
+    try:
+        return int(data)
+    except:
+        abort(400, description="Invalid input. Must be integer for " + name + ".")
+
+def validateBool(name, data) -> bool:
+    try:
+        return bool(data)
+    except:
+        abort(400, description="Invalid input. Must be boolean for " + name)
