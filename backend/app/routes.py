@@ -6,8 +6,7 @@ from flask import Blueprint, request, jsonify
 import app.validate as validate
 import app.services.gameLogic as gameLogic
 import AI.agent as ai
-
-
+import numpy as np
 
 import game.game as g;
 
@@ -17,10 +16,15 @@ def init_routes(agent: ai.Agent):
     @app.route("/api/game/new", methods=["POST"])
     def createGame():
         game = g.Game()
+        ai_player = 2
 
-        agent.place_all_ships(board=game.boards[2])
+        rng = np.random.default_rng()
 
-        return game.to_snapshot(), 200, {'Content-Type': 'application/json'}
+        agent.place_all_ships(board=game.boards[ai_player], rng=rng)
+
+        response = {"game": game.to_snapshot(), "player-state": game.get_state(1)}
+
+        return response, 200, {'Content-Type': 'application/json'}
 
     @app.route("/api/game/place-ship", methods=["POST"])
     def placeShip():

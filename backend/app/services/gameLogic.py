@@ -1,5 +1,4 @@
 import backend.app.validate as validate
-from backend.app.validate import Validation
 import game.game as g;
 import AI.agent as ai
 
@@ -19,13 +18,14 @@ def placeShip(data: dict):
 
     game = g.Game().from_snapshot(snapshot)
 
-
     error = game.place_ship(player, shipName, row, col, orientation)
 
-    if error.get('Success') == False:
+    if (error.get('success') == False):
         return error, 400, {'Content-Type': 'application/json'}
     
-    return game.to_snapshot(), 200, {'Content-Type': 'application/json'}
+    state = game.get_state(player)
+
+    return {"snapshot": game.to_snapshot(), "player-state": state}, 200, {'Content-Type': 'application/json'}
 
 def fire(data: dict, agent: ai.Agent):
     validHeaders = {"snapshot", "player", "row", "col", "ai_player", "autoResolveAiTurn"}
@@ -47,4 +47,6 @@ def fire(data: dict, agent: ai.Agent):
 
     status = game.fire_with_auto_ai_turn(player, row, col, ai_player, agent.choose_shot(ai_state=aiState), autoResolveAiTurn)
 
-    return status, 200, {'Content-Type': 'application/json'}
+    state = game.get_state(player)
+
+    return {"snapshot": game.to_snapshot, "status": status, "player-state": state}
