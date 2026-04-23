@@ -1,6 +1,8 @@
 from flask import Flask
 from flask import request
 import sys
+import validate as validate
+from validate import Validation
 
 sys.path.append("../")
 
@@ -23,7 +25,13 @@ def createGame():
 
 @app.route("/api/game/place-ship", methods=["POST"])
 def placeShip():
-    data = request.get_json()
+    validHeaders = {"player", "ship", "row", "col", "orientation"}
+
+    data = request.get_json(silent=True)
+
+    valid = validate.validateInput(data, validHeaders)
+    if not valid.success:
+        return {'error': 'Did not include all headers...', 'missing-headers': list(valid.missingHeaders)}, 400, {'Content-Type': 'application/json'}
 
     snapshot = data['snapshot']
 
@@ -45,7 +53,14 @@ def placeShip():
 
 @app.route("/api/game/fire", methods=["POST"])
 def fire():
-    data = request.get_json()
+    validHeaders = {"snapshot", "player", "row", "col", "ai_player", "autoResolveAiTurn"}
+
+    data = request.get_json(silent=True)
+
+    valid = validate.validateInput(data, validHeaders)
+    if not valid.success:
+        return {'error': 'Did not include all headers...', 'missing-headers': list(valid.missingHeaders)}, 400, {'Content-Type': 'application/json'}
+
 
     snapshot = data['snapshot']
     player = int(data['player'])
