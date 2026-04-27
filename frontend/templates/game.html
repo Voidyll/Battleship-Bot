@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block title %}BATTLESHIP{% endblock %}
+
+{% block content %}
+<div class="game-container">
+  
+  <div class="game-hud">
+    
+    <span>PHASE: <span id="state-phase">PLACEMENT</span></span>
+    <span>TURN: <span id="state-turn">0</span></span>
+    <span>STATUS: <span id="state-status">READY</span></span>
+    <button id="btn-reset" class="btn-controls">Reset Game</button>
+  </div>
+  
+  <div class="boards">
+    
+    <div class="board-group">
+      <h3 class="board-label">Enemy Fleet</h3>
+      <div id="opponent-board" class="grid-container">
+      </div>
+    </div>
+
+    <div class="board-group">
+      <h3 class="board-label">Your Fleet</h3>
+      <div id="player-board" class="grid-container">
+      </div>
+    </div>
+
+  </div>
+
+  <div class="controls">
+    <button id="btn-action" class="btn-controls">Confirm Placement</button>
+  </div>
+  
+  <div class="log-container">
+    <div class="log-label">System_Output</div>
+    <div id="combat-log" class="log-content">
+      <div class="log-entry">Local storage snapshot loaded.</div>
+    </div>
+  </div>
+
+</div>
+{% endblock %}
