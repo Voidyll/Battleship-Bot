@@ -5,6 +5,7 @@ import AI.agent as ai
 def placeShip(data: dict):
     validHeaders = {"snapshot", "player", "ship", "row", "col", "orientation"}
     valid = validate.validateInput(data, validHeaders)
+
     if not valid.success:
         return {'error': 'Did not include all headers...', 'missing-headers': list(valid.missingHeaders)}, 400, {'Content-Type': 'application/json'}
 

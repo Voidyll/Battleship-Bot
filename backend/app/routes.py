@@ -22,7 +22,7 @@ def init_routes(agent: ai.Agent):
 
         agent.place_all_ships(board=game.boards[ai_player], rng=rng)
 
-        response = {"game": game.to_snapshot(), "player-state": game.get_state(1)}
+        response = {"snapshot": game.to_snapshot(), "player-state": game.get_state(1)}
 
         return response, 200, {'Content-Type': 'application/json'}
 
