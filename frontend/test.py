@@ -1,5 +1,6 @@
 import services.api_client as api
 import sys
+import services.game as g
 
 ships = ["Cruiser", "Carrier", "Battleship", "Destroyer", "Submarine"]
 
@@ -7,12 +8,10 @@ def main():
     print("Test cases running...")
 
     data: dict = api.create_game()
-    
-    print(f"Game created:\n{data.get("snapshot")}")
 
     game = placeShips(data)
 
-    print(f"Placed ships:\n{game}")
+    gameData = g.Game(data=game.get('snapshot'))
 
     data = {
         'snapshot':game.get("snapshot"),
@@ -23,7 +22,9 @@ def main():
         'row':0
     }
 
-    print(f"Fire Stats:\n {api.fire(data).get("snapshot").get("boards").get('1').get('stats')}")
+    gameData = g.Game(data=api.fire(data).get('snapshot'))
+
+    print(f"Game: {gameData.stats.hits}")
     
 
 def placeShips(data: dict) -> dict:
