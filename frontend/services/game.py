@@ -1,3 +1,6 @@
+import json
+from . import api_client as api
+
 # Create a game class to handle the deserialization of the dictionaries.
 """
 We can create a class for each ship and give them their own info, then store each ship object in the game object.
@@ -126,3 +129,12 @@ class Game:
         self._grid = data.get('boards').get(HUMAN_PLAYER).get('grid')
 
         self._error = False
+
+def startGame() -> Game:
+    return Game(api.create_game().get("snapshot"))
+
+def placeShip(game: dict) -> Game:
+    return Game(api.place_ship(game).get("snapshot"))
+
+def fire(game: dict) -> Game:
+    return Game(api.fire(game).get("snapshot"))

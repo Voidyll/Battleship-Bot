@@ -6,26 +6,14 @@ ships = ["Cruiser", "Carrier", "Battleship", "Destroyer", "Submarine"]
 
 def main():
     print("Test cases running...")
-
-    data: dict = api.create_game()
-
-    game = placeShips(data)
-
-    gameData = g.Game(data=game.get('snapshot'))
-
-    data = {
-        'snapshot':game.get("snapshot"),
-        'autoResolveAiTurn':True,
-        'player':1,
-        'ai_player':2,
-        'col':0,
-        'row':0
-    }
-
-    gameData = g.Game(data=api.fire(data).get('snapshot'))
-
-    print(f"Game: {gameData.stats.hits}")
     
+    game = api.create_game()
+
+    newGame = placeShips(game)
+
+    newnewGame = api.fire(newGame.get('snapshot'))
+
+    print(f"{newnewGame}")
 
 def placeShips(data: dict) -> dict:
     i = 0
