@@ -18,16 +18,30 @@
     <div class="board-group">
       <h3 class="board-label">Enemy Fleet</h3>
       <div id="opponent-board" class="grid-container">
-        <!-- Do a Jijna for loop -->
-        <!-- Give them their own class name based on the index column and row that they are in -->
+        {% for row in range(10) %}
+          {% for col in range(10) %}
+            <div class="cell"
+                 data-row="{{ row }}"
+                 data-col="{{ col }}"
+                 id="cell-{{ row }}-{{ col }}">
+            </div>
+          {% endfor %}
+        {% endfor %}
       </div>
     </div>
 
     <div class="board-group">
       <h3 class="board-label">Your Fleet</h3>
       <div id="player-board" class="grid-container">
-        <!-- Do a Jijna for loop -->
-        <!-- Give them their own class name based on the index column and row that they are in -->
+        {% for row in range(10) %}
+          {% for col in range(10) %}
+            <div class="cell"
+                 data-row="{{ row }}"
+                 data-col="{{ col }}"
+                 id="cell-{{ row }}-{{ col }}">
+            </div>
+          {% endfor %}
+        {% endfor %}
       </div>
     </div>
 
@@ -37,13 +51,11 @@
     <button id="btn-action" class="btn-controls">Confirm Placement</button>
   </div>
 
-  <!--
   <div class="log-container">
     <div class="log-label">System_Output</div>
     <div id="combat-log" class="log-content">
       <div class="log-entry">Local storage snapshot loaded.</div>
     </div>
   </div>
-  -->
 </div>
 {% endblock %}
