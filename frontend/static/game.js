@@ -10,7 +10,7 @@ let gameState = {
 document.addEventListener('DOMContentLoaded', () => {
   console.log("Online.");
 
-  const opponentBoard = document.getElementById('opponentBoard');
+  const opponentBoard = document.getElementById('opponent-Board');
   const playerBoard = document.getElementById('player-board');
   const actionBtn = document.getElementById('btn-action');
 
@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const col = e.target.dataset.col;
       gameState.selectedCell = { row, col };
 
-      addLogEntry('Target Selected: ${String.fromCharCode(65 + parseInt(row))}${parseInt(col) + 1}');
+      addLogEntry(`Target Selected: ${String.fromCharCode(65 + parseInt(row))}${parseInt(col) + 1}`);
     }
   });
 
@@ -48,7 +48,7 @@ document.addEventListener('DOMContentLoaded', () => {
 // UI Rendering
 function updateUI(snapshot) {
   // Update HUD
-  document.getElementById('state-phase').innterText = snapshot.phase;
+  document.getElementById('state-phase').innerText = snapshot.phase;
   document.getElementById('state-turn').innerText = snapshot.turn_count;
 
   // Loop through grid and update colors.
