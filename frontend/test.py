@@ -8,11 +8,22 @@ def main():
 
     data: dict = api.create_game()
     
-    print(f"Game created:\n{data}")
+    print(f"Game created:\n{data.get("snapshot")}")
 
     game = placeShips(data)
 
     print(f"Placed ships:\n{game}")
+
+    data = {
+        'snapshot':game.get("snapshot"),
+        'autoResolveAiTurn':True,
+        'player':1,
+        'ai_player':2,
+        'col':0,
+        'row':0
+    }
+
+    print(f"Fire Stats:\n {api.fire(data).get("snapshot").get("boards").get('1').get('stats')}")
     
 
 def placeShips(data: dict) -> dict:

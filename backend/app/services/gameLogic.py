@@ -44,10 +44,8 @@ def fire(data: dict, agent: ai.Agent):
 
     game = g.Game().from_snapshot(snapshot)
 
-    aiState = game.get_ai_state(player)
-
-    status = game.fire_with_auto_ai_turn(player, row, col, ai_player, agent.choose_shot(ai_state=aiState), autoResolveAiTurn)
+    status = game.fire_with_auto_ai_turn(player, row, col, ai_player, agent.choose_shot, autoResolveAiTurn)
 
     state = game.get_state(player)
 
-    return {"snapshot": game.to_snapshot, "status": status, "player-state": state}
+    return {"snapshot": game.to_snapshot(), "status": status, "player-state": state}
