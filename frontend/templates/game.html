@@ -13,6 +13,20 @@
     <button id="btn-reset" class="btn-controls">Reset Game</button>
   </div>
   
+  <div class="placement-controls">
+    <h3>Select Ship to Deploy</h3>
+    <button class="btn-ship" data-name="Carrier" data-size="5">Carrier (5)</button> 
+    <button class="btn-ship" data-name="Battleship" data-size="4">Battleship (4)</button>
+    <button class="btn-ship" data-name="Cruiser" data-size="3">Cruiser (3)</button>
+    <button class="btn-ship" data-name="Submarine" data-size="3">Submarine (3)</button>
+    <button class="btn-ship" data-name="Destroyer" data-size="2">Destroyer (2)</button>
+
+    <div class="orientation-toggle">
+      <label>Orientation:</label>
+      <button id="btn-orientation" data-value="1">HORIZONTAL</button>
+    </div>
+  </div>
+
   <div class="boards">
     
     <div class="board-group">
@@ -23,7 +37,7 @@
             <div class="cell"
                  data-row="{{ row }}"
                  data-col="{{ col }}"
-                 id="cell-{{ row }}-{{ col }}">
+                 id="opp-cell-{{ row }}-{{ col }}">
             </div>
           {% endfor %}
         {% endfor %}
@@ -38,7 +52,7 @@
             <div class="cell"
                  data-row="{{ row }}"
                  data-col="{{ col }}"
-                 id="cell-{{ row }}-{{ col }}">
+                 id="player-cell-{{ row }}-{{ col }}">
             </div>
           {% endfor %}
         {% endfor %}
@@ -48,7 +62,7 @@
   </div>
 
   <div class="controls">
-    <button id="btn-action" class="btn-controls">Confirm Placement</button>
+    <button id="btn-action" class="btn-controls">Confirm Shot</button>
   </div>
 
   <div class="log-container">

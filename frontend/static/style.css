@@ -29,10 +29,12 @@ h2, h3 {
 
 /* Layout */
 .game-container {
+  padding: 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 100%;
+  min-width: 900px;
   max-width: 1200px;
 }
 
@@ -52,6 +54,12 @@ h2, h3 {
 }
 
 /* Logs */
+@keyframes flicker {
+  0% {opacity: 0.1;}
+  50% {opacity: 1;}
+  100% {opacity: 0.8;}
+}
+
 .log-container {
   margin-top: 40px;
   width: 850px;
@@ -80,6 +88,12 @@ h2, h3 {
   margin-bottom: 6px;
   border-left: 2px solid var(--ui-cyan);
   padding-left: 10px;
+}
+
+.log-entry.success {
+  color: #10b981;
+  border-left-color: #10b981;
+  animation: flicker 0.3s ease-in-out;
 }
 
 .controls {
@@ -175,4 +189,37 @@ h2, h3 {
 .cell-disabled {
   pointer-events: none;
   cursor: default;
+}
+
+.btn-ship {
+  background: transparent;
+  border: 1px solid var(--grid-border);
+  color: var(--ui-cyan);
+  padding: 8px 12px;
+  cursor: pointer;
+  font-family: var(--font-mono);
+  transition: all 0.2s ease;
+}
+
+.btn-ship:hover {
+  border-color: var(--ui-cyan);
+}
+
+.btn-ship.activeShip {
+  background: var(--ui-cyan);
+  color: var(--bg-color);
+  box-shadow: 0 0 10px var(--ui-cyan);
+  border-color: white;
+}
+
+.placement-controls {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.hidden {
+  display: none !important;
 }
