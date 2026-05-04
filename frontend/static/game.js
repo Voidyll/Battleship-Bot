@@ -2,19 +2,18 @@
 // Communication, and Rendering.
 
 // Global state for the frontend
-let gameState = {
-  phase: 'PLACEMENT',
-  selectedCell: null
-};
+let currentSnapshot = null;
+let selectedCell = null;
 
 document.addEventListener('DOMContentLoaded', () => {
   console.log("Online.");
 
-  const opponentBoard = document.getElementById('opponent-Board');
-  const playerBoard = document.getElementById('player-board');
-  const actionBtn = document.getElementById('btn-action');
+  initializeGame();
 
-  // Click Handler
+  const opponentBoard = document.getElementById('opponent-board');
+  const playerBoard = document.getElementById('player-board');
+
+  // Click Handler for enemy board
   opponentBoard.addEventListener('click', (e) => {
     if (e.target.classList.contains('cell')) {
       // Remove previous selection visual
@@ -31,35 +30,100 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // Action Button
+  // Action Button (Fire)
   actionBtn.addEventListener('click', () => {
-    if (!gameState.selectedCell) {
+    if (selectedCell) {
       addLogEntry("ERROR: No target selected.");
       return;
     }
 
-    sendFireRequest(gameState.selectedCell.row, gameState.selectedCell.col);
+    sendFireRequest(selectedCell.row, selectedCell.col);
   });
 });
 
 // API Communication
+async function initializeGame() {
+  try {
+    const response = await fetch('/api/game/new', { method: 'POST' });
+    const data = await response.json();
+    currentSnapshot = data.snapshot;
+    updateUI(currentSnapshot);
+    addLogEntry("Game Initialized.");
+  } catch (err) {
+    addLogEntry("CONNECTION ERROR");
+  }
+}
 
+async function sendFireRequest(row, col) {
+  const payload = {
+    snapshot: currentSnapshot,
+    player: 1,
+    row: parseInt(row),
+    col: parseInt(col),
+    ai_player: 2,
+    autoResolveAiTurn: true
+  };
+
+  try {
+    const response = await fetch('/api/game/fire', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+
+    const data = await response.json();
+
+    // Save new state returned by the server
+    currentSnapshot = data.snapshot;
+    updateUI(currentSnapshot);
+
+    addLogEntry(`Fired at ${String.fromCharCode(65 + parseInt(row))}${parseInt(col) + 1}`);
+  } catch (err) {
+    addLogEntry("SYSTEM ERROR: Failed to fire.");
+  }
+}
 
 // UI Rendering
 function updateUI(snapshot) {
+  if (!snapshot) return;
+
   // Update HUD
   document.getElementById('state-phase').innerText = snapshot.phase;
   document.getElementById('state-turn').innerText = snapshot.turn_count;
 
-  // Loop through grid and update colors.
-  // Need to look at how the snapshot grid is structured.
+  // Update Player's Board (Ships and AI shots)
+  const playerBoardData = snapshot.boards["1"];
+
+  playerBoardData.grid.forEach((row, rIdx) => {
+    row.forEach((cellValue, cIdx) => {
+      const cell = document.querySelector(`#player-board #cell-${rIdx}-${cIdx}`);
+      // Check if there is a ship
+      if (cellValue === 1) {
+        cell.classList.add('cell-ship');
+      }
+    });
+  });
+
+  // Update Enemy Board (Player Shots)
+  playerBoardData.shot_tracker.forEach(shot => {
+    // Based on engine output: [row, col, result_code]
+    const [r, c, result] = shot;
+    const cell = document.querySelector(`#opponent-board #cell-${r}-${c}`);
+
+    // Result codes: 1=hit (red), 2=miss (white)
+    if (result === 1) {
+      cell.classList.add('cell-hit');
+    } else {
+      cell.classList.add('cell-miss');
+    }
+  });
 }
 
-// Log Helper
-function addLogEntry(msg) {
+// Logs
+function addLogEntry(msg, type = "system") {
   const log = document.getElementById('combat-log');
   const entry = document.createElement('div');
-  entry.className = 'log-entry';
-  entry.innerText = '> ${msg}';
+  entry.className = `log-entry ${type}`;
+  entry.innerText = `> ${msg}`;
   log.prepend(entry); // Newest on top
 }
