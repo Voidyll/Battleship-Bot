@@ -226,10 +226,17 @@ function updateUI(snapshot) {
     const cell = document.getElementById(`opp-cell-${r}-${c}`);
 
     // Result codes: 1=hit (red), 2=miss (white)
-    if (result === 1) {
-      cell.classList.add('cell-hit');
-    } else {
-      cell.classList.add('cell-miss');
+    if (cell) {
+      if (result === 1) {
+        cell.classList.add('cell-hit');
+        cell.classList.remove('cell-miss'); // Safety Cleanup
+      } else if (resulte === 2) {
+        cell.classList.add('cell-miss');
+        cell.classList.remove('cell-hit'); //Safety Cleanup
+      } else {
+        // Result is 0 (no action), clear
+        cell.classList.remove('cell-hit', 'cell-miss');
+      }
     }
   });
 }
