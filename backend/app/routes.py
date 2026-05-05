@@ -17,7 +17,7 @@ def init_routes(agent: ai.Agent):
     def index():
         return render_template("game.html")
 
-    @app.route("/api/game/new", methods=["POST"])
+    @app.route("/api/game/new", methods=["GET", "POST"])
     def createGame():
         game = g.Game()
         ai_player = 2

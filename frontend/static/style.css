@@ -185,6 +185,17 @@ h2, h3 {
   border: 1px solid var(--ui-cyan);
 }
 
+.cell-sunk {
+  background-color: #1a1a1a !important;
+  box-shadow: inset 0 0 12px #660000;
+  border: 1px solid #440000;
+  filter: brightness(0.5) grayscale(1);
+  transition: background-color 0.5s ease-in-out;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 /* Disable clicks on Cells */
 .cell-disabled {
   pointer-events: none;
@@ -218,6 +229,12 @@ h2, h3 {
   align-items: center;
   gap: 15px;
   margin-bottom: 20px;
+}
+
+#state-phase {
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--ui-cyan);
 }
 
 .hidden {

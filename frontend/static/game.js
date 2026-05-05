@@ -4,7 +4,7 @@
 // Global state for the frontend
 let currentSnapshot = null;
 let selectedCell = null;
-let active;Ship = {name: null, size: null};
+let activeShip = {name: null, size: null};
 let placementOrientation = 1; // 1 = Horizontal, 0 = Vertical
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -145,12 +145,25 @@ async function manualPlaceShip(row, col) {
 async function initializeGame() {
   try {
     const response = await fetch('/api/game/new', { method: 'POST' });
+    //const data = await response.json();
+   
+    // Check if server actually sent 200
+    if (!response.ok) {
+      const errorText = await response.text();
+      console.error("Server Error Text: ", errorText);
+      throw new Error(`HTTP error. Status: ${response.status}`);
+    }
+
     const data = await response.json();
+    console.log("Data received: ", data); // See if this prints
+
     currentSnapshot = data.snapshot;
     updateUI(currentSnapshot);
     addLogEntry("Game Initialized.");
   } catch (err) {
-    addLogEntry("CONNECTION ERROR: Failed to start session.");
+    console.error("Error: ", err);
+    addLogEntry(`ERROR: ${err.message}`);
+    // addLogEntry("CONNECTION ERROR: Failed to start session.");
   }
 }
 
@@ -195,49 +208,59 @@ function updateUI(snapshot) {
   const actionBtn = document.getElementById('btn-action');
   const placementUI = document.querySelector('.placement-controls');
 
-  if (snapshot.phase === 'PLACEMENT') {
+  if (snapshot.phase === 'placement') {
     actionBtn.style.display = 'none';
     placementUI.style.display = 'block';
   } else {
-    if (actionBtn.style.display === 'none') {
-      actionBtn.style.display = 'block';
-      placementUI.style.display = 'none';
-      addLogEntry("Starting Battle Phase.", "success");
-    }
+    actionBtn.style.display = 'block';
+    placementUI.style.display = 'none';
   }
+
+  // Fade out used Ships
+  const placedShips = snapshot.boards["1"].placed; //Array of names like ["Carrier", "Cruiser", etc.]
+  document.querySelectorAll('.btn-ship').forEach(btn => {
+    if (placedShips.includes(btn.dataset.name)) {
+      btn.style.opacity = "0.3";
+      btn.style.pointerEvents = "none"; // Prevent clicking it again
+      btn.classList.remove('activeShip');
+    } else {
+      btn.style.opacity = "1";
+      btn.style.pointerEvents = "auto";
+    }
+  });
 
   // Update Player's Board (Ships and AI shots)
   const playerBoardData = snapshot.boards["1"];
 
   playerBoardData.grid.forEach((row, rIdx) => {
-    row.forEach((cellValue, cIdx) => {
+    row.forEach((val, cIdx) => {
       const cell = document.getElementById(`player-cell-${rIdx}-${cIdx}`);
-      // Check if there is a ship
-      if (cell && cellValue === 1) {
-        cell.classList.add('cell-ship');
-      }
+      if (!cell) return;
+
+      // Wipe old state
+      cell.classList.remove('cell-ship', 'cell-hit', 'cell-miss');
+
+      if (val === 1) cell.classList.add('cell-ship');
+      if (val === 2) cell.classList.add('cell-ship', 'cell-hit');
+      if (val === 3) cell.classList.add('cell-miss');
     });
   });
 
   // Update Enemy Board (Player Shots)
-  playerBoardData.shot_tracker.forEach(shot => {
-    // Based on engine output: [row, col, result_code]
-    const [r, c, result] = shot;
-    const cell = document.getElementById(`opp-cell-${r}-${c}`);
+  const enemyBoardData = snapshot.boards["1"];
 
-    // Result codes: 1=hit (red), 2=miss (white)
-    if (cell) {
-      if (result === 1) {
-        cell.classList.add('cell-hit');
-        cell.classList.remove('cell-miss'); // Safety Cleanup
-      } else if (resulte === 2) {
-        cell.classList.add('cell-miss');
-        cell.classList.remove('cell-hit'); //Safety Cleanup
-      } else {
-        // Result is 0 (no action), clear
-        cell.classList.remove('cell-hit', 'cell-miss');
-      }
-    }
+  enemyBoardData.shot_tracker.forEach((row, rIdx) => {
+    row.forEach((val, cIdx) => {
+      const cell = document.getElementById(`opp-cell-${rIdx}-${cIdx}`);
+      if (!cell) return;
+
+      // Wipe old state 
+      cell.classList.remove('cell-hit', 'cell-miss', 'cell-sunk');
+
+      if (val === -1) cell.classList.add('cell-miss');
+      if (val === 1) cell.classList.add('cell-hit');
+      if (val === 2) cell.classList.add('cell-hit', 'cell-sunk');
+    });
   });
 }
 
