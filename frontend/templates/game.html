@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+
+{% block title %}BATTLESHIP{% endblock %}
+
+{% block content %}
+<div class="game-container">
+  
+  <div class="game-hud">
+    
+    <span>PHASE: <span id="state-phase">PLACEMENT</span></span>
+    <span>TURN: <span id="state-turn">0</span></span>
+    <span>STATUS: <span id="state-status">READY</span></span>
+    <button id="btn-reset" class="btn-controls">Reset Game</button>
+  </div>
+  
+  <div class="placement-controls">
+    <h3>Select Ship to Deploy</h3>
+    <button class="btn-ship" data-name="Carrier" data-size="5">Carrier (5)</button> 
+    <button class="btn-ship" data-name="Battleship" data-size="4">Battleship (4)</button>
+    <button class="btn-ship" data-name="Cruiser" data-size="3">Cruiser (3)</button>
+    <button class="btn-ship" data-name="Submarine" data-size="3">Submarine (3)</button>
+    <button class="btn-ship" data-name="Destroyer" data-size="2">Destroyer (2)</button>
+
+    <div class="orientation-toggle">
+      <label>Orientation:</label>
+      <button id="btn-orientation" data-value="1">HORIZONTAL</button>
+    </div>
+  </div>
+
+  <div class="boards">
+    
+    <div class="board-group">
+      <h3 class="board-label">Enemy Fleet</h3>
+      <div id="opponent-board" class="grid-container">
+        {% for row in range(10) %}
+          {% for col in range(10) %}
+            <div class="cell"
+                 data-row="{{ row }}"
+                 data-col="{{ col }}"
+                 id="opp-cell-{{ row }}-{{ col }}">
+            </div>
+          {% endfor %}
+        {% endfor %}
+      </div>
+    </div>
+
+    <div class="board-group">
+      <h3 class="board-label">Your Fleet</h3>
+      <div id="player-board" class="grid-container">
+        {% for row in range(10) %}
+          {% for col in range(10) %}
+            <div class="cell"
+                 data-row="{{ row }}"
+                 data-col="{{ col }}"
+                 id="player-cell-{{ row }}-{{ col }}">
+            </div>
+          {% endfor %}
+        {% endfor %}
+      </div>
+    </div>
+
+  </div>
+
+  <div class="controls">
+    <button id="btn-action" class="btn-controls">Confirm Shot</button>
+  </div>
+
+  <div class="log-container">
+    <div class="log-label">System_Output</div>
+    <div id="combat-log" class="log-content">
+      <div class="log-entry">Local storage snapshot loaded.</div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{{ url_for('static', filename='game.js') }}"></script>
+{% endblock %}

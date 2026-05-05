@@ -1,0 +1,242 @@
+/* Theme */
+:root {
+  --bg-color: #0a0f1d;
+  --ui-cyan: #00d4ff;
+  --hit-red: #ff4d4d;
+  --miss-white: #f8fafc;
+  --grid-border: #1e293b;
+  --ship-gray: #475569;
+  --font-mono: 'JetBrains Mono', 'Share Tech Mono', monospace;
+}
+
+/* Global Styles */
+body {
+  background-color: var(--bg-color);
+  color: var(--ui-cyan);
+  font-family: var(--font-mono);
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+}
+
+h2, h3 {
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-shadow: 0 0 8px var(--ui-cyan);
+}
+
+/* Layout */
+.game-container {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  min-width: 900px;
+  max-width: 1200px;
+}
+
+.game-hud {
+  margin-bottom: 20px;
+  padding: 15px;
+  width: 100%;
+  text-align: center;
+  border-bottom: 1px solid var(--grid-border);
+  background: rgba(0, 212, 255, 0.03);
+  font-size: 0.9rem;
+  letter-spacing: 1px;
+}
+
+.game-hud span {
+  margin: 0 15px;
+}
+
+/* Logs */
+@keyframes flicker {
+  0% {opacity: 0.1;}
+  50% {opacity: 1;}
+  100% {opacity: 0.8;}
+}
+
+.log-container {
+  margin-top: 40px;
+  width: 850px;
+  max-width: 95vw;
+}
+
+.log-label {
+  margin: 5px;
+  font-size: 0.7rem;
+  color: var(--ship-gray);
+  text-transform: uppercase;
+}
+
+.log-content {
+  height: 120px;
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid var(--grid-border);
+  overflow-y: auto;
+  padding: 15px;
+  font-size: 0.85rem;
+  line-height: 1.4;
+  color: #a1a1aa;
+}
+
+.log-entry {
+  margin-bottom: 6px;
+  border-left: 2px solid var(--ui-cyan);
+  padding-left: 10px;
+}
+
+.log-entry.success {
+  color: #10b981;
+  border-left-color: #10b981;
+  animation: flicker 0.3s ease-in-out;
+}
+
+.controls {
+  margin-top: 30px;
+  display: flex;
+  gap: 20px;
+}
+
+#btn-action {
+  border-color: var(--ui-cyan);
+  background-color: var(--ui-cyan);
+  border-radius: 5px;
+}
+
+#btn-action:hover {
+  background: var(--ui-cyan);
+  color: var(--bg-color);
+  box-shadow: 0 0 15px var(--ui-cyan);
+}
+
+#btn-reset {
+  border-color: var(--hit-red);
+  background-color: var(--hit-red);
+  border-radius: 5px;
+}
+
+#btn-reset:hover {
+  background: var(--hit-red);
+  color: var(--bg-color);
+  box-shadow: 0 0 15px var(--hit-red);
+}
+
+.boards {
+  display: flex;
+  gap: 50px;
+  padding: 40px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.board-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.board-label {
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+/* Grid */
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  gap: 2px;
+  background-color: var(--grid-border);
+  border: 2px solid var(--grid-border);
+  width: 400px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+}
+
+.cell {
+  aspect-ratio: 1/1;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.2s ease;
+}
+
+/* Hover effect for target selection */
+.cell:hover {
+  background: rgba(0, 212, 255, 0.2);
+  box-shadow: inset 0 0 10px var(--ui-cyan);
+}
+
+/* Cell States */
+.cell-hit {
+  background: radial-gradient(circle, var(--hit-red) 30%, transparent 70%);
+  box-shadow: 0 0 10px var(--hit-red);
+}
+
+.cell-miss {
+  background: radial-gradient(circle, var(--miss-white) 20%, transparent 30%);
+  opacity: 0.7;
+}
+
+.cell-ship {
+  background-color: var(--ship-gray);
+  border: 1px solid var(--ui-cyan);
+}
+
+.cell-sunk {
+  background-color: #1a1a1a !important;
+  box-shadow: inset 0 0 12px #660000;
+  border: 1px solid #440000;
+  filter: brightness(0.5) grayscale(1);
+  transition: background-color 0.5s ease-in-out;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Disable clicks on Cells */
+.cell-disabled {
+  pointer-events: none;
+  cursor: default;
+}
+
+.btn-ship {
+  background: transparent;
+  border: 1px solid var(--grid-border);
+  color: var(--ui-cyan);
+  padding: 8px 12px;
+  cursor: pointer;
+  font-family: var(--font-mono);
+  transition: all 0.2s ease;
+}
+
+.btn-ship:hover {
+  border-color: var(--ui-cyan);
+}
+
+.btn-ship.activeShip {
+  background: var(--ui-cyan);
+  color: var(--bg-color);
+  box-shadow: 0 0 10px var(--ui-cyan);
+  border-color: white;
+}
+
+.placement-controls {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+#state-phase {
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--ui-cyan);
+}
+
+.hidden {
+  display: none !important;
+}

@@ -8,6 +8,9 @@ class Validation:
 
     @property
     def success(self):
+        if (self._success == None):
+            return True
+
         return self._success
     
     @property
@@ -18,12 +21,12 @@ def validateInput(data:dict, headers:list) -> Validation:
     missingHeaders = list()
 
     if data is None:
-        return False
+        return Validation(headers)
 
     for header in headers:
         if (data.get(header) == None):
             missingHeaders.append(header)
-        
+
     return Validation(missingHeaders)
 
 def validateInt(name, data) -> int:

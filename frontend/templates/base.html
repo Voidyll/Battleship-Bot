@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}BATTLESHIP{% endblock %}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <header>
+    <!-- Potential for logo -->
+    <!-- Potential for connection status -->
+  </header>
+
+  <main>
+    {% block content %}{% endblock %}
+  </main>
+
+<footer>
+  <!-- Potential for additional information to list here -->
+<footer>
+<!--
+Snapshot must include enough information to restore a Game exactly:
+
+    game-level: phase, current_turn, winner, turn_count
+    per-player board state:
+        grid
+        shot_tracker
+        ship list with positions/hits/placement flags
+        placement status
+        cumulative stats
+
+Engine methods:
+
+    game.to_snapshot()
+    Game.from_snapshot(snapshot)
+    game.load_snapshot(snapshot)
+    game.fire_with_auto_ai_turn(...)
+-->
+<!-- Need to add a script to check connectivity to Flask API -->
+
+  {% block extra_js %}{% endblock %}
+</body>
+</html>
