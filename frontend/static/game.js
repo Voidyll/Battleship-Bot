@@ -46,6 +46,57 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // Hover Preview
+  playerBoard.addEventListener('mouseover', (e) => {
+    if (e.target.classList.contains('cell') && activeShip.name) {
+      renderPlacementPreview(e.target.dataset.row, e.target.dataset.col, true);
+    }
+  });
+
+  playerBoard.addEventListener('mouseout', (e) => {
+    if (e.target.classList.contains('cell')) {
+      renderPlacementPreview(null, null, false); // Clear all previews
+    }
+  });
+
+  function renderPlacementPreview(row, col, show) {
+    // Clear previous preview classes
+    document.querySelectorAll('#player-board .cell').forEach(c => c.classList.remove('placement-hover', 'placement-invalid'));
+
+    if (!show) return;
+
+    const r = parseInt(row);
+    const c = parseInt(col);
+    const size = activeShip.size;
+    let isInvalid = false;
+
+    for (let i = 0; i < size; i++) {
+      const targetRow = placementOrientation === 1 ? r : r + i;
+      const targetCol = placementOrientation === 1 ? c + i : c;
+
+      const cell = document.getElementById(`player-cell-${targetRow}-${targetCol}`);
+
+      if (cell) {
+        // Check if cell is already occupied
+        if (cell.classList.contains('cell-ship')) isInvalid = true;
+        cell.classList.add('placement-hover');
+      } else {
+        // Ship goes off the board
+        isInvalid = true;
+      }
+    }
+
+    // If placement is impossible, turn preview red
+    if (isInvalid) {
+      for (let i = 0; i < size; i++) {
+        const targetRow = placementOrientation === 1 ? r : r + i;
+        const targetCol = placementOrientation === 1 ? c + i : c;
+        const cell = document.getElementById(`player-cell-${targetRow}-${targetCol}`);
+        if (cell) cell.classList.add('placement-invalid');
+      }
+    }
+  }
+
   // Player Board Click (Manual Placement)
   playerBoard.addEventListener('click', (e) => {
     if (e.target.classList.contains('cell') && activeShip.name) {
@@ -114,7 +165,7 @@ async function manualPlaceShip(row, col) {
     ship: activeShip.name,
     row: parseInt(row),
     col: parseInt(col),
-    orientation: placementOrientation
+    orientation: placementOrientation === 1 ? 0 : 1
   };
 
   try {
@@ -198,7 +249,7 @@ async function sendFireRequest(row, col) {
 
 // UI Rendering
 function updateUI(snapshot) {
-  if (!snapshot) return;
+  if (!snapshot) return; 
 
   // Update HUD
   document.getElementById('state-phase').innerText = snapshot.phase;
@@ -238,10 +289,19 @@ function updateUI(snapshot) {
       if (!cell) return;
 
       // Wipe old state
-      cell.classList.remove('cell-ship', 'cell-hit', 'cell-miss');
+      cell.classList.remove('cell-ship', 'cell-hit', 'cell-miss', 'cell-sunk');
 
       if (val === 1) cell.classList.add('cell-ship');
-      if (val === 2) cell.classList.add('cell-ship', 'cell-hit');
+      if (val === 2) {
+        cell.classList.add('cell-ship', 'cell-hit');
+
+        const shipAtCell = playerBoardData.ships.find(s =>
+          s.positions.some(p => p[0] === rIdx && p[1] === cIdx)
+        )
+        if (shipAtCell && shipAtCell.sunk) {
+          cell.classList.add('cell-sunk');
+        }
+      }
       if (val === 3) cell.classList.add('cell-miss');
     });
   });
@@ -262,6 +322,35 @@ function updateUI(snapshot) {
       if (val === 2) cell.classList.add('cell-hit', 'cell-sunk');
     });
   });
+   
+  if (snapshot.winner != null && snapshot.winner != 0) {
+    const winnerId = Number(snapshot.winner);
+    const isPlayerWin = (winnerId === 1);
+    const title = isPlayerWin ? "VICTORY" : "FAILURE";
+    const message = isPlayerWin ? "All enemy ships sunk." : "Your fleet has been destroyed.";
+    const color = isPlayerWin ? "#00f3ff" : "#ff4d4d";
+  
+    addLogEntry(title + ": " + message, isPlayerWin ? "success" : "warning");
+
+    // Hide action button
+    actionBtn.style.display = 'none';
+    
+    const overlay = document.getElementById('game-over-overlay');
+    const titleEl = document.getElementById('game-over-title');
+    const msgEl = document.getElementById('game-over-msg');
+
+    if (overlay) {
+      titleEl.innerText = title;
+      titleEl.style.color = color;
+      titleEl.style.textShadow = `0 0 20px ${color}`;
+      msgEl.innerText = message;
+
+      // Use slight delay to show last shot
+      setTimeout(() => {
+        overlay.style.display = 'flex';
+      }, 600);
+    }
+  }
 }
 
 // Logs
